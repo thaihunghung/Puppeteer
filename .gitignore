@@ -1,0 +1,9 @@
+node_modules/
+chrome/
+profile/
+extensions/
+scr/wallet.xlsx
+scr/data.json
+scr/.env
+scr/modules
+scr/test/
