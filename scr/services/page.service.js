@@ -127,7 +127,7 @@ class PageService {
             }
 
             console.log(`Target page found: ${target.url()}`);
-            return { page, url: target.url() };
+            return { page: page, url: target.url() };
         } catch (error) {
             console.error(`Error while waiting for target page: ${error.message}`);
             return null;
@@ -136,22 +136,25 @@ class PageService {
 
     static async switchToPage(partialUrl) {
         try {
-            const pages = await globalState.browser.pages();
-            for (const page of pages) {
-                const url = page.url();
-                console.log(`Checking page: ${url}`);
-                if (url.includes(partialUrl)) {
-                    console.log(`Found page with URL including: ${partialUrl}`);
-                    await page.bringToFront();
-                    return page;
-                }
+          const pages = await globalState.browser.pages();
+      
+          for (const page of pages) {
+            const url = await page.url();
+            console.log(`Checking page: ${url}`);
+      
+            if (url.includes(partialUrl)) {
+              console.log(`Found page with URL including: ${partialUrl}`);
+              await page.bringToFront();
+              return page;
             }
-            return null;
+          }
+      
+          return null;
         } catch (error) {
-            console.error(`Error while switching to page: ${error.message}`);
-            throw error;
+          console.error(`Error while switching to page: ${error.message}`);
+          throw error;
         }
-    }
+      }
 
     static async closePageByIncludes(partialUrl) {
         try {

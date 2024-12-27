@@ -67,13 +67,13 @@ class ElementService {
     static async ElementByTextXpath(page, TextSearch, retries = 2) {
         let found = false;
         let element = null;
-        const xpath = `//*[text() = "${TextSearch}"]`;
+        const xpath = `//*[text() = "${TextSearch}"]`; 
         console.log('TextSearch', xpath);
         while (retries > 0 && !found) {
             try {
-                element = await page.waitForSelector(`::-p-xpath(${xpath})`, {
-                    visible: true,
-                    timeout: 5000,
+                element = await page.waitForSelector(`xpath=//*[text() = "${TextSearch}"]`, { 
+                    visible: true, 
+                    timeout: 5000 
                 });
                 if (element) {
                     console.log(`Tim thay ${TextSearch}`);
@@ -96,7 +96,7 @@ class ElementService {
         const xpath = `//*[text()="${TextSearch}"]`;
         while (retries > 0 && !found) {
             try {
-                element = await page.waitForSelector(`::-p-xpath(${xpath})`, {
+                element = await page.waitForSelector(`xpath=${xpath}`, {
                     visible: true,
                     timeout: 5000,
                 });
@@ -115,6 +115,7 @@ class ElementService {
     }
 
     static async HandlefindAndClickElement(page, xpath, timeout = 3) {
+        console.log(xpath)
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -124,6 +125,7 @@ class ElementService {
     }
 
     static async HandleCoppyAndClickElement(page, xpath, timeout = 3) {
+        console.log(xpath)
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -138,6 +140,7 @@ class ElementService {
     }
 
     static async HandleWaitForSelectorClickElement(page, xpath, timeout = 3) {
+        console.log(xpath)
         const element = await this.ElementWaitForSelector(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -147,6 +150,7 @@ class ElementService {
     }
 
     static async HandleWaitForSelectorTypeElement(page, xpath, input, timeout = 3) {
+        console.log(xpath)
         const element = await this.ElementWaitForSelector(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -157,8 +161,11 @@ class ElementService {
         return false;
     }
 
+
     static async HandlefindAndElementText(page, text, timeout = 2) {
-        const element = await this.ElementByTagAndTextXpath(page, text, timeout);
+        const xpath = `//*[text() = "${text}"]`; 
+        console.log(xpath); 
+        const element = await this.ElementByTextXpath(page, text, timeout);
         if (element.found) {
             return true;
         }
@@ -166,6 +173,7 @@ class ElementService {
     }
 
     static async HandlefindAndTypeElement(page, xpath, input, timeout = 10) {
+        console.log(xpath)
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();

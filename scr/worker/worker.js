@@ -8,12 +8,10 @@ const globalState = require('../config/globalState');
 async function run() {
     await Util.waitToRun(workerData)
     globalState.workerData = workerData
-    const browser = await BrowserService.launchBrowserWithProfile();
+    const browser = await BrowserService.launchBrowserWithProfile(false, true);
     globalState.browser = browser
     try {
-        
         await MissionPortal()
-
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
         console.log(`${workerData.Profile} that bai`, error)

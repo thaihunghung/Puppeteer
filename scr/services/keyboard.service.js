@@ -1,3 +1,5 @@
+const globalState = require("../config/globalState");
+const { Util } = require("../config/import.util");
 
 class KeyboardService {
     constructor() {}
@@ -11,6 +13,19 @@ class KeyboardService {
     }
     static getRandomNumber(max) {
         return Math.floor(Math.random() * max) + 1;
+    }
+
+    static async AutoEnter(page) {
+        while (true) {
+            if (globalState.stop){
+                break
+            }
+            console.log(`${globalState.workerData.profile}`, globalState.stop);
+            await page.keyboard.down('Control');
+            await page.keyboard.press("Enter");
+            await page.keyboard.up('Control');
+            await Util.sleep(10000)
+        }
     }
 }
 
