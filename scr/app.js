@@ -26,24 +26,24 @@ async function startWorkers() {
     const data_wallet = jsonDataService.getJson();
 
     if (data_wallet.length === 0) {
-        console.error('Không có địa chỉ nào trong file Excel.');
+        console.error('Không có địa chỉ nào trong file Json.');
         return;
     }
 
     const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 3;
-    indicesGroups.otherGroup = [];
+    indicesGroups.otherGroup = [0];
     const indicesToRun = indicesGroups.otherGroup;
 
     let activeWorkers = 0; // Số lượng luồng hiện tại đang chạy
-    let currentIndex = 15; // Vị trí bắt đầu
+    let currentIndex = 0; // Vị trí bắt đầu
     const results = []; // Kết quả từ tất cả các luồng
 
     async function processNextWorker() {
-        if (currentIndex >= data_wallet.length) return; // Hết công việc để xử lý
+        if (currentIndex >= data_wallet.length) return;
 
         if (indicesToRun.length > 0 && !indicesToRun.includes(currentIndex)) {
             currentIndex++;
-            return processNextWorker(); // Bỏ qua nếu không nằm trong indicesToRun
+            return processNextWorker(); 
         }
 
         const { profile, mnemonic, proxy, google, discord, twitter, hotmail } = data_wallet[currentIndex];

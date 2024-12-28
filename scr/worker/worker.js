@@ -1,22 +1,26 @@
 const { workerData, parentPort } = require('worker_threads');
 const { BrowserService } = require('../config/import.service');
 
-const MissionPortal = require('../mission/mission.portal'); 
+//const MissionPortal = require('../mission/mission.portal'); 
 const Util = require('../util/util');
 const globalState = require('../config/globalState');
+// const MissionGoplus = require('../mission/mission.goplus');
+// const MissionDetrading = require('../mission/misssion.detrading');
+const MissionPumdao = require('../mission/mission.pumdao');
 
 async function run() {
     await Util.waitToRun(workerData)
     globalState.workerData = workerData
-    const browser = await BrowserService.launchBrowserWithProfile(false, true);
+    const browser = await BrowserService.launchBrowserWithProfile();
     globalState.browser = browser
     try {
-        await MissionPortal()
+        await MissionPumdao()
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
         console.log(`${workerData.Profile} that bai`, error)
         parentPort.postMessage({ status: 'Failure' });
     } finally {
+        await Util.sleep(20000)
         await BrowserService.closeBrowser()
     }
 }

@@ -40,7 +40,7 @@ class PageService {
 
             const target = await globalState.browser.waitForTarget(
                 (target) => target.url() === targetUrl,
-                { timeout: 10000 }
+                { timeout: 150000 }
             );
 
             if (!target) {
@@ -173,15 +173,24 @@ class PageService {
 
             if (closedCount > 0) {
                 console.log(`Closed ${closedCount} page(s) with URL including: ${partialUrl}`);
+                return true
             } else {
                 console.log(`No page found with URL including: ${partialUrl}`);
+                return false
             }
         } catch (error) {
             console.error(`Error while closing pages: ${error.message}`);
             throw error;
         }
     }
-
+    static async closeIndexPage(index) {
+        const pages = await globalState.browser.pages();
+        if (pages[index]) {
+            console.log(`Đóng tab: ${pages[index].url()}`);
+            await pages[index].close();
+            return true; 
+        }
+    }
     static async openNewPage(url) {
         try {
             const page = await this.createNewTab();
