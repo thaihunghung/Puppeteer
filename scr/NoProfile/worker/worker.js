@@ -1,32 +1,26 @@
 const { workerData, parentPort } = require('worker_threads');
-const { BrowserService } = require('../config/import.service');
+const { BrowserService } = require('../../config/import.service');
 
-const MissionPortal = require('../mission/mission.portal'); 
-const Util = require('../util/util');
-const globalState = require('../config/globalState');
-const Twitter = require('../modules/twitter/twitter');
-const { axios } = require('../config/module.import');
-
+//const MissionPortal = require('../mission/mission.portal'); 
+const Util = require('../../util/util');
+const globalState = require('../../config/globalState');
 // const MissionGoplus = require('../mission/mission.goplus');
 // const MissionDetrading = require('../mission/misssion.detrading');
-//const MissionPumdao = require('../mission/mission.pumdao');
+const MissionPumdao = require('../../mission/mission.pumdao');
+const PhantomWallet = require('../../modules/wallet/phantom/phantom');
 
 async function run() {
-    await Util.waitToRun(workerData)
     globalState.workerData = workerData
-    const browser = await BrowserService.launchBrowserWithProfile();
+    const browser = await BrowserService.launchBrowser();
     globalState.browser = browser
     try {
-        
-        //await Twitter.loginAndCheckCookie()
-        await MissionPortal()
+        await PhantomWallet.CreateWallet(workerData)
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
-        console.log(`${workerData.Profile} that bai`, error)
         parentPort.postMessage({ status: 'Failure' });
     } finally {
-        await Util.sleep(50000)
-       // await BrowserService.closeBrowser()
+        //await Util.sleep(50000)
+        //await BrowserService.closeBrowser()
     }
 }
 

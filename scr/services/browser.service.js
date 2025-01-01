@@ -6,7 +6,7 @@ class BrowserService {
     static browser = null;
     constructor() {}
 
-    static async launchBrowserWithProfile(devtool = false, headless = false) {
+    static async launchBrowserWithProfile(mobile = false, devtool = false, headless = false) {
         const { profile, proxy } = globalState.workerData;
 
         const userDataDir = `E:\\puppeteer-auto-meta-proxy\\profile\\${profile}`;
@@ -53,7 +53,31 @@ class BrowserService {
                     proxyArg,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
-                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\okx`,
+                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom`,
+                    '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
+                ].filter(arg => arg), 
+                defaultViewport: mobile
+                ? { width: 500} // Kích thước mobile (ví dụ: iPhone X)
+                : null,
+            });
+            console.log("Browser launched successfully");
+            return BrowserService.browser;
+        } catch (error) {
+            console.error("Error launching browser:", error);
+            throw error;
+        }
+    }
+    static async launchBrowser(devtool = false, headless = false) {
+        try {
+            BrowserService.browser = await puppeteer.launch({
+                devtools: devtool,
+                headless: headless,
+                executablePath: "E:\\puppeteer-auto-meta-proxy\\chrome\\win64-116.0.5793.0\\chrome-win64\\chrome.exe",
+                ignoreDefaultArgs: ["--disable-extensions", "--enable-automation"],
+                args: [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn`,
                     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
                 ].filter(arg => arg), 
                 defaultViewport: null,
@@ -65,7 +89,7 @@ class BrowserService {
             throw error;
         }
     }
-
+    
     static async closeBrowser() {
         if (BrowserService.browser) {
             await BrowserService.browser.close();

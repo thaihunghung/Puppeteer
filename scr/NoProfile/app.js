@@ -1,16 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const { Worker, isMainThread } = require('worker_threads');
-const indicesGroups = require('./config/indicesGroups');
-const JsonDataService = require('./services/json.service');
-const AxiosCustomInstance = require('./util/AxiosCustomInstance');
+const JsonDataService = require('../services/json.service');
+const globalState = require('../config/globalState');
 require('dotenv').config();
 
 async function createWorker(workerData) {
     const worker = new Worker(path.resolve(__dirname, 'worker', 'worker.js'), {
         workerData,
     });
-
     return new Promise((resolve, reject) => {
         worker.on('message', resolve);
         worker.on('error', reject);
@@ -23,56 +21,37 @@ async function createWorker(workerData) {
 }
 
 async function startWorkers() {
-    const jsonDataService = new JsonDataService();
-    const data_wallet = jsonDataService.getJson();
-
-    if (data_wallet.length === 0) {
-        console.error('Không có địa chỉ nào trong file Json.');
-        return;
-    }
-
-    const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 3;
-    //3, 5, 8, 19
-    indicesGroups.otherGroup = [5, 8];
-    //3 , 19 tạch no veri
-    const indicesToRun = indicesGroups.otherGroup;
-
+    const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 5;
+    
     let activeWorkers = 0; 
-    let currentIndex = 0; // Vị trí bắt đầu
-    const results = []; // Kết quả từ tất cả các luồng
-
+    let currentIndex = 0; 
+    const results = []; 
+    
     async function processNextWorker() {
-        if (currentIndex >= data_wallet.length) return;
+        if (currentIndex >= 5) return; 
 
-        if (indicesToRun.length > 0 && !indicesToRun.includes(currentIndex)) {
-            currentIndex++;
-            return processNextWorker(); 
-        }
-
-        const { profile, mnemonic, proxy, google, discord, twitter, hotmail } = data_wallet[currentIndex];
-        const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail };
-
+        const workerData = { proxy: `proxy${currentIndex + 1}`, noti: temp }; 
+        
         currentIndex++;
         activeWorkers++;
-
         try {
             const result = await createWorker(workerData);
             results.push(result); 
         } catch (error) {
-            console.error(`Lỗi trong worker ${workerData.i}:`, error);
+            console.error(`Lỗi trong worker ${workerData.proxy}:`, error);
             results.push({ error: error.message }); 
         } finally {
             activeWorkers--;
-            processNextWorker(); 
+            processNextWorker();  // Gọi tiếp để xử lý công việc tiếp theo
         }
     }
 
-    const initialWorkers = Math.min(maxThreads, data_wallet.length - 12);
+    // Khởi tạo số worker ban đầu
+    const initialWorkers = Math.min(maxThreads, 10); // 10 là ví dụ
     const workerPromises = [];
     for (let i = 0; i < initialWorkers; i++) {
         workerPromises.push(processNextWorker());
     }
-
 
     await Promise.all(workerPromises);
     console.log('Kết quả từ tất cả các worker:', results);
@@ -83,4 +62,3 @@ if (isMainThread) {
         .then(() => console.log('Hoàn thành tất cả công việc.'))
         .catch((error) => console.error('Lỗi trong luồng chính:', error));
 }
-

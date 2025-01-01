@@ -167,6 +167,7 @@ class ElementService {
         console.log(xpath); 
         const element = await this.ElementByTextXpath(page, text, timeout);
         if (element.found) {
+            console.log("tim thay"); 
             return true;
         }
         return false;

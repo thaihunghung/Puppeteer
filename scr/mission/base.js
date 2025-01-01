@@ -15,4 +15,4 @@ async function Mission() {
     } 
 }
 
-module.exports = MissionGoplus
+module.exports = Mission
