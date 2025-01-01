@@ -7,10 +7,6 @@ const globalState = require('../config/globalState');
 const Twitter = require('../modules/twitter/twitter');
 const { axios } = require('../config/module.import');
 
-// const MissionGoplus = require('../mission/mission.goplus');
-// const MissionDetrading = require('../mission/misssion.detrading');
-//const MissionPumdao = require('../mission/mission.pumdao');
-
 async function run() {
     await Util.waitToRun(workerData)
     globalState.workerData = workerData
@@ -25,8 +21,9 @@ async function run() {
         console.log(`${workerData.Profile} that bai`, error)
         parentPort.postMessage({ status: 'Failure' });
     } finally {
-        await Util.sleep(50000)
-       // await BrowserService.closeBrowser()
+        if (globalState.closeWorker) {
+            await BrowserService.closeBrowser()
+        }
     }
 }
 

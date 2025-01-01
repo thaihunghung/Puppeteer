@@ -7,7 +7,9 @@ class PageService {
             throw new Error("Browser not initialized");
         }
         const newPage = await globalState.browser.newPage();
-        console.log("New tab created");
+        if (globalState.showPage){
+            console.log("New tab created"); 
+        }
         return newPage;
     }
 
@@ -22,7 +24,7 @@ class PageService {
     static async acceptAlert(page) {
         try {
             page.on('dialog', async (dialog) => {
-                console.log(`Dialog message: ${dialog.message()}`);
+                //console.log(`Dialog message: ${dialog.message()}`);
                 await dialog.accept();
                 console.log('Alert accepted');
             });
@@ -36,8 +38,10 @@ class PageService {
 
     static async getTargetPage(targetUrl) {
         try {
-            console.log(`Waiting for target page with URL: ${targetUrl}`);
-
+            
+            if (globalState.showPage){
+                console.log(`Waiting for target page with URL: ${targetUrl}`);
+            }
             const target = await globalState.browser.waitForTarget(
                 (target) => target.url() === targetUrl,
                 { timeout: 150000 }
@@ -54,7 +58,9 @@ class PageService {
                 return null;
             }
 
-            console.log(`Target page found: ${targetUrl}`);
+            if (globalState.showPage){
+                console.log(`Target page found: ${targetUrl}`);
+            }
             return page;
         } catch (error) {
             console.error(`Error while waiting for target page: ${error.message}`);
@@ -71,14 +77,17 @@ class PageService {
         try {
             const pages = await globalState.browser.pages();
             if (pages.length === 0) {
-                console.log("No pages found.");
+                if (globalState.showPage){
+                    console.log("No pages found.");
+                } 
                 return null;
             }
 
             const lastPage = pages[pages.length - 1];
             const lastPageUrl = lastPage.url();
-
-            console.log(`Last page URL: ${lastPageUrl}`);
+            if (globalState.showPage){
+                console.log(`Last page URL: ${lastPageUrl}`);
+            } 
             return lastPageUrl;
         } catch (error) {
             console.error(`Error while getting the last page URL: ${error.message}`);
@@ -91,8 +100,10 @@ class PageService {
             const pages = await globalState.browser.pages();
             for (const page of pages) {
                 const url = page.url();
-                if (url.includes(targetUrl)) {
-                    console.log(`Found page with URL: ${url}`);
+                if (url.includes(targetUrl)) {     
+                    if (globalState.showPage){
+                        console.log(`Found page with URL: ${url}`);
+                    } 
                     return { check: true, url };
                 }
             }
@@ -110,7 +121,9 @@ class PageService {
             const pages = await globalState.browser.pages();
             for (const page of pages) {
                 const url = page.url();
-                console.log(`Found page with URL: ${url}`)
+                if (globalState.showPage){
+                    console.log(`Found page with URL: ${url}`)
+                }  
             }
         } catch (error) {
             console.error(`Error while searching for page by URL: ${error.message}`);
@@ -120,12 +133,17 @@ class PageService {
 
     static async getTargetPageByIncludes(targetUrl) {
         try {
-            console.log(`Looking for target page containing URL: ${targetUrl}`);
-
+            if (globalState.showPage){
+                console.log(`Looking for target page containing URL: ${targetUrl}`);
+            }  
+            
             const pageCheck = await this.findPageByUrl(targetUrl);
             if (pageCheck.check) {
-                console.log(`Target page already exists with URL: ${pageCheck.url}`);
-                return null; // Không cần trả về đối tượng nào nếu trang đã tồn tại
+                if (globalState.showPage){
+                    console.log(`Target page already exists with URL: ${pageCheck.url}`);
+                } 
+                
+                return null; 
             }
 
             const target = await globalState.browser.waitForTarget(
@@ -143,8 +161,10 @@ class PageService {
                 console.warn('Unable to access the target page object');
                 return null;
             }
-
-            console.log(`Target page found: ${target.url()}`);
+            if (globalState.showPage){
+                console.log(`Target page found: ${target.url()}`);
+            } 
+            
             return page; // Chỉ trả về đối tượng page
         } catch (error) {
             console.error(`Error while waiting for target page: ${error.message}`);
@@ -159,10 +179,15 @@ class PageService {
 
             for (const page of pages) {
                 const url = await page.url();
-                console.log(`Checking page: ${url}`);
-
+                
+                if (globalState.showPage){
+                    console.log(`Checking page: ${url}`);
+                } 
                 if (url.includes(partialUrl)) {
-                    console.log(`Found page with URL including: ${partialUrl}`);
+                    if (globalState.showPage){
+                        console.log(`Found page with URL including: ${partialUrl}`);
+                    } 
+                    
                     await page.bringToFront();
                     return page;
                 }
@@ -184,7 +209,9 @@ class PageService {
 
             const page = pages[tabIndex];
             const url = await page.url();
-            console.log(`Switching to tab at index ${tabIndex} with URL: ${url}`);
+            if (globalState.showPage){
+                console.log(`Switching to tab at index ${tabIndex} with URL: ${url}`);
+            } 
 
             await page.bringToFront();
             return page;
@@ -195,37 +222,62 @@ class PageService {
     }
 
 
-    static async closePageByIncludes(partialUrl) {
+    static async closePageByIncludes(partialUrl, exceptions = []) {
         try {
             const pages = await globalState.browser.pages();
             let closedCount = 0;
-
+    
             for (const page of pages) {
                 const url = page.url();
-                console.log(`Checking page: ${url}`);
+    
+                if (globalState.showPage) {
+                    console.log(`Checking page: ${url}`);
+                }
+    
+                // Kiểm tra nếu URL là ngoại lệ
+                const isException = exceptions.some((exceptionUrl) => url.includes(exceptionUrl));
+                if (isException) {
+                    if (globalState.showPage) {
+                        console.log(`Skipping page with URL (exception): ${url}`);
+                    }
+                    continue; // Bỏ qua trang trong danh sách ngoại lệ
+                }
+    
+                // Kiểm tra nếu URL phù hợp với partialUrl
                 if (url.includes(partialUrl)) {
-                    console.log(`Closing page with URL: ${url}`);
+                    if (globalState.showPage) {
+                        console.log(`Closing page with URL: ${url}`);
+                    }
+    
                     await page.close();
                     closedCount++;
                 }
             }
-
+    
             if (closedCount > 0) {
-                console.log(`Closed ${closedCount} page(s) with URL including: ${partialUrl}`);
-                return true
+                if (globalState.showPage) {
+                    console.log(`Closed ${closedCount} page(s) with URL including: ${partialUrl}`);
+                }
+                return true;
             } else {
-                console.log(`No page found with URL including: ${partialUrl}`);
-                return false
+                if (globalState.showPage) {
+                    console.log(`No page found with URL including: ${partialUrl}`);
+                }
+                return false;
             }
         } catch (error) {
             console.error(`Error while closing pages: ${error.message}`);
             throw error;
         }
     }
+    
     static async closeIndexPage(index) {
         const pages = await globalState.browser.pages();
         if (pages[index]) {
-            console.log(`Đóng tab: ${pages[index].url()}`);
+            if (globalState.showPage){
+                console.log(`Đóng tab: ${pages[index].url()}`);
+            }
+            
             await pages[index].close();
             return true;
         }
@@ -268,7 +320,10 @@ class PageService {
                 const cookie = cookies.find(c => c.name === name);
                 result[name] = cookie || null;
             });
-            console.log(result)
+            if (globalState.showPage){
+                console.log(result)
+            }
+            
             return result;
         } catch (error) {
             console.error('Lỗi trong quá trình lấy cookies:', error);

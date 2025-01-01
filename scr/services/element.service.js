@@ -1,4 +1,6 @@
+const globalState = require("../config/globalState");
 const { Util } = require("../config/import.util");
+
 
 class ElementService {
     static async GetValueXpathElement(page, xpath) {
@@ -11,7 +13,9 @@ class ElementService {
                 return await page.$eval(xpath, el => el.value);
             }
         } catch (error) {
-            console.error(`Error in getValueXpathElement: ${error.message}`);
+            if (globalState.showXpath){
+                console.error(`Error in getValueXpathElement: ${error.message}`);
+            }
         }
         return null;
     }
@@ -19,7 +23,9 @@ class ElementService {
     static async ElementWaitForSelector(page, query, retries = 2) {
         let found = false;
         let element = null;
-        console.log(query);
+        if (globalState.showXpath){
+            console.log(query);
+        }
         while (retries > 0 && !found) {
             try {
                 element = await page.waitForSelector(query, {
@@ -30,10 +36,14 @@ class ElementService {
                     found = true;
                 }
             } catch (error) {
-                console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                if (globalState.showXpath){
+                    console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                }     
                 retries--;
                 if (retries === 0) {
-                    console.log('Element not found after 2 attempts.');
+                    if (globalState.showXpath){
+                        console.log('Element not found after 2 attempts.');
+                    }
                 }
             }
         }
@@ -43,7 +53,9 @@ class ElementService {
     static async ElementXpath(page, xpath, retries = 2) {
         let found = false;
         let element = null;
-        console.log(xpath);
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         while (retries > 0 && !found) {
             try {
                 element = await page.waitForSelector(`::-p-xpath(${xpath})`, {
@@ -54,10 +66,15 @@ class ElementService {
                     found = true;
                 }
             } catch (error) {
-                console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                
+                if (globalState.showXpath){
+                    console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                }
                 retries--;
                 if (retries === 0) {
-                    console.log('Element not found after 2 attempts.');
+                    if (globalState.showXpath){
+                        console.log('Element not found after 2 attempts.');
+                    }
                 }
             }
         }
@@ -68,7 +85,9 @@ class ElementService {
         let found = false;
         let element = null;
         const xpath = `//*[text() = "${TextSearch}"]`; 
-        console.log('TextSearch', xpath);
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         while (retries > 0 && !found) {
             try {
                 element = await page.waitForSelector(`xpath=//*[text() = "${TextSearch}"]`, { 
@@ -76,14 +95,22 @@ class ElementService {
                     timeout: 5000 
                 });
                 if (element) {
-                    console.log(`Tim thay ${TextSearch}`);
+                    if (globalState.showXpath){
+                        console.log(TextSearch);
+                    }
                     found = true;
                 }
             } catch (error) {
-                console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                
+                if (globalState.showXpath){
+                    console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                }
                 retries--;
                 if (retries === 0) {
-                    console.log('Element not found after 2 attempts.');
+                    if (globalState.showXpath){
+                        console.log('Element not found after 2 attempts.');
+                    }
+                    
                 }
             }
         }
@@ -104,10 +131,16 @@ class ElementService {
                     found = true;
                 }
             } catch (error) {
-                console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                if (globalState.showXpath){
+                    console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                }
+                
                 retries--;
                 if (retries === 0) {
-                    console.log('Element not found after 2 attempts.');
+                    if (globalState.showXpath){
+                        console.log('Element not found after 2 attempts.');
+                    }
+                    
                 }
             }
         }
@@ -115,7 +148,9 @@ class ElementService {
     }
 
     static async HandlefindAndClickElement(page, xpath, timeout = 3) {
-        console.log(xpath)
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -125,7 +160,9 @@ class ElementService {
     }
 
     static async HandleCoppyAndClickElement(page, xpath, timeout = 3) {
-        console.log(xpath)
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -140,7 +177,9 @@ class ElementService {
     }
 
     static async HandleWaitForSelectorClickElement(page, xpath, timeout = 3) {
-        console.log(xpath)
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         const element = await this.ElementWaitForSelector(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -150,7 +189,9 @@ class ElementService {
     }
 
     static async HandleWaitForSelectorTypeElement(page, xpath, input, timeout = 3) {
-        console.log(xpath)
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         const element = await this.ElementWaitForSelector(page, xpath, timeout);
         if (element.found) {
             await element.element.click();
@@ -161,20 +202,53 @@ class ElementService {
         return false;
     }
 
-
     static async HandlefindAndElementText(page, text, timeout = 2) {
         const xpath = `//*[text() = "${text}"]`; 
-        console.log(xpath); 
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
         const element = await this.ElementByTextXpath(page, text, timeout);
         if (element.found) {
-            console.log("tim thay"); 
+            if (globalState.showXpath){
+                console.log("tim thay"); 
+            }
+            return true;
+        }
+        return false;
+    }
+
+    static async HandlefindAndClickElementText(page, text, timeout = 2) {
+        const xpath = `//*[text() = "${text}"]`; 
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        const element = await this.ElementByTextXpath(page, text, timeout);
+        if (element.found) {
+            await element.element.click();
+            return true;
+        }
+        return false;
+    }
+
+    static async HandlefindAndTypeElementText(page, text, input, timeout = 2) {
+        const xpath = `//*[text() = "${text}"]`; 
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        const element = await this.ElementByTextXpath(page, text, timeout);
+        if (element.found) {
+            await element.element.click();
+            await element.element.evaluate(el => el.value = '');
+            await element.element.type(input);
             return true;
         }
         return false;
     }
 
     static async HandlefindAndTypeElement(page, xpath, input, timeout = 10) {
-        console.log(xpath)
+        if (globalState.showXpath){
+            console.log(xpath); 
+        }
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
             await element.element.click();

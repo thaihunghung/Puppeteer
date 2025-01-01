@@ -17,15 +17,16 @@ class KeyboardService {
 
     static async AutoEnter(page) {
         while (true) {
-            if (globalState.stop){
-                break
-            }
-            console.log(`${globalState.workerData.profile}`, globalState.stop);
             await page.keyboard.down('Control');
             await page.keyboard.press("Enter");
             await page.keyboard.up('Control');
-            await Util.sleep(10000)
         }
+    }
+    static async Enter(page) {
+        console.log(`${globalState.workerData.profile}`, globalState.stop);
+        await page.keyboard.down('Control');
+        await page.keyboard.press("Enter");
+        await page.keyboard.up('Control');
     }
 }
 

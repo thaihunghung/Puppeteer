@@ -1,13 +1,18 @@
+const { closeBrowser } = require("../services/browser.service");
 
 const globalState = {
     workerData: null,
     browser: null,
-    stop: false,
+    stopfaucet: false,
     swap: false,
+    checkCountTimePartal: false,
     timeout: 10000,
     Worker: [],
+    showXpath: false,
+    showPage: false,
     jsonPath:'E:/puppeteer-auto-meta-proxy/scr/data.json',
-    excelPath:'E:/puppeteer-auto-meta-proxy/scr/wallet.xlsx'
+    excelPath:'E:/puppeteer-auto-meta-proxy/scr/wallet.xlsx',
+    closeWorker: false,
 };
 
 module.exports = globalState;

@@ -3,6 +3,6 @@ module.exports = {
     ElementService: require('../services/element.service'),
     PageService: require('../services/page.service'),
     JsonDataService: require('../services/json.service'),
-    TwoFactorService: require('../services/2fa.service'), 
+    axiosService: require('../services/axios.service'), 
     KeyboardService: require('../services/keyboard.service'),
 };

@@ -53,7 +53,7 @@ class BrowserService {
                     proxyArg,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
-                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom`,
+                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom,E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Portal`,
                     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
                 ].filter(arg => arg), 
                 defaultViewport: mobile
