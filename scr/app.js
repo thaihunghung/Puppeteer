@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
 const { Worker, isMainThread } = require('worker_threads');
 const indicesGroups = require('./config/indicesGroups');
 const JsonDataService = require('./services/json.service');
 const AxiosCustomInstance = require('./util/AxiosCustomInstance');
+const globalState = require('./config/globalState');
 require('dotenv').config();
 
 async function createWorker(workerData) {
@@ -30,11 +32,17 @@ async function startWorkers() {
         console.error('Không có địa chỉ nào trong file Json.');
         return;
     }
+    // 5,8,9
     indicesGroups.otherGroup = []
     const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 3;
     const results = [];
-    // indicesGroups.group1to5, , indicesGroups.group16to20
-    const groups = [indicesGroups.group26to30]; // Các nhóm cần chạy
+    // toi group6to10
+    // , indicesGroups.group21to25
+    //indicesGroups.group11to15,  chạy lại
+    //const groups = [indicesGroups.group11to15, indicesGroups.group6to10, indicesGroups.group1to5, indicesGroups.group16to20]; // Các nhóm cần chạy
+    //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20, indicesGroups.group21to25, indicesGroups.group26to30]
+    //const groups = [indicesGroups.group11to15, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20]
+    const groups = [indicesGroups.group6to10]
     let currentGroupIndex = 0;
 
     async function processGroup(indicesToRun) {
@@ -50,8 +58,8 @@ async function startWorkers() {
                 return processNextWorker();
             }
 
-            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal } = data_wallet[currentIndex];
-            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal };
+            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal, mango } = data_wallet[currentIndex];
+            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal, mango };
 
             currentIndex++;
             activeWorkers++;
@@ -75,6 +83,33 @@ async function startWorkers() {
         }
 
         await Promise.all(workerPromises);
+        if (globalState.closeWorker) {
+            const { exec } = require('child_process');
+            exec('E:\\puppeteer-auto-meta-proxy\\scr\\util\\close_chrome.bat', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Lỗi khi chạy close_chrome.bat: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Stderr khi chạy close_chrome.bat: ${stderr}`);
+                    return;
+                }
+                console.log(`Output từ close_chrome.bat:\n${stdout}`);
+
+                // Chạy file cleanup_temp_folders.bat sau khi close_chrome.bat hoàn thành
+                exec('E:\\puppeteer-auto-meta-proxy\\scr\\util\\cleanup_temp_folders.bat', (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Lỗi khi chạy cleanup_temp_folders.bat: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.error(`Stderr khi chạy cleanup_temp_folders.bat: ${stderr}`);
+                        return;
+                    }
+                    console.log(`Output từ cleanup_temp_folders.bat:\n${stdout}`);
+                });
+            });
+        }
         return groupResults;
     }
 

@@ -1,4 +1,5 @@
 const globalState = require("../config/globalState");
+const Util = require("../util/util");
 
 
 class PageService {
@@ -107,15 +108,20 @@ class PageService {
                     return { check: true, url };
                 }
             }
-
-            console.warn(`No page found containing URL: ${targetUrl}`);
+            if (globalState.showPage){
+                console.warn(`No page found containing URL: ${targetUrl}`);
+            }  
+            
             return { check: false, url: null };
         } catch (error) {
-            console.error(`Error while searching for page by URL: ${error.message}`);
+            if (globalState.showPage){
+                console.error(`Error while searching for page by URL: ${error.message}`);
+            }  
+            
             return { check: false, error: error.message };
         }
     }
-
+    
     static async findAllUrl() {
         try {
             const pages = await globalState.browser.pages();
@@ -285,6 +291,7 @@ class PageService {
     static async openNewPage(url) {
         try {
             const page = await this.createNewTab();
+            await Util.sleep(5000)
             await page.goto(url, {
                 timeout: 150000,
                 waitUntil: 'domcontentloaded',

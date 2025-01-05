@@ -6,6 +6,7 @@ const Util = require('../util/util');
 const globalState = require('../config/globalState');
 const Twitter = require('../modules/twitter/twitter');
 const { axios } = require('../config/module.import');
+const MissionMongo = require('../mission/mission.mongo');
 
 async function run() {
     await Util.waitToRun(workerData)
@@ -13,9 +14,11 @@ async function run() {
     const browser = await BrowserService.launchBrowserWithProfile();
     globalState.browser = browser
     try {
-        
-        //await Twitter.loginAndCheckCookie()
+        // Mai chạy
         await MissionPortal()
+
+
+        //await MissionMongo()
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
         console.log(`${workerData.Profile} that bai`, error)

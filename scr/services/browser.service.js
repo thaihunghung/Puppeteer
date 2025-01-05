@@ -40,7 +40,14 @@ class BrowserService {
                 proxyArg = `--proxy-server=${defaultProxyUrl}`;
                 break;
         }
-
+        const extensions = [
+            'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
+            'E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
+            'E:\\puppeteer-auto-meta-proxy\\extensions\\Portal',
+           // 'E:\\puppeteer-auto-meta-proxy\\extensions\\proxy',
+            //'E:\\puppeteer-auto-meta-proxy\\extensions\\Mango'
+        ];
+        const extensionsPaths = extensions.join(',');
         try {
             BrowserService.browser = await puppeteer.launch({
                 devtools: devtool,
@@ -53,7 +60,7 @@ class BrowserService {
                     proxyArg,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
-                    `--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom,E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra,E:\\puppeteer-auto-meta-proxy\\extensions\\Portal`,
+                    `--load-extension=${extensionsPaths}`,
                     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
                 ].filter(arg => arg), 
                 defaultViewport: mobile

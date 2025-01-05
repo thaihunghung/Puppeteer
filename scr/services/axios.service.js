@@ -23,7 +23,7 @@ class axiosService {
         if (isNaN(timeAsNumber)) {
             console.error("Giá trị của process.env.TIME không phải là số hợp lệ");
         } else {
-            console.log("Giá trị sau khi chuyển đổi:", timeAsNumber);
+            //console.log("Giá trị sau khi chuyển đổi:", timeAsNumber);
         }
         try {
                 const response = await axios.get(API_URL);
