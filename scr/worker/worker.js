@@ -15,10 +15,10 @@ async function run() {
     globalState.browser = browser
     try {
         // Mai chạy
-        await MissionPortal()
+       await MissionPortal()
 
-
-        //await MissionMongo()
+    
+       //await MissionMongo()
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
         console.log(`${workerData.Profile} that bai`, error)

@@ -20,6 +20,7 @@
     "https-proxy-agent": "^7.0.5",
     "ping": "^0.4.4",
     "proxy-chain": "^2.5.5",
+    "proxy-check": "^1.0.8",
     "puppeteer": "^23.9.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-adblocker": "^2.13.6",

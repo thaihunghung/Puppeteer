@@ -19,31 +19,38 @@ class axiosService {
     }
     static async checkTimeTransactionsportal(address) {
         const API_URL = `https://aurelia.portaltobitcoin.com/api/v2/addresses/${address}/transactions`;
-        const timeAsNumber = Number(timeEnv);
+        const timeAsNumber = Number(process.env.TIME);
         if (isNaN(timeAsNumber)) {
             console.error("Giá trị của process.env.TIME không phải là số hợp lệ");
-        } else {
-            //console.log("Giá trị sau khi chuyển đổi:", timeAsNumber);
+            return null;
         }
+    
         try {
-                const response = await axios.get(API_URL);
-                const data = response.data;
-        
-                const currentTime = new Date();
-        
-                const lessThanCount = data.items.filter(item => {
-                    const timestamp = new Date(item.timestamp);
-                    const timeDifferenceMs = currentTime - timestamp;
-                    const timeDifferenceHours = timeDifferenceMs / (1000 * 60 * 60); 
-                    return timeDifferenceHours < timeAsNumber;
-                }).length; 
-                console.log(`${address} có thời gian nhỏ hơn ${timeAsNumber} giờ: ${lessThanCount}`);
-                return lessThanCount
-            } catch (error) {
-                console.error("Lỗi khi gọi API:", error);
-                return null
+            const response = await axios.get(API_URL);
+            const data = response.data;
+    
+            const currentTime = new Date();
+    
+            const lessThanCount = data.items.filter(item => {
+                // Kiểm tra điều kiện tx_types
+                if (!item.tx_types || !item.tx_types.includes("contract_call")) {
+                    return false;
+                }
+    
+                const timestamp = new Date(item.timestamp);
+                const timeDifferenceMs = currentTime - timestamp;
+                const timeDifferenceHours = timeDifferenceMs / (1000 * 60 * 60);
+                return timeDifferenceHours < timeAsNumber;
+            }).length;
+    
+            console.log(`${address} có thời gian nhỏ hơn ${timeAsNumber} giờ với loại giao dịch 'contract_call': ${lessThanCount}`);
+            return lessThanCount;
+        } catch (error) {
+            console.error("Lỗi khi gọi API:", error);
+            return null;
         }
     }
+    
 }
 
 module.exports = axiosService;

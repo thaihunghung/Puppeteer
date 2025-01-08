@@ -6,6 +6,7 @@ const indicesGroups = require('./config/indicesGroups');
 const JsonDataService = require('./services/json.service');
 const AxiosCustomInstance = require('./util/AxiosCustomInstance');
 const globalState = require('./config/globalState');
+const { Util } = require('./config/import.util');
 require('dotenv').config();
 
 async function createWorker(workerData) {
@@ -39,12 +40,27 @@ async function startWorkers() {
     // toi group6to10
     // , indicesGroups.group21to25
     //indicesGroups.group11to15,  chạy lại
-    //const groups = [indicesGroups.group11to15, indicesGroups.group6to10, indicesGroups.group1to5, indicesGroups.group16to20]; // Các nhóm cần chạy
-    //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20, indicesGroups.group21to25, indicesGroups.group26to30]
-    //const groups = [indicesGroups.group11to15, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20]
-    const groups = [indicesGroups.group6to10]
-    let currentGroupIndex = 0;
+    //const groups = [indicesGroups.group6to10, indicesGroups.group1to5, indicesGroups.group16to20]; // Các nhóm cần chạy
 
+    //const groups = [indicesGroups.group11to15, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20]
+    // 5, 11, 39
+    //const groups = [indicesGroups.mainGroup, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20] 
+   //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
+
+
+
+
+
+
+   // chạy portal
+   //const groups = [indicesGroups.mainGroup] 
+   const groups = [indicesGroups.otherGroup=[5, 10, 11, 12, 13]] 
+
+   // veri ref
+   // const groups = [indicesGroups.otherGroup=[30, 31, 32, 33, 34, 35]] 
+
+    let currentGroupIndex = 0;
+    //await Util.sleep(1020000)
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
         let currentIndex = 0;
@@ -58,8 +74,8 @@ async function startWorkers() {
                 return processNextWorker();
             }
 
-            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal, mango } = data_wallet[currentIndex];
-            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal, mango };
+            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal, mango, mango_mnemonic } = data_wallet[currentIndex];
+            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal, mango, mango_mnemonic };
 
             currentIndex++;
             activeWorkers++;
@@ -138,5 +154,3 @@ if (isMainThread) {
         .then(() => console.log('Hoàn thành tất cả công việc.'))
         .catch((error) => console.error('Lỗi trong luồng chính:', error));
 }
-
-

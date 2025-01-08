@@ -8,7 +8,11 @@ require('dotenv').config();
 async function MissionMongo() {
     try {   
       //await MangoWallet.Create()
-      await MangoWallet.Unblock()
+      //await MangoWallet.CreateMetaMask()
+      //await MangoWallet.BNB()
+      // tác dụng là đóng nó lại
+      await MangoWallet.Unblock(true)
+      // thao tác chính nằm ở đây
       await MangoWallet.WebMangonetwork()
     } catch (error) {
         console.log(` that bai`, error)

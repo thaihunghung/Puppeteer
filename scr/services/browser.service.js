@@ -43,10 +43,18 @@ class BrowserService {
         const extensions = [
             'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
             'E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
-            'E:\\puppeteer-auto-meta-proxy\\extensions\\Portal',
-           // 'E:\\puppeteer-auto-meta-proxy\\extensions\\proxy',
-            //'E:\\puppeteer-auto-meta-proxy\\extensions\\Mango'
+            //'E:\\puppeteer-auto-meta-proxy\\extensions\\Portal',
         ];
+        if (globalState.MangoOpen) {
+            extensions.push('E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn');
+        }
+        if (globalState.MangoOpen) {
+            extensions.push('E:\\puppeteer-auto-meta-proxy\\extensions\\Mango');
+        }
+        if (globalState.ProxyOpen) {
+            extensions.push('E:\\puppeteer-auto-meta-proxy\\extensions\\proxy');
+        }
+
         const extensionsPaths = extensions.join(',');
         try {
             BrowserService.browser = await puppeteer.launch({

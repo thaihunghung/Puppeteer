@@ -245,6 +245,22 @@ class ElementService {
         return false;
     }
 
+    static async queryShadowSelector(page, selectors) {
+        let elementHandle = await page.evaluateHandle(() => document);
+        for (const selector of selectors) {
+            elementHandle = await elementHandle.evaluateHandle((el, sel) => {
+                const shadowRoot = el.shadowRoot;
+                return shadowRoot ? shadowRoot.querySelector(sel) : null;
+            }, selector);
+
+            if (!elementHandle) {
+                return null; 
+            }
+        }
+        return elementHandle;
+    }
+
+    
     static async HandlefindAndTypeElement(page, xpath, input, timeout = 10) {
         if (globalState.showXpath){
             console.log(xpath); 
