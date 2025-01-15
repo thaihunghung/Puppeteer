@@ -12,8 +12,14 @@ async function MissionMongo() {
       //await MangoWallet.BNB()
       // tác dụng là đóng nó lại
       await MangoWallet.Unblock(true)
-      // thao tác chính nằm ở đây
       await MangoWallet.WebMangonetwork()
+      //await MangoWallet.CheckinMango()
+      //await MangoWallet.faucetMango()
+      // await MangoWallet.Swap()
+     // await MangoWallet.Dex()
+      
+
+      //await MangoWallet.CheckinMango()
     } catch (error) {
         console.log(` that bai`, error)
     } 

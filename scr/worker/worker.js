@@ -1,5 +1,5 @@
 const { workerData, parentPort } = require('worker_threads');
-const { BrowserService } = require('../config/import.service');
+const { BrowserService, ElementService, PageService } = require('../config/import.service');
 
 const MissionPortal = require('../mission/mission.portal'); 
 const Util = require('../util/util');
@@ -7,18 +7,49 @@ const globalState = require('../config/globalState');
 const Twitter = require('../modules/twitter/twitter');
 const { axios } = require('../config/module.import');
 const MissionMongo = require('../mission/mission.mongo');
+const PhantomWallet = require('../modules/wallet/phantom/phantom');
 
 async function run() {
     await Util.waitToRun(workerData)
     globalState.workerData = workerData
     const browser = await BrowserService.launchBrowserWithProfile();
+    //const browser = await BrowserService.launchBrowser();
     globalState.browser = browser
     try {
-        // Mai chạy
-       await MissionPortal()
+        const chainopera =  await PageService.openNewPage('https://chainopera.ai/quest/?inviteCode=P4J2488A')
+        // 0 https://chainopera.ai/quest/?inviteCode=H52R0YCG
+        // 1 https://chainopera.ai/quest/?inviteCode=ZINRH5ZU
+        // 2 https://chainopera.ai/quest/?inviteCode=P4J2488A
+        //@BibbinsZam
+        await chainopera.reload()
+        let page = null
+        async function Await() {
+            while (true) {
+                page = await PageService.findPageByUrl('chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn')
+                if (page.check) {
+                    console.log("tim thấy")
+                    break
+                }
+                await Util.sleep(2000)
+            }
+        }
+        await Await()
+        const pagePartalWallet = await PageService.getTargetPage(page.url)
+        await ElementService.HandlefindAndTypeElement(pagePartalWallet, `//input[@id="password"]`, process.env.PASS_PORTAL) 
+        await pagePartalWallet.keyboard.press("Enter")
 
+        await PageService.openFirstPage('chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#')
+        
+
+
+
+
+       // 
+       //await PhantomWallet.CreateWallet()
+        ////await MissionPortal()
+       // await Twitter.loginAndCheckCookie()
     
-       //await MissionMongo()
+        //await MissionMongo()
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
         console.log(`${workerData.Profile} that bai`, error)

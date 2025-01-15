@@ -5,9 +5,9 @@ const PartalWallet = require("../modules/wallet/partal/partal");
 async function MissionPortal() {
     try {
         //await PartalWallet.Create(true)
-       await PartalWallet.Unblock()
+       await PartalWallet.Unblock(true)
         //await PartalWallet.RestartExtension()
-       //await PartalWallet.PromiseAllPartal()
+    //await PartalWallet.PromiseAllPartal()
 
         // await Twitter.loginAndCheckCookie(false)
         // await Hotmail.CreateHotMail()

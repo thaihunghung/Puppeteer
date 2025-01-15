@@ -291,7 +291,7 @@ class PageService {
     static async openNewPage(url) {
         try {
             const page = await this.createNewTab();
-            await Util.sleep(5000)
+            await Util.sleep(1000)
             await page.goto(url, {
                 timeout: 150000,
                 waitUntil: 'domcontentloaded',

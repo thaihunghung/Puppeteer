@@ -35,7 +35,7 @@ async function startWorkers() {
     }
     // 5,8,9
     indicesGroups.otherGroup = []
-    const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 3;
+    const maxThreads = parseInt(process.env.MAX_THREADS, 10) || 5;
     const results = [];
     // toi group6to10
     // , indicesGroups.group21to25
@@ -47,17 +47,13 @@ async function startWorkers() {
     //const groups = [indicesGroups.mainGroup, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20] 
    //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
 
-
-
-
-
-
    // chạy portal
-   //const groups = [indicesGroups.mainGroup] 
-   const groups = [indicesGroups.otherGroup=[5, 10, 11, 12, 13]] 
-
+   const groups = [indicesGroups.otherGroup=[2]] 
+ //const groups = [indicesGroups.otherGroup=[37]] 
+ //const groups = [indicesGroups.otherGroup=[30, 31,32,33,34,35]]
+   //const groups = [indicesGroups.otherGroup=[0]]
    // veri ref
-   // const groups = [indicesGroups.otherGroup=[30, 31, 32, 33, 34, 35]] 
+ //  const groups = [indicesGroups.otherGroup=[0]] 
 
     let currentGroupIndex = 0;
     //await Util.sleep(1020000)

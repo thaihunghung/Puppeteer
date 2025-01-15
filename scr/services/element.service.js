@@ -80,7 +80,36 @@ class ElementService {
         }
         return { element, found };
     }
-
+    static async Element$(page, xpath, retries = 2) {
+        let found = false;
+        let element = null;
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        while (retries > 0 && !found) {
+            try {
+                element = await page.$(`::-p-xpath(${xpath})`, {
+                    visible: true,   
+                    timeout: 5000,
+                });
+                if (element) {
+                    found = true;
+                }
+            } catch (error) {
+                
+                if (globalState.showXpath){
+                    console.log(`Attempt failed. Retries left: ${retries - 1}`);
+                }
+                retries--;
+                if (retries === 0) {
+                    if (globalState.showXpath){
+                        console.log('Element not found after 2 attempts.');
+                    }
+                }
+            }
+        }
+        return { element, found };
+    }
     static async ElementByTextXpath(page, TextSearch, retries = 2) {
         let found = false;
         let element = null;
@@ -216,7 +245,52 @@ class ElementService {
         }
         return false;
     }
+    static async HandlefindAllElementAndClick(page, text, timeout = 2) {
+        const xpath = `//*[text() = "${text}"]`; 
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        
+        const elements = await page.$x('//button[text() = "Submit"]');
 
+        for (const element of elements) {
+          // Lấy text của phần tử (không bắt buộc, chỉ để debug)
+          const text = await page.evaluate(el => el.textContent, element);
+          console.log('Found element with text:', text);
+      
+          // Click vào phần tử
+          await element.click();
+        }
+
+
+
+
+
+
+
+        const element = await this.ElementByTextXpath(page, text, timeout);
+        if (element.found) {
+            if (globalState.showXpath){
+                console.log("tim thay"); 
+            }
+            return true;
+        }
+        return false;
+    }
+
+    static async HandlefindAndClickElement$(page, xpath, timeout = 3) {
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        const element = await this.Element$(page, xpath, timeout);
+        if (element.found) {
+            await element.element.click();
+            return true;
+        }
+        return false;
+    }
+
+    
     static async HandlefindAndClickElementText(page, text, timeout = 2) {
         const xpath = `//*[text() = "${text}"]`; 
         if (globalState.showXpath){

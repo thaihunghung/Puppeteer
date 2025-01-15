@@ -42,10 +42,10 @@ class BrowserService {
         }
         const extensions = [
             'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
-            'E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
+            //'E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
             //'E:\\puppeteer-auto-meta-proxy\\extensions\\Portal',
         ];
-        if (globalState.MangoOpen) {
+        if (globalState.MetaOpen) {
             extensions.push('E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn');
         }
         if (globalState.MangoOpen) {

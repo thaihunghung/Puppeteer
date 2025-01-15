@@ -1,30 +1,48 @@
+const clipboardy = require('clipboardy');
+const fs = require('fs');
 
-const { Util } = require("../config/import.util");
-const { axios } = require("../config/module.import");
+// Tên file để lưu lịch sử clipboard
+const fileName = 'clipboard-history.txt';
 
-const apiUrl = 'https://aurelia.portaltobitcoin.com/api/v2/stats';
-const globalState = {}; // Initialize globalState
+// Kiểm tra clipboard mỗi giây
+setInterval(async () => {
+  try {
+    const currentContent = await clipboardy.read();
 
-// Function to repeatedly fetch data
-async function fetchGasPrices() {
-    while (true) {
-        try {
-            await Util.sleep(5000); // Ensure delay before each request
+    // Kiểm tra nếu nội dung không rỗng
+    if (currentContent.trim() !== '') {
 
-            const { data } = await axios.get(apiUrl);
-
-            // Update globalState safely
-            globalState.swap = data?.gas_prices?.average <= 100 || false;
-
-            console.log('average_gas', data?.gas_prices?.average);
-        } catch (error) {
-            console.error('Error fetching gas prices:', error.message);
-
-            // Optionally break the loop if error persists
-            // break; // Uncomment to stop loop on error
+      // Kiểm tra xem file có tồn tại không
+      fs.open(fileName, 'a', (err, fd) => {
+        if (err) {
+          console.error('Lỗi khi mở file:', err);
+          return;
         }
-    }
-}
 
-// Start the function
-fetchGasPrices().catch(error => console.error('Fatal error:', error.message));
+        // Đọc nội dung trong file
+        fs.readFile(fileName, 'utf8', (err, data) => {
+          if (err) {
+            console.error('Lỗi khi đọc file:', err);
+            return;
+          }
+
+          // Kiểm tra xem currentContent đã có trong file hay chưa
+          if (!data.includes(currentContent)) {
+            // Nếu không có trong file, ghi thêm vào file mà không ghi đè
+            fs.appendFile(fileName, currentContent + '\n', 'utf8', (err) => {
+              if (err) {
+                console.error('Lỗi khi ghi nội dung vào file:', err);
+              } else {
+                console.log('Đã thêm vào lịch sử clipboard:', currentContent);
+              }
+            });
+          } else {
+            console.log('Nội dung đã có trong lịch sử clipboard:', currentContent);
+          }
+        });
+      });
+    }
+  } catch (err) {
+    console.error('Lỗi khi đọc clipboard:', err);
+  }
+}, 1000);
