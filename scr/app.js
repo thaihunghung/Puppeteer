@@ -45,22 +45,23 @@ async function startWorkers() {
     //const groups = [indicesGroups.group11to15, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20]
     // 5, 11, 39
     //const groups = [indicesGroups.mainGroup, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20] 
-   //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
+    //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
 
-   // chạy portal
-   const groups = [indicesGroups.otherGroup=[2]] 
- //const groups = [indicesGroups.otherGroup=[37]] 
- //const groups = [indicesGroups.otherGroup=[30, 31,32,33,34,35]]
-   //const groups = [indicesGroups.otherGroup=[0]]
-   // veri ref
- //  const groups = [indicesGroups.otherGroup=[0]] 
+    // chạy portal
+    indicesGroups.otherGroup = [10]
+    const groups = [indicesGroups.group16to20]
+    //const groups = [indicesGroups.otherGroup=[37]] 
+    //const groups = [indicesGroups.otherGroup=[30, 31,32,33,34,35]]
+    //const groups = [indicesGroups.otherGroup=[0]]
+    // veri ref
+    //  const groups = [indicesGroups.otherGroup=[0]] 
 
     let currentGroupIndex = 0;
     //await Util.sleep(1020000)
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
         let currentIndex = 0;
-        const groupResults = []; 
+        const groupResults = [];
 
         async function processNextWorker() {
             if (currentIndex >= data_wallet.length) return;
@@ -78,7 +79,7 @@ async function startWorkers() {
 
             try {
                 const result = await createWorker(workerData);
-                groupResults.push(result); 
+                groupResults.push(result);
             } catch (error) {
                 console.error(`Lỗi trong worker ${workerData.i}:`, error);
                 groupResults.push({ status: 'Failure', error: error.message });
