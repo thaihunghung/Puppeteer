@@ -15,10 +15,7 @@ async function run() {
     const browser = await BrowserService.launchBrowserWithProfile();
     //const browser = await BrowserService.launchBrowser();
     globalState.browser = browser
-    try {
-        //await Twitter.loginAndCheckCookie()
-      // const chainopera =  await PageService.openNewPage('https://chainopera.ai/quest')
-        // main https://chainopera.ai/quest/?inviteCode=IUOVPVA2
+            // main https://chainopera.ai/quest/?inviteCode=IUOVPVA2
         // 1 https://chainopera.ai/quest/?inviteCode=H52R0YCG done
         // 2 https://chainopera.ai/quest/?inviteCode=ZINRH5ZU done
         // 3 https://chainopera.ai/quest/?inviteCode=P4J2488A done
@@ -39,55 +36,69 @@ async function run() {
         // 18 https://chainopera.ai/quest/?inviteCode=Y0EADXIA
         // 19 https://chainopera.ai/quest/?inviteCode=28X2NBAP
         // 20 https://chainopera.ai/quest/?inviteCode=SSIJJBVG
+        // 21 https://chainopera.ai/quest/?inviteCode=IRHONYGR
+        // 22 https://chainopera.ai/quest/?inviteCode=AYS2JSPE
+        // 23 https://chainopera.ai/quest/?inviteCode=K3JCEPSS
+        // 24 https://chainopera.ai/quest/?inviteCode=RL0PDA3A
+        // 25 https://chainopera.ai/quest/?inviteCode=O9L3CZ4E
+        // 26 https://chainopera.ai/quest/?inviteCode=BWRFI5L1
+        // 27 https://chainopera.ai/quest/?inviteCode=RPCPFFBE
+        // 28 https://chainopera.ai/quest/?inviteCode=NBWUOC39
+        // 29 https://chainopera.ai/quest/?inviteCode=DAPN3BME
+        // 30 https://chainopera.ai/quest/?inviteCode=TDSFQ4UM
         //@ducxomchoi123
         //@partypple
-      var token = null
-      const discord = await PageService.openNewPage('https://discord.com/app')
-      discord.on('request', (request) => {
-        let tokenLogged = false;
-        const headers = request.headers();
-        if (headers.authorization && !tokenLogged) {
-          console.log(`${workerData.profile}`, headers.authorization);
-          token = headers.authorization
-          tokenLogged = true;
-        }
+    try {
+        //await Twitter.loginAndCheckCookie()
+   // await PhantomWallet.CreatePhantomWallet()
+    //   var token = null
+    //   const discord = await PageService.openNewPage('https://discord.com/app')
+    //   discord.on('request', (request) => {
+    //     let tokenLogged = false;
+    //     const headers = request.headers();
+    //     if (headers.authorization && !tokenLogged) {
+    //       console.log(`${workerData.profile}`, headers.authorization);
+    //       token = headers.authorization
+    //       tokenLogged = true;
+    //     }
+    //   });
+    //   console.log(`var:`, token);
+
+    //   const ref = 'IUOVPVA2'
+    //   const chainopera = await PageService.openNewPage(`https://chainopera.ai/quest/?inviteCode=${ref}`)
+    const chainopera = await PageService.openNewPage(`https://chainopera.ai/quest`)
+      await Util.sleep(5000)
+      await chainopera.reload()
+      await ElementService.HandlefindAndClickElement(chainopera, `//*[@id="app"]/div/main/header/div/div[2]/button`)
+      await chainopera.evaluate(() => {
+          const shadowHost = document.querySelector('body > onboard-v2');
+          if (shadowHost) {
+              const shadowRoot = shadowHost.shadowRoot;
+              const button = shadowRoot.querySelector(
+                  'section > div > div > div > div > div > div > div > div.scroll-container.svelte-1qwmck3 > div > div > div > div:nth-child(2) > button'
+              );
+              if (button) {
+                  button.click(); // Click vào nút
+                  console.log('Button clicked!');
+              } else {
+                  console.error('Button not found!');
+              }
+          } else {
+              console.error('Shadow host not found!');
+          }
       });
-      console.log(`var:`, token);
-
-    //     await chainopera.reload()
-    //     let page = null
-    //     async function Await() {
-    //         while (true) {
-    //             page = await PageService.findPageByUrl('chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn')
-    //             if (page.check) {
-    //                 console.log("tim thấy")
-    //                 break
-    //             }
-    //             await Util.sleep(2000)
-    //         }
-    //     }
-    //     await Await()
-    //     const pagePartalWallet = await PageService.getTargetPage(page.url)
-    //     await ElementService.HandlefindAndTypeElement(pagePartalWallet, `//input[@id="password"]`, 'hunghung') 
-    //     await pagePartalWallet.keyboard.press("Enter")
-
-    //    //await PageService.openFirstPage('chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#')
-
-    //     while (true) {
-    //        const page1 = await PageService.findPageByUrl('chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn')
-    //         if (page1.check) {
-    //             const pagePartalWallet = await PageService.getTargetPage(page1.url)
-    //             await ElementService.HandlefindAndClickElement(pagePartalWallet, `//button[@data-testid="confirm-footer-button"]`) 
-    //         }
-    //         await Util.sleep(5000)
-    //     }
-
+      while (true) {
+          await PhantomWallet.Conect()
+          await PhantomWallet.Confirm()
+          await Util.sleep(5000)
+      }
 
 
 
        // 
        //await PhantomWallet.CreateWallet()
-        ////await MissionPortal()
+        //await MissionPortal()
+        //await PageService.openNewPage('https://discord.com/')
        // await Twitter.loginAndCheckCookie()
     
         //await MissionMongo()

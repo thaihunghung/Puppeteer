@@ -49,7 +49,7 @@ async function startWorkers() {
 
     // chạy portal
     indicesGroups.otherGroup = [10]
-    const groups = [indicesGroups.group16to20]
+    const groups = [indicesGroups.group21to25]
     //const groups = [indicesGroups.otherGroup=[37]] 
     //const groups = [indicesGroups.otherGroup=[30, 31,32,33,34,35]]
     //const groups = [indicesGroups.otherGroup=[0]]
