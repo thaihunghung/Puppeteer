@@ -10,7 +10,7 @@ const globalState = {
     Worker: [],
     showXpath: true,
     showPage: true,
-    MetaOpen: false,
+    MetaOpen: true,
     MangoOpen: false,
     ProxyOpen: false,
     jsonPath:'E:/puppeteer-auto-meta-proxy/scr/data.json',

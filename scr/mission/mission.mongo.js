@@ -13,10 +13,12 @@ async function MissionMongo() {
       // tác dụng là đóng nó lại
       await MangoWallet.Unblock(true)
       await MangoWallet.WebMangonetwork()
-      //await MangoWallet.CheckinMango()
-      //await MangoWallet.faucetMango()
-      // await MangoWallet.Swap()
-     // await MangoWallet.Dex()
+      await MangoWallet.CheckinMango()
+      await MangoWallet.faucetMango()
+      await MangoWallet.Swap()
+      await MangoWallet.Dex()
+      
+      
       
 
       //await MangoWallet.CheckinMango()

@@ -216,7 +216,16 @@ class ElementService {
         }
         return false;
     }
-
+    static async HandleFindWithWaitForSelectorElement(page, xpath, timeout = 2) {
+        if (globalState.showXpath){
+            console.log(xpath);
+        }
+        const element = await this.ElementWaitForSelector(page, xpath, timeout);
+        if (element.found) {
+            return true;
+        }
+        return false;
+    }
     static async HandleWaitForSelectorTypeElement(page, xpath, input, timeout = 3) {
         if (globalState.showXpath){
             console.log(xpath);
