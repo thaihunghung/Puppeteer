@@ -16,20 +16,23 @@ class PageService {
 
     static async getPage(tabIndex = 0) {
         const pages = await globalState.browser.pages();
+        const targets = globalState.browser.targets();
+        const pageTarget = targets.find(t => t.type() === 'page' && t.url().includes('chromewebstore.google.com'));
+        
+        
         if (tabIndex >= pages.length) {
             throw new Error("Tab index out of range");
         }
         return pages[tabIndex];
     }
 
-    static async acceptAlert(page) {
+    static acceptAlert(page) {
         try {
             page.on('dialog', async (dialog) => {
-                //console.log(`Dialog message: ${dialog.message()}`);
+                console.log(`Dialog message: ${dialog.message()}`);
                 await dialog.accept();
                 console.log('Alert accepted');
             });
-            await page.evaluate(() => alert('accepting alert!'));
             return true;
         } catch (error) {
             console.error(`Error accepting alert: ${error.message}`);
@@ -205,6 +208,34 @@ class PageService {
             throw error;
         }
     }
+    static async closeToRight(startUrl) {
+        const pages = await globalState.browser.pages(); // Lấy danh sách tất cả các trang hiện có
+        let startIndex = -1;
+    
+        // Tìm index của trang có URL được chỉ định
+        for (let i = 0; i < pages.length; i++) {
+            const pageUrl = await pages[i].url();
+            if (pageUrl === startUrl) {
+                startIndex = i;
+                break;
+            }
+        }
+    
+        // Nếu không tìm thấy URL, thông báo và thoát
+        if (startIndex === -1) {
+            console.log(`Không tìm thấy URL: ${startUrl}`);
+            return;
+        }
+    
+        // Đóng tất cả các trang từ index -> length
+        for (let i = startIndex + 1; i < pages.length; i++) {
+            await pages[i].close();
+        }
+    
+        console.log(`Đã đóng tất cả các tab từ index ${startIndex + 1} trở đi.`);
+    }
+    
+
     static async switchToPageByIndex(tabIndex) {
         try {
             const pages = await globalState.browser.pages();
@@ -306,6 +337,7 @@ class PageService {
     static async openFirstPage(url) {
         try {
             const page = await this.getPage()
+           this.acceptAlert(page)
             await page.goto(url, {
                 timeout: 150000,
                 waitUntil: 'domcontentloaded',

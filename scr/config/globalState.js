@@ -11,7 +11,7 @@ const globalState = {
     showXpath: true,
     showPage: true,
     MetaOpen: true,
-    MangoOpen: false,
+    MangoOpen: true,
     ProxyOpen: false,
     jsonPath:'E:/puppeteer-auto-meta-proxy/scr/data.json',
     excelPath:'E:/puppeteer-auto-meta-proxy/scr/wallet.xlsx',

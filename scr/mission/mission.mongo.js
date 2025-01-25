@@ -4,6 +4,7 @@ const { Twitter, Hotmail } = require("../config/import.social.media");
 const { Util } = require("../config/import.util");
 const MangoWallet = require("../modules/wallet/mango/mango");
 const PartalWallet = require("../modules/wallet/partal/partal");
+const PhantomWallet = require("../modules/wallet/phantom/phantom");
 require('dotenv').config();
 async function MissionMongo() {
     try {   
@@ -14,13 +15,13 @@ async function MissionMongo() {
       await MangoWallet.Unblock(true)
       await MangoWallet.WebMangonetwork()
       await MangoWallet.CheckinMango()
-      await MangoWallet.faucetMango()
-      await MangoWallet.Swap()
+     await MangoWallet.faucetMango()
+     await MangoWallet.Swap()
       await MangoWallet.Dex()
+      await MangoWallet.Brigh()
       
       
-      
-
+     
       //await MangoWallet.CheckinMango()
     } catch (error) {
         console.log(` that bai`, error)
