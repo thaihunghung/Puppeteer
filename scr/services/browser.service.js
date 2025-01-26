@@ -44,6 +44,7 @@ class BrowserService {
             'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
             //'E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
             //'E:\\puppeteer-auto-meta-proxy\\extensions\\Mango',
+           // 'E:\\puppeteer-auto-meta-proxy\\extensions\\OKX',
         ];
         // if (globalState.MetaOpen) {
         //     extensions.push('E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn');
@@ -68,8 +69,8 @@ class BrowserService {
                     proxyArg,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
-                    '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\sui',
-                    //`--load-extension=${extensionsPaths}`,
+                    //'--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\sui',
+                    `--load-extension=${extensionsPaths}`,
                     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
                 ].filter(arg => arg), 
                 defaultViewport: mobile
