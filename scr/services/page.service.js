@@ -48,7 +48,7 @@ class PageService {
             }
             const target = await globalState.browser.waitForTarget(
                 (target) => target.url() === targetUrl,
-                { timeout: 3000 }
+                { timeout: 150000 }
             );
 
             if (!target) {

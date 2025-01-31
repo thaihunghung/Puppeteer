@@ -13,24 +13,95 @@ const PhantomWallet = require('../modules/wallet/phantom/phantom');
 const Discord = require('../modules/discord/discord');
 const SuiWallet = require('../modules/wallet/sui/sui');
 const axiosService = require('../services/axios.service');
-
+const OkxWallet = require('../modules/wallet/okx/okx');
+require('dotenv').config();
 async function run() {
     let isPageClosed = false;
 
-    const hihop = async () => {
+    const hihop = async (address) => {
         await Util.sleep(10000)
+        const clickSignupButton = async (hiphop) => {
+            const signupButtonSelector = '#__nuxt > div > div > div > div.main-content > div > div > div > div.signup__controls > button:nth-child(1)';
+
+            try {
+                // Đợi phần tử xuất hiện trong một khoảng thời gian cụ thể
+                await hiphop.waitForSelector(signupButtonSelector, { timeout: 5000 });
+
+                // Kiểm tra sự tồn tại của phần tử
+                const signupButton = await hiphop.$(signupButtonSelector);
+                if (signupButton) {
+                    await signupButton.click();
+                    console.log('Đã click vào nút đăng ký.');
+                } else {
+                    console.log('Không tìm thấy nút đăng ký.');
+                }
+            } catch (error) {
+                console.log('Lỗi khi tìm kiếm hoặc click vào nút:', error.message);
+            }
+        };
+
+        const mmwallet = async (index = 4) => {
+            await Util.sleep(5000)
+            const hiphop = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+            hiphop.on('close', async () => {
+                isPageClosed = true;
+            });
+            await ElementService.HandlefindAndClickElement(hiphop,
+                `//*[@id="__nuxt"]/div/div/div/div[2]/div/div/div[2]/div/div[2]/div/div[${index}]/div[2]/button`
+            )
+            await Util.sleep(5000)
+            await ElementService.HandleWaitForSelectorClickElement(hiphop,
+                'body > div.questModal-wrapper > div > div.questModal-footer > button:nth-child(1)'
+            )
+            await Util.sleep(5000)
+            const inputSelector = '.connectModal__input';
+            const inputField = await hiphop.$(inputSelector);
+            if (inputField) {
+                await hiphop.type(inputSelector, `${address}`);
+            } else {
+                console.log(`Không tìm thấy trường input`);
+                return;
+            }
+            await Util.sleep(5000)
+            const submitButtonSelector = 'button[data-v-dcac0572].button';
+            const submitButton = await hiphop.$(submitButtonSelector);
+            if (submitButton) {
+                // await hiphop.evaluate(() => {
+                //     document.querySelector('button[data-v-dcac0572].button').click();
+                // });
+            } else {
+                console.log(`Không tìm thấy nút gửi`);
+            }
+        }
+
+        const mm = async (index) => {
+            await Util.sleep(5000)
+            const hiphop = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+            hiphop.on('close', async () => {
+                isPageClosed = true;
+            });
+            await ElementService.HandlefindAndClickElement(hiphop,
+                `//*[@id="__nuxt"]/div/div/div/div[2]/div/div/div[2]/div/div[2]/div/div[${index}]/div[2]/button`
+            )
+            const secondaryButtonSelector = 'button[data-v-dcac0572][data-v-7229b5f1].button.secondary';
+            const secondaryButton = await hiphop.$(secondaryButtonSelector);
+            if (secondaryButton) {
+                // await hiphop.evaluate(() => {
+                //     document.querySelector('button[data-v-dcac0572][data-v-7229b5f1].button.secondary').click();
+                // });
+            } else {
+                console.log(`Không tìm thấy nút thứ hai`);
+            }
+        }
         const hiphop = await PageService.openNewPage('https://quests.hiphop.fun?referralCode=8fd0b5')
         hiphop.on('close', async () => {
             isPageClosed = true;
-            console.log('Hiphop page has been closed.');
-            console.log('Closing browser...');
-            await browser.close();
         });
         await Util.sleep(5000)
         await ElementService.HandlefindAndClickElement(
             hiphop,
             '//*[@id="__nuxt"]/div/div/div/div[2]/div/div/div/div/button',
-            1
+            2
         )
         await ElementService.HandleWaitForSelectorClickElement(
             hiphop,
@@ -117,142 +188,294 @@ async function run() {
         }
 
         performTwitterAuthActions().catch(console.error);
+        while (true) {
+            const t = await PageService.findPageByUrl('https://quests.hiphop.fun/signup?error=false&message=Twitter+authorization+successful')
+            if (t.check) break
+            await Util.sleep(3000)
 
-        await Util.sleep(5000)
+        }
+
         await ElementService.HandleWaitForSelectorClickElement(
             hiphop,
             '#__nuxt > div > div > div > div.main-content > div > div > div > div.signup__controls > button:nth-child(1)',
             10
         )
-        await Util.sleep(5000)
 
-        const hiphop1 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
-        const hiphop2 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
-        const hiphop3 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
-        const hiphop4 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
-        const hiphop5 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+        await clickSignupButton(hiphop)
+        await mmwallet()
+        await mm(1)
+        await mm(2)
+        await mm(3)
+        await mm(5)
+        await mm(6)
+        await mm(7)
+        await mm(8)
+        // await mm(1)
+        await Util.sleep(5000)
+        // const hiphop1 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+        // const hiphop2 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+        // const hiphop3 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+        // const hiphop4 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+        // const hiphop5 = await PageService.openNewPage('https://quests.hiphop.fun/quests')
+
     }
     const printr = async () => {
-        const PR = await PageService.openNewPage('https://printr.money/')
-        await Util.sleep(5000)
-        await ElementService.HandlefindAndClickElement(PR,
-            '/html/body/div/div/div[1]/div[2]/div/div/div[2]/div/div[2]/div[1]/div[2]/div/div/div/button/span/div/button',
-            10
-        )
-        await Util.sleep(5000)
-        await ElementService.HandlefindAndClickElement(PR,
-            '//*[@id="radix-:r2:"]/div/div[2]/div/div[3]',
-            10
-        )
+        const page = await PageService.openNewPage('https://printr.money/')
+        const logicPagePrintr = async () => {
+            await Util.sleep(5000)
+            await ElementService.HandlefindAndClickElement(page,
+                '/html/body/div/div/div[1]/div[2]/div/div/div[2]/div/div[2]/div[1]/div[2]/div/div/div/button/span/div/button',
+                10
+            )
+            await Util.sleep(5000)
+            await ElementService.HandlefindAndClickElement(page,
+                '//*[@id="radix-:r2:"]/div/div[2]/div/div[3]',
+                10
+            )
+        }
 
-        while (true) {
-            const target = await PageService.findPageByUrl('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia')
-            if (target.check) {
-                const sui = await PageService.getTargetPage(target.url)
-                await Util.sleep(3000)
-                await ElementService.HandlefindAndClickElement(sui,
-                    '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/button[2]',
-                    2
-                )
-                break
+        await logicPagePrintr(page)
+
+        let isStopped = false; // Biến trạng thái toàn cục
+        const reconnect = async (page) => {
+            while (!isStopped) {
+                await Util.sleep(5000)
             }
-            await Util.sleep(3000)
-        }
-        await Util.sleep(5000)
-        while (true) {
-            const target = await PageService.findPageByUrl('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia')
-            if (target.check) {
-                const sui = await PageService.getTargetPage(target.url)
-                await ElementService.HandlefindAndClickElement(sui,
-                    '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/button[2]',
-                    2
-                )
-                break
+            while (!isStopped) {
+                await Util.sleep(5000)
             }
-            await Util.sleep(3000)
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await Util.sleep(5000)
+            }
+            while (!isStopped) {
+                await ElementService.HandlefindAndClickElement(page,
+                    '//*[@id="radix-:r3:"]/span',
+                    1
+                )
+            }
+            while (!isStopped) {
+                await ElementService.HandlefindAndClickElement(page,
+                    '//*[@id="radix-:r2:"]/div/div[2]/div/div[3]',
+                    1
+                )
+            }
         }
-        await Util.sleep(10000)
+        async function connectHandler(page) {
+            while (!isStopped) {
+                const target = await PageService.findPageByUrl('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia');
+                if (target.check) {
+                    const sui = await PageService.getTargetPage(target.url);
+                    await Util.sleep(3000);
+                    if (await ElementService.HandlefindAndElementText(sui, 'Connect'))
+                        await ElementService.HandlefindAndClickElement(sui,
+                            `//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/button[2]/div[text()='Connect']`,
+                            1
+                        );
+                }
+                await Util.sleep(3000);
+            }
+        }
+
+        async function signHandler(page) {
+            while (!isStopped) {
+                const target = await PageService.findPageByUrl('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia');
+                if (target.check) {
+                    const sui = await PageService.getTargetPage(target.url);
+                    await sui.reload()
+                    if (await ElementService.HandlefindAndElementText(sui, 'Sign'))
+                        if (await ElementService.HandlefindAndClickElement(sui,
+                            `//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/button[2]/div[text()='Sign']`,
+                            1
+                        )) {
+                            isStopped = true;
+                        }
+                }
+                await Util.sleep(3000);
+            }
+        }
+
+        async function checkReadApp(page) {
+            while (!isStopped) {
+                const target = await PageService.findPageByUrl('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia');
+                if (target.check) {
+                    const sui = await PageService.getTargetPage(target.url);
+                    if (await ElementService.HandlefindAndClickElementText(page, 'Reload App'))
+                        await logicPagePrintr(page)
+                }
+                await Util.sleep(3000);
+            }
+        }
+        await Promise.all([
+            connectHandler(page),
+            signHandler(page),
+            reconnect(page),
+            //checkReadApp(page)
+        ]);
+
+        console.log('dung')
+
+        await Util.sleep(5000);
         isPageClosed = true
     }
     globalState.workerData = workerData
-    const proxy = 'http://27mdvanlinh:vanlinh@118.70.85.218:27434';
-    const newProxyUrl = await proxyChain.anonymizeProxy(proxy);
+    const proxy = workerData.proxy;
+    const newProxyUrl = await proxyChain.anonymizeProxy(`http://${proxy}`);
     const browser = await puppeteer.launch({
         headless: false,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-
-            //`--proxy-server=waitForSelector{newProxyUrl}`,
-            '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\sui',
+            //`--proxy-server=${newProxyUrl}`,
+            '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
             //'--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
-            '--profile-directory=Profile 1'
+            '--profile-directory=Profile 1',
+            //'--start-maximized'
         ],
         defaultViewport: null,
     });
 
-    //
+    //"E:\puppeteer-auto-meta-proxy\extensions\"
     //await PhantomWallet.Create()
 
     globalState.browser = browser
     let stop = true
     try {
-        //await SuiWallet.Inport(true)
-        await SuiWallet.Create(true)
+        // await SuiWallet.Inport(true)
+        // const SUi = await PageService.openNewPage('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia/index.html#/accounts/manage')
+        // await ElementService.HandlefindAndClickElement(SUi, '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div[2]/div/div')
+
+        // await SUi.waitForSelector('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
+
+        // // Tìm phần tử với selector đã cho
+        // const element = await SUi.$('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
+        // let address = null
+        // if (element) {
+        //     const href = await SUi.evaluate(el => el.getAttribute('href'), element);
+        //     const urlWithoutHttps = href.replace('https://', '');
+        //     const baseUrl = urlWithoutHttps.split('?')[0];
+        //     address = baseUrl.split('/')[2];
+        //     console.log('address', address)
+        // } else {
+        //     console.log('Không tìm thấy phần tử <a> với selector đã cung cấp.');
+        // }
+        // await SUi.close()
+        // await hihop(address)
+
+
+
+        // await SuiWallet.Create(true)
+        // const SUi = await PageService.openNewPage('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia/index.html#/accounts/manage')
+        // await ElementService.HandlefindAndClickElement(SUi, '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div[2]/div/div')
+
+        // await SUi.waitForSelector('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
+
+        // // Tìm phần tử với selector đã cho
+        // const element = await SUi.$('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
+
+        // if (element) {
+        //     const href = await SUi.evaluate(el => el.getAttribute('href'), element);
+        //     const urlWithoutHttps = href.replace('https://', '');
+        //     const baseUrl = urlWithoutHttps.split('?')[0];
+        //     const address1 = baseUrl.split('/')[2];
+
+        //     const address = `${globalState.workerData.i}:__ ${address1} __`
+        //     console.log('Địa chỉ cần lấy:', address);
+        //     const fileName = '12key.txt';
+
+        //     // Ghi chuỗi vào tệp
+        //     fs.open(fileName, 'a', (err, fd) => {
+        //         if (err) {
+        //             console.error('Lỗi khi mở file:', err);
+        //             return;
+        //         }
+
+        //         // Đọc nội dung trong file
+        //         fs.readFile(fileName, 'utf8', (err, data) => {
+        //             if (err) {
+        //                 console.error('Lỗi khi đọc file:', err);
+        //                 return;
+        //             }
+
+        //             // Kiểm tra xem currentContent đã có trong file hay chưa
+        //             if (!data.includes(address)) {
+        //                 // Nếu không có trong file, ghi thêm vào file mà không ghi đè
+        //                 fs.appendFile(fileName, address + '\n', 'utf8', (err) => {
+        //                     if (err) {
+        //                         console.error('Lỗi khi ghi nội dung vào file:', err);
+        //                     } else {
+        //                         console.log('Đã thêm vào lịch sử clipboard:', address);
+        //                     }
+        //                 });
+        //             } else {
+        //                 console.log('Nội dung đã có trong lịch sử clipboard:', address);
+        //             }
+        //         });
+        //     });
+
+        // } else {
+        //     console.log('Không tìm thấy phần tử <a> với selector đã cung cấp.');
+        // }
+        // await SUi.close()
+
+        // await printr()
+        const waitForElement = async (page, selector) => {
+            while (true) {
+                const element = await page.$(selector);
+                if (element) break; // Thoát vòng lặp nếu phần tử tồn tại
+                await new Promise(resolve => setTimeout(resolve, 500)); // Chờ 500ms trước khi kiểm tra lại
+            }
+            console.log('Phần tử đã xuất hiện!');
+        };
+        const closePageByIndex = async (browser, index) => {
+            const pages = await browser.pages(); // Lấy tất cả các trang đang mở
+            if (index >= 0 && index < pages.length) {
+                await pages[index].close(); // Đóng trang theo chỉ số
+                console.log(`Đã đóng trang ở vị trí index: ${index}`);
+            } else {
+                console.error('Index không hợp lệ!');
+            }
+        };
+        const focusPageByIndex = async (browser, index) => {
+            const pages = await browser.pages(); // Lấy tất cả các trang đang mở
+            if (index >= 0 && index < pages.length) {
+                const targetPage = pages[index];
+                await targetPage.bringToFront(); // Đưa trang ở vị trí index lên đầu
+                console.log(`Đã focus vào trang ở index: ${index}`);
+            } else {
+                console.error('Index không hợp lệ!');
+            }
+        };
+    
+        const meta =  await PhantomWallet.ImportMetaWallet()
+
+        const page = await PageService.openFirstPage('https://app.galxe.com/quest/58AUmcj2oPNjd2U9zxN6sX/GC4xvtp6Nr')
         
-        const SUi = await PageService.openNewPage('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia/index.html#/accounts/manage')
-        await ElementService.HandlefindAndClickElement(SUi, '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div[2]/div/div')
+       
+        
+        //isPageClosed = true
 
-        await SUi.waitForSelector('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-
-        // Tìm phần tử với selector đã cho
-        const element = await SUi.$('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-
-        if (element) {
-            const href = await SUi.evaluate(el => el.getAttribute('href'), element);
-            const urlWithoutHttps = href.replace('https://', '');
-            const baseUrl = urlWithoutHttps.split('?')[0];
-            const address1 = baseUrl.split('/')[2];
-
-            const address = `${globalState.workerData.i}:__ ${address1} __`
-            console.log('Địa chỉ cần lấy:', address);
-            const fileName = '12key.txt';
-
-            // Ghi chuỗi vào tệp
-            fs.open(fileName, 'a', (err, fd) => {
-                if (err) {
-                    console.error('Lỗi khi mở file:', err);
-                    return;
-                }
-
-                // Đọc nội dung trong file
-                fs.readFile(fileName, 'utf8', (err, data) => {
-                    if (err) {
-                        console.error('Lỗi khi đọc file:', err);
-                        return;
-                    }
-
-                    // Kiểm tra xem currentContent đã có trong file hay chưa
-                    if (!data.includes(address)) {
-                        // Nếu không có trong file, ghi thêm vào file mà không ghi đè
-                        fs.appendFile(fileName, address + '\n', 'utf8', (err) => {
-                            if (err) {
-                                console.error('Lỗi khi ghi nội dung vào file:', err);
-                            } else {
-                                console.log('Đã thêm vào lịch sử clipboard:', address);
-                            }
-                        });
-                    } else {
-                        console.log('Nội dung đã có trong lịch sử clipboard:', address);
-                    }
-                });
-            });
-
-        } else {
-            console.log('Không tìm thấy phần tử <a> với selector đã cung cấp.');
-        }
-        await SUi.close()
-        await printr()
+        
         while (!isPageClosed) {
             await Util.sleep(5000)
         }

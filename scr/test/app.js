@@ -21,12 +21,31 @@ async function createWorker(workerData) {
 }
 
 async function startWorkers() {
-    const data = fs.readFileSync('secret-recovery-phrase.txt', 'utf8');
+    const data = fs.readFileSync('secret-recovery-phrase1.txt', 'utf8');
     const dataArray = data.split('\n').map((item) => item.trim()).filter((item) => item);
 
-    const dataTwitter = fs.readFileSync('twitter.txt', 'utf8');
+    const dataTwitter = fs.readFileSync('twitter1.txt', 'utf8');
     const dataTwitterArray = dataTwitter.split('\n').map((item) => item.trim()).filter((item) => item);
-
+    // http://ag7XVv:Date-12-02@65.111.26.93:9090
+    // http://ag7XVv:Date-12-02@65.111.11.247:9090
+    // http://ag7XVv:Date-12-02@65.111.26.118:9090
+    // http://ag7XVv:Date-12-02@65.111.30.26:9090
+    // http://ag7XVv:Date-12-02@65.111.13.82:9090
+    // http://ag7XVv:Date-12-02@65.111.16.191:9090
+    // http://ag7XVv:Date-12-02@65.111.19.157:9090
+    // http://ag7XVv:Date-12-02@65.111.3.40:9090
+    // http://ag7XVv:Date-12-02@65.111.20.135:9090
+    // http://ag7XVv:Date-12-02@65.111.20.53:9090
+    // http://ag7XVv:Date-12-02@65.111.6.47:9090
+    // http://a048Tj:Date-12-02@65.111.7.211:9090
+    // http://a048Tj:Date-12-02@65.111.3.97:9090
+    // http://a048Tj:Date-12-02@65.111.12.42:9090
+    // http://a048Tj:Date-12-02@65.111.25.22:9090
+    // http://a048Tj:Date-12-02@65.111.16.33:9090
+    // http://a048Tj:Date-12-02@65.111.4.36:9090
+    // http://a048Tj:Date-12-02@65.111.11.116:9090
+    // http://a048Tj:Date-12-02@65.111.27.165:9090
+    // http://a048Tj:Date-12-02@65.111.8.84:9090
     const proxies = [
         "27mdvanlinh:vanlinh@118.70.85.218:27434",
         "26mdvanlinh:vanlinh@118.70.85.206:27434",
@@ -53,21 +72,23 @@ async function startWorkers() {
     const items = [];
 
     proxies.forEach(proxy => {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             items.push(proxy);
         }
     });
     
-    const resultArray = items.slice(0, 100);
+    const resultArray = items.slice(0, 200);
     
-    console.log(resultArray);
+    //console.log(resultArray);
     if (dataArray.length === 0) {
         console.error('Không có dữ liệu trong file data.txt.');
         return;
     }
 
     console.log(`Số lượng mục trong data.txt: ${dataArray.length}`);
-    const maxThreads = 5;
+    console.log(`Số lượng mục trong twiteer.txt: ${dataTwitterArray.length}`);
+    console.log(`Số lượng mục trong proxies.txt: ${resultArray.length}`);
+    const maxThreads = 1;
     const results = [];
 
     const groups = [
@@ -91,8 +112,28 @@ async function startWorkers() {
         indicesGroups.group86to90,
         indicesGroups.group91to95,
         indicesGroups.group96to100,
-    ];
-
+        indicesGroups.group101to105,
+        indicesGroups.group106to110,
+        indicesGroups.group111to115,
+        indicesGroups.group116to120,
+        indicesGroups.group121to125,
+        indicesGroups.group126to130,
+        indicesGroups.group131to135,
+        indicesGroups.group136to140,
+        indicesGroups.group141to145,
+        indicesGroups.group146to150,
+        indicesGroups.group151to155,
+        indicesGroups.group156to160,
+        indicesGroups.group161to165,
+        indicesGroups.group166to170,
+        indicesGroups.group171to175,
+        indicesGroups.group176to180,
+        indicesGroups.group181to185,
+        indicesGroups.group186to190,
+        indicesGroups.group191to195,
+        indicesGroups.group196to200,
+      ];
+      
     let currentGroupIndex = 0;
 //8 95
     async function processGroup(indicesToRun) {
@@ -108,16 +149,19 @@ async function startWorkers() {
                 return processNextWorker();
             }
 
-            const mnemonic = dataArray[currentIndex];
+            const mnemonics = dataArray[currentIndex].split(':__ ');
+
             const Datatwitter = dataTwitterArray[currentIndex].split('|')
             const twitter = {
                 user: Datatwitter[0],
                 pass: Datatwitter[1],
                 auth2fa: Datatwitter[2],
             }
+            const proxy = resultArray[currentIndex]
+            const mnemonic = mnemonics[1]
             console.log('Processing mnemonic:', mnemonic);
 
-            const workerData = { i: currentIndex, mnemonic, twitter };
+            const workerData = { i: 0 + currentIndex, mnemonic, twitter, proxy };
 
             currentIndex++;
             activeWorkers++;

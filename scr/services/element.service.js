@@ -350,8 +350,8 @@ class ElementService {
         }
         const element = await this.ElementXpath(page, xpath, timeout);
         if (element.found) {
-            await element.element.click();
-            await element.element.evaluate(el => el.value = '');
+            //await element.element.click();
+            //await element.element.evaluate(el => el.value = '');
             await element.element.type(input);
             return true;
         }
