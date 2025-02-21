@@ -5,7 +5,29 @@ const { Worker, isMainThread } = require('worker_threads');
 const indicesGroups = require('../config/indicesGroups');
 const globalState = require('../config/globalState');
 require('dotenv').config();
+const outputFilePath = 'E:\\puppeteer-auto-meta-proxy\\scr\\modules\\proxy\\fomat.txt';
+function getProxiesInRange(filePath, startIndex, endIndex) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                reject('Lỗi khi đọc file: ' + err);
+                return;
+            }
 
+            // Loại bỏ tất cả ký tự \r để tránh lỗi format
+            const proxyList = data.replace(/\r/g, '').trim().split('\n');
+
+            // Đảm bảo index không vượt quá độ dài mảng
+            if (startIndex >= proxyList.length) {
+                reject('Start index vượt quá số lượng proxy');
+                return;
+            }
+
+            const selectedProxies = proxyList.slice(startIndex, endIndex + 1); // Lấy từ start đến end
+            resolve(selectedProxies);
+        });
+    });
+}
 async function createWorker(workerData) {
     const worker = new Worker(path.resolve(__dirname, 'worker.js'), { workerData });
 
@@ -21,65 +43,59 @@ async function createWorker(workerData) {
 }
 
 async function startWorkers() {
-    const data = fs.readFileSync('secret-recovery-phrase1.txt', 'utf8');
+    const data = fs.readFileSync('E:\\puppeteer-auto-meta-proxy\\scr\\test\\secret-recovery-phrase1.txt', 'utf8');
+
     const dataArray = data.split('\n').map((item) => item.trim()).filter((item) => item);
 
-    const dataTwitter = fs.readFileSync('twitter1.txt', 'utf8');
-    const dataTwitterArray = dataTwitter.split('\n').map((item) => item.trim()).filter((item) => item);
-    // http://ag7XVv:Date-12-02@65.111.26.93:9090
-    // http://ag7XVv:Date-12-02@65.111.11.247:9090
-    // http://ag7XVv:Date-12-02@65.111.26.118:9090
-    // http://ag7XVv:Date-12-02@65.111.30.26:9090
-    // http://ag7XVv:Date-12-02@65.111.13.82:9090
-    // http://ag7XVv:Date-12-02@65.111.16.191:9090
-    // http://ag7XVv:Date-12-02@65.111.19.157:9090
-    // http://ag7XVv:Date-12-02@65.111.3.40:9090
-    // http://ag7XVv:Date-12-02@65.111.20.135:9090
-    // http://ag7XVv:Date-12-02@65.111.20.53:9090
-    // http://ag7XVv:Date-12-02@65.111.6.47:9090
-    // http://a048Tj:Date-12-02@65.111.7.211:9090
-    // http://a048Tj:Date-12-02@65.111.3.97:9090
-    // http://a048Tj:Date-12-02@65.111.12.42:9090
-    // http://a048Tj:Date-12-02@65.111.25.22:9090
-    // http://a048Tj:Date-12-02@65.111.16.33:9090
-    // http://a048Tj:Date-12-02@65.111.4.36:9090
-    // http://a048Tj:Date-12-02@65.111.11.116:9090
-    // http://a048Tj:Date-12-02@65.111.27.165:9090
-    // http://a048Tj:Date-12-02@65.111.8.84:9090
-    const proxies = [
-        "27mdvanlinh:vanlinh@118.70.85.218:27434",
-        "26mdvanlinh:vanlinh@118.70.85.206:27434",
-        "25mdvanlinh:vanlinh@118.70.85.201:31423",
-        "24mdvanlinh:vanlinh@118.70.85.200:37432",
-        "23mdvanlinh:vanlinh@1.54.234.79:36254",
-        "22mdvanlinh:vanlinh@1.54.234.80:36254",
-        "21mdvanlinh:vanlinh@118.71.235.184:23270",
-        "20mdvanlinh:vanlinh@118.70.85.172:48818",
-        "19mdvanlinh:vanlinh@42.114.0.130:35270",
-        "18mdvanlinh:vanlinh@118.70.85.170:31423",
-        "17mdvanlinh:vanlinh@42.114.0.24:23270",
-        "16mdvanlinh:vanlinh@118.70.85.156:27434",
-        "15mdvanlinh:vanlinh@1.54.234.58:47822",
-        "14mdvanlinh:vanlinh@1.54.234.47:31423",
-        "13mdvanlinh:vanlinh@42.114.0.11:31423",
-        "12mdvanlinh:vanlinh@1.54.234.41:37432",
-        "11mdvanlinh:vanlinh@118.71.235.190:23283",
-        "10mdvanlinh:vanlinh@118.70.85.2:23270",
-        "QAH1XYt6zLf6:QEJjzKaUi65DMrs@45.3.34.127:9090",
-        "QAH1XYt6zLf6:QEJjzKaUi65DMrs@45.3.35.239:9090"
-    ];
+    const datakey12 = fs.readFileSync('private_keys.txt', 'utf8');
+    const dataArraykey12 = datakey12.split('\n').map((item) => item.trim()).filter((item) => item);
     
-    const items = [];
+    const dataTwitter = fs.readFileSync('twitter.txt', 'utf8');
 
-    proxies.forEach(proxy => {
-        for (let i = 0; i < 10; i++) {
-            items.push(proxy);
+    const dataTwitterArray = dataTwitter.split('\n').map((item) => item.trim()).filter((item) => item);
+
+    // const dataToken = fs.readFileSync('tokendiscord.txt', 'utf8');
+    // const dataTokenArray = dataToken.split('\n').map((item) => item.trim()).filter((item) => item);
+ 
+    const tokens = [
+        "MTMyNzkwNTM0MTE5OTA5MzgyMQ.GxWlJE.QuP7L4VajSw-a2MVLPNZI3GTiY9-8bH860GmUA",
+        "MTMyNDMwNDk3MjM1NDk0NTA3Ng.G75MSp.voMYm3x-9MT3xHnOFB7mRiFyYuR1it1gWQwMhE",
+        "MTMyNDUxMzc0NTkzMzgzMjI4NQ.Gh30y6.n6jMbU7Z1yqOP3cFx5YY-rDI0fFHjIQvZ40qrU",
+        "MTMyNDUyNTI1MTkyODkxNjE1Mg.G4oxcP.D7pnNdBNT0m9ZmDKJ40KHLXtXshAYglKjTWtYQ",
+        "MTMyNDQyMDI0ODQwOTIxMDk3Ng.GWTelk.8vtRLqjoh-FyqhJh44obF9Sj78XFInjY0GxRho",
+        "MTMxODQxMDQ4NjYyMjE5MTY0OA.G6vAny.5fLGxN6x2GxMHV2PPtmIiemOJ7_GGr8rSPDyNw",
+        "MTMyNTIxNjg2NTUyNTY5NDU1MA.GIre9b.6-0NLoccV0GhR-e-Cx-YbqB3Z3q0Y5W9ZATwK4",
+        "MTMyNTIxNTM3MzE0MTc0MTU3OQ.GoYl71.eDi-eg_MPLc1wbNb2l7_9g2HmArqwtS4a8umZQ",
+        "MTMyNDgwOTYzNTU3MTU2NDY5Nw.GYheGq.mQyBAiB_HNymcgHvUsYpVgrzurDHAbtDwANWYE",
+        "MTMyNDEwNTM4MTkyODI0MzMwNA.Gvm8QS.5tnmtAerHunZ6U0gXueUJCNxzLWIJOQZS4V0vQ",
+        "MTMxODYwNzk2MzQzODU3OTc3Mw.Gh56_d._y1EBg-MTsYPNxf5nZp2BQul2alAqglqC-DncU",
+        "MTMyNTIxNDcxMjEyNzk0NjgyMg.GmH65K.VzQi-muaqT1w996K50uwsaEnZmiDeW35iaWgCc",
+        "MTMyNDIwMjY3MTI3OTcwNjE3Mw.GDJPpD.00dekOxok0jE904LcE0cRYAxUv3Hq1-eOo4ER8",
+        "MTMyNDQ5NDAwNDMzNDc1NTk1MA.GmQ9lI.zPEc79oHxmVCit212VXri3vGQgrw7NEyrUQOrc",
+        "MTMyNDE4MjQ5NzAyOTkxODgwMg.GUlph_.IlS5pAqDZz1UTcNwXt0caBvmjD-LJ9E_t56ntw"
+    ];
+
+    const proxies = await getProxiesInRange(outputFilePath, 0, 49);
+    const numRepeats = 5;
+    const items = [];
+    
+    for (let i = 0; i < numRepeats; i++) {
+        items.push(...proxies); // Thêm nguyên danh sách proxies vào items mỗi lần lặp
+    }
+    
+    //console.log('items', items);
+    
+    const token = [];
+    tokens.forEach(discord => {
+        for (let i = 0; i < 15; i++) {
+            token.push(discord);
         }
     });
+
+    const resultArray = items.slice(0, 250);
+    const tokenArray = token.slice(0, 200);
     
-    const resultArray = items.slice(0, 200);
-    
-    //console.log(resultArray);
+
     if (dataArray.length === 0) {
         console.error('Không có dữ liệu trong file data.txt.');
         return;
@@ -88,54 +104,44 @@ async function startWorkers() {
     console.log(`Số lượng mục trong data.txt: ${dataArray.length}`);
     console.log(`Số lượng mục trong twiteer.txt: ${dataTwitterArray.length}`);
     console.log(`Số lượng mục trong proxies.txt: ${resultArray.length}`);
-    const maxThreads = 1;
+    console.log('tokenArray', tokenArray.length)
+    const maxThreads = 10;
     const results = [];
 
+    // const groups = [
+    //     indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15,
+    //     indicesGroups.group16to20, indicesGroups.group21to25, indicesGroups.group26to30,
+    //     indicesGroups.group31to35, indicesGroups.group36to39, indicesGroups.group41to45,
+    //     indicesGroups.group46to50, indicesGroups.group51to55, indicesGroups.group56to60,
+    //     indicesGroups.group61to65, indicesGroups.group66to70, indicesGroups.group71to75,
+    //     indicesGroups.group76to80, indicesGroups.group81to85, indicesGroups.group86to90,
+    //     indicesGroups.group91to95, indicesGroups.group96to100, indicesGroups.group101to105,
+    //     indicesGroups.group106to110, indicesGroups.group111to115, indicesGroups.group116to120,
+    //     indicesGroups.group121to125, indicesGroups.group126to130, indicesGroups.group131to135,
+    //     indicesGroups.group136to140, indicesGroups.group141to145, indicesGroups.group146to150,
+    //     indicesGroups.group151to155, indicesGroups.group156to160, indicesGroups.group161to165,
+    //     indicesGroups.group166to170, indicesGroups.group171to175, indicesGroups.group176to180,
+    //     indicesGroups.group181to185, indicesGroups.group186to190, indicesGroups.group191to195,
+    //     indicesGroups.group196to200, indicesGroups.group201to205, indicesGroups.group206to210,
+    //     indicesGroups.group211to215, indicesGroups.group216to220, indicesGroups.group221to225,
+    //     indicesGroups.group226to230, indicesGroups.group231to235, indicesGroups.group236to240,
+    //     indicesGroups.group241to245, indicesGroups.group246to250
+    //   ];
+
     const groups = [
-        indicesGroups.group1to5,
-        indicesGroups.group6to10,
-        indicesGroups.group11to15,
-        indicesGroups.group16to20,
-        indicesGroups.group21to25,
-        indicesGroups.group26to30,
-        indicesGroups.group31to35,
-        indicesGroups.group36to39,
-        indicesGroups.group41to45,
-        indicesGroups.group46to50,
-        indicesGroups.group51to55,
-        indicesGroups.group56to60,
-        indicesGroups.group61to65,
-        indicesGroups.group66to70,
-        indicesGroups.group71to75,
-        indicesGroups.group76to80,
-        indicesGroups.group81to85,
-        indicesGroups.group86to90,
-        indicesGroups.group91to95,
-        indicesGroups.group96to100,
-        indicesGroups.group101to105,
-        indicesGroups.group106to110,
-        indicesGroups.group111to115,
-        indicesGroups.group116to120,
-        indicesGroups.group121to125,
-        indicesGroups.group126to130,
-        indicesGroups.group131to135,
-        indicesGroups.group136to140,
-        indicesGroups.group141to145,
-        indicesGroups.group146to150,
-        indicesGroups.group151to155,
-        indicesGroups.group156to160,
-        indicesGroups.group161to165,
-        indicesGroups.group166to170,
-        indicesGroups.group171to175,
-        indicesGroups.group176to180,
-        indicesGroups.group181to185,
-        indicesGroups.group186to190,
-        indicesGroups.group191to195,
-        indicesGroups.group196to200,
-      ];
-      
-    let currentGroupIndex = 0;
-//8 95
+        indicesGroups.group1to10, indicesGroups.group11to20, indicesGroups.group21to30,
+        indicesGroups.group31to40, indicesGroups.group41to50, indicesGroups.group51to60,
+        indicesGroups.group61to70, indicesGroups.group71to80, indicesGroups.group81to90,
+        indicesGroups.group91to100, indicesGroups.group101to110, indicesGroups.group111to120,
+        indicesGroups.group121to130, indicesGroups.group131to140, indicesGroups.group141to150,
+        indicesGroups.group151to160, indicesGroups.group161to170, indicesGroups.group171to180,
+        indicesGroups.group181to190, indicesGroups.group191to200, indicesGroups.group201to210,
+        indicesGroups.group211to220, indicesGroups.group221to230, indicesGroups.group231to240,
+        indicesGroups.group241to250
+    ];
+    
+// lôi 20 
+    let currentGroupIndex = 2; //nhom 15 còn 1
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
         let currentIndex = 0;
@@ -149,19 +155,27 @@ async function startWorkers() {
                 return processNextWorker();
             }
 
-            const mnemonics = dataArray[currentIndex].split(':__ ');
+            //const mnemonics = dataArray[currentIndex].split(':__ ');
 
             const Datatwitter = dataTwitterArray[currentIndex].split('|')
+            const bumba = Datatwitter[3].split('@');
             const twitter = {
                 user: Datatwitter[0],
                 pass: Datatwitter[1],
                 auth2fa: Datatwitter[2],
+                usermail: bumba[0],
+                domain: bumba[1],
             }
+            const key12 = dataArraykey12[currentIndex]
             const proxy = resultArray[currentIndex]
-            const mnemonic = mnemonics[1]
+            //console.log(`Lỗi trong proxy `, proxy);
+           // const mnemonic = mnemonics[1]
+            const mnemonic = Datatwitter[5] || ''
+            
+            const token = tokenArray[currentIndex]
             console.log('Processing mnemonic:', mnemonic);
 
-            const workerData = { i: 0 + currentIndex, mnemonic, twitter, proxy };
+            const workerData = { i: 0 + currentIndex, mnemonic, twitter, proxy, token, key12 };
 
             currentIndex++;
             activeWorkers++;
@@ -183,8 +197,7 @@ async function startWorkers() {
         for (let i = 0; i < initialWorkers; i++) {
             workerPromises.push(processNextWorker());
         }
-
-        await Promise.all(workerPromises);
+        await Promise.allSettled(workerPromises);
         return groupResults;
     }
 

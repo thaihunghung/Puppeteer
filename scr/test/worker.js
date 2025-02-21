@@ -1,23 +1,41 @@
 const { workerData, parentPort } = require('worker_threads');
-const { ElementService, PageService } = require('../config/import.service');
-const puppeteer = require('puppeteer');
+//const puppeteer = require("puppeteer");
+const path = require('path');
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AnonymizeUAPlugin = require("puppeteer-extra-plugin-anonymize-ua");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+
+puppeteer.use(StealthPlugin());
+puppeteer.use(AnonymizeUAPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
+
 const proxyChain = require('proxy-chain');
 
-const MissionPortal = require('../mission/mission.portal');
+// const MissionPortal = require('../mission/mission.portal');
 const Util = require('../util/util');
 const globalState = require('../config/globalState');
 const Twitter = require('../modules/twitter/twitter');
 const { axios, fs } = require('../config/module.import');
-const MissionMongo = require('../mission/mission.mongo');
-const PhantomWallet = require('../modules/wallet/phantom/phantom');
+// const MissionMongo = require('../mission/mission.mongo');
+// const PhantomWallet = require('../modules/wallet/phantom/phantom');
 const Discord = require('../modules/discord/discord');
 const SuiWallet = require('../modules/wallet/sui/sui');
 const axiosService = require('../services/axios.service');
 const OkxWallet = require('../modules/wallet/okx/okx');
+const ChainOpenMission = require('../mission/chainopera');
+const Yescaptra = require('../modules/yescaptra/yescaptra');
+const PageService = require('../services/page.service');
+const ElementService = require('../services/element.service');
+const PhantomWallet = require('../modules/wallet/phantom/phantom');
+const { fail } = require('assert');
+const { create } = require('domain');
 require('dotenv').config();
 async function run() {
     let isPageClosed = false;
-
+    let isNext = false;
+    let start = false;
+    let connect = false;
     const hihop = async (address) => {
         await Util.sleep(10000)
         const clickSignupButton = async (hiphop) => {
@@ -336,148 +354,907 @@ async function run() {
         console.log('dung')
 
         await Util.sleep(5000);
-        isPageClosed = true
+        isPageClosed = false
     }
+    const selectDomail = async (bumba) => {
+        if (globalState.workerData.twitter.domain === 'bumba.sbs') {
+            await bumba.evaluate(() => {
+                const input = document.querySelector('[x-ref="domain"]');
+                if (input) {
+                    input.value = 'bumba.sbs';
+                }
+            });
+        } else if (globalState.workerData.twitter.domain === 'viralmail.top') {
+            await bumba.evaluate(() => {
+                const input = document.querySelector('[x-ref="domain"]');
+                if (input) {
+                    input.value = 'viralmail.top';
+                }
+            });
+        } else if (globalState.workerData.twitter.domain === 'xrmail.autos') {
+            await bumba.evaluate(() => {
+                const input = document.querySelector('[x-ref="domain"]');
+                if (input) {
+                    input.value = 'xrmail.autos';
+                }
+            });
+        } else if (globalState.workerData.twitter.domain === 'viralmail.vip') {
+            await bumba.evaluate(() => {
+                const input = document.querySelector('[x-ref="domain"]');
+                if (input) {
+                    input.value = 'viralmail.vip';
+                }
+            });
+        } else if (globalState.workerData.twitter.domain === 'viralmail.sbs') {
+            await bumba.evaluate(() => {
+                const input = document.querySelector('[x-ref="domain"]');
+                if (input) {
+                    input.value = 'viralmail.sbs';
+                }
+            });
+        }
+    }
+    const extensions = [
+        'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
+        // 'E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
+        //'E:\\puppeteer-auto-meta-proxy\\extensions\\Mango',
+        // 'E:\\puppeteer-auto-meta-proxy\\extensions\\OKX',
+    ];
+    function getRandomImage(imageDir) {
+        try {
+            // Lấy danh sách tất cả các file trong thư mục
+            const files = fs.readdirSync(imageDir);
+
+            // Lọc ra các file hình ảnh (chỉ lấy file .png, .jpg, .jpeg, .gif, .webp)
+            const imageFiles = files.filter(file => /\.(png|jpe?g|gif|webp)$/i.test(file));
+
+            if (imageFiles.length === 0) {
+                console.error("❌ Không có hình ảnh nào trong thư mục.");
+                return;
+            }
+
+            // Chọn một hình ảnh ngẫu nhiên
+            const randomImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
+            const imagePath = path.join(imageDir, randomImage);
+
+            console.log("📂 Đã chọn hình ảnh:", randomImage);
+
+            // Dừng function tại đây
+            return imagePath;
+
+        } catch (error) {
+            console.error("⚠ Lỗi xảy ra:", error);
+        }
+    }
+    async function runPhantomWallet() {
+        // const page = await PageService.openNewPage('https://x.com/i/flow/login')
+        // page.on('close', async () => {
+        //     isNext = true;
+        // });
+        // await waitAndType(page, 
+        //     "input[name='text'][type='text'][autocomplete='username']", 
+        //     workerData.twitter.user
+        // );
+
+        // await ElementService.HandlefindAndClickElement(
+        //     page,
+        //     "//button[@role='button' and .//span/span[text()='Next']]"
+        // );
+        // await ElementService.HandlefindAndTypeElement(
+        //     page,
+        //     "//input[@type='password' and @name='password' and @autocomplete='current-password']",
+        //     globalState.workerData.twitter.pass
+        // );
+        // await ElementService.HandlefindAndClickElement(
+        //     page,
+        //     "//button[@role='button' and .//span/span[text()='Log in']]"
+        // );
+        // const auth2fa = globalState.workerData.twitter.auth2fa
+        // console.log('auth2fa', auth2fa)
+        // await Util.sleep(5000)
+        // const inputSelector = '[data-testid="ocfEnterTextTextInput"]';
+        // const inputelement = await ElementService.ElementWaitForSelector(page, inputSelector, 10)
+        // if (inputelement.found) {
+        //     await Util.waitFor1sAnd30s()
+        //     const auth = await axiosService.get2faToken(auth2fa)
+        //     await inputelement.element.type(auth);
+        // }
+        // await ElementService.HandlefindAndClickElement(
+        //     page,
+        //     "//button[@role='button' and .//span/span[text()='Next']]",
+        //     10
+        // );
+        // await Util.sleep(20000);
+        // await processLogin()
+        // while (true) {
+        //     await Util.sleep(5000);
+        //     const pageTarget1 = await PageService.findPageByUrl('https://x.com/home')
+        //     if (pageTarget1.check) {
+        //         await page.close()
+        //         break;
+        //     }
+        // }
+        // while (true) {
+        //     if (isNext) {
+        //         break;
+        //     }
+        //     await Util.sleep(5000)
+        // }
+        while (true) {
+            if (globalState.isPageClosed) {
+                console.log("thoat runPhantomWallet");
+                break;
+            }
+
+            try {
+                await PhantomWallet.Conect()
+                // await PhantomWallet.Conect()
+                // await PhantomWallet.Confirm()
+            } catch (error) {
+                console.error("Error connecting to Phantom Wallet:", error);
+            }
+
+            await Util.sleep(5000);
+        }
+    }
+
+    async function clickButton1(page, xpath) {
+        try {
+            // Chờ phần tử xuất hiện bằng XPath
+            const elementHandle = await page.evaluateHandle((xpath) => {
+                return document.evaluate(
+                    xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+                ).singleNodeValue;
+            }, xpath);
+
+            if (!elementHandle) {
+                console.error("Không tìm thấy nút:", xpath);
+                return false;
+            }
+
+            // Click vào nút bằng evaluate
+            const clicked = await page.evaluate((el) => {
+                if (el && el.offsetWidth > 0 && el.offsetHeight > 0 && !el.disabled) {
+                    el.scrollIntoView();
+                    el.click();
+                    return true;
+                }
+                return false;
+            }, elementHandle);
+
+            if (clicked) {
+                console.log("✅ Click thành công:", xpath);
+                return true;
+            } else {
+                console.error("Không thể click vì nút bị ẩn hoặc vô hiệu hóa:", xpath);
+                return false;
+            }
+        } catch (error) {
+            console.error("Lỗi khi click:", error);
+            return false;
+        }
+    }
+
+    async function waitAndClick1(umba, selector) {
+        while (true) {
+            if (globalState.isPageClosed) break
+            const elementHandle = await umba.evaluateHandle((xpath) => {
+                return document.evaluate(
+                    xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+                ).singleNodeValue;
+            }, selector);
+
+            if (elementHandle) {
+                const success = await clickButton1(umba, selector);
+                if (success) return true;
+            }
+
+            await Util.sleep(5000)
+        }
+    }
+
+    async function clickButton(page, btnSelector) {
+        try {
+            console.log(`[clickButton] Chờ tìm nút: ${btnSelector}`);
+            await page.waitForSelector(btnSelector, { visible: true, timeout: 10000 });
+
+            const btn = await page.$(btnSelector);
+            if (btn) {
+                console.log(`[clickButton] Tìm thấy nút: ${btnSelector}, kiểm tra trạng thái...`);
+                const clicked = await page.evaluate(selector => {
+                    const btn = document.querySelector(selector);
+                    if (btn && btn.offsetWidth > 0 && btn.offsetHeight > 0 && !btn.disabled) {
+                        console.log(`[clickButton] Nút hợp lệ, thực hiện click: ${selector}`);
+                        btn.scrollIntoView();
+                        const event = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+                        btn.dispatchEvent(event);
+                        return true;  // ✅ Click thành công
+                    }
+                    console.log(`[clickButton] Nút bị ẩn hoặc disabled: ${selector}`);
+                    return false;  // ❌ Nút bị ẩn hoặc disabled
+                }, btnSelector);
+
+                if (!clicked) {
+                    console.error(`[clickButton] Không thể click vì nút bị ẩn hoặc vô hiệu hóa: ${btnSelector}`);
+                    return false;
+                }
+                console.log(`[clickButton] Click thành công: ${btnSelector}`);
+                return true;
+            } else {
+                console.error(`[clickButton] Không tìm thấy nút: ${btnSelector}`);
+                return false;
+            }
+        } catch (error) {
+            console.error(`[clickButton] Lỗi khi click: ${error.message}`);
+            return false;
+        }
+    }
+
+    async function typeInput(page, selector, text) {
+        try {
+            console.log(`[typeInput] Chờ tìm input: ${selector}`);
+            await page.waitForSelector(selector, { visible: true, timeout: 10000 });
+
+            console.log(`[typeInput] Tìm thấy input: ${selector}, chuẩn bị nhập dữ liệu...`);
+            const input = await page.$(selector);
+            if (input) {
+                console.log(`[typeInput] Bắt đầu nhập dữ liệu vào: ${selector}`);
+                await input.click({ clickCount: 3 }); // Chọn toàn bộ văn bản trước khi nhập
+                await page.type(selector, text); // Gõ văn bản
+                console.log(`[typeInput] Nhập thành công: ${text}`);
+                return true; // Nhập thành công
+            } else {
+                console.error(`[typeInput] Không tìm thấy ô input: ${selector}`);
+                return false;
+            }
+        } catch (error) {
+            console.error(`[typeInput] Lỗi khi nhập dữ liệu: ${error.message}`);
+            return false;
+        }
+    }
+
+    async function waitAndClick(umba, selector) {
+        console.log(`[waitAndClick] Bắt đầu chờ và click: ${selector}`);
+        while (true) {
+            if (globalState.isPageClosed) {
+                console.log(`[waitAndClick] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            if (isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            const input = await umba.$(selector);
+            if (input) {
+                console.log(`[waitAndClick] Tìm thấy nút, thử click: ${selector}`);
+                const success = await clickButton(umba, selector);
+                if (success) {
+                    console.log(`[waitAndClick] Click thành công: ${selector}`);
+                    break;
+                }
+            } else {
+                //console.log(`[waitAndClick] Chưa tìm thấy nút: ${selector}, thử lại sau...`);
+            }
+
+            await Util.sleep(3000);
+        }
+    }
+
+    async function waitAndType(page, selector, text) {
+        console.log(`[waitAndType] Bắt đầu chờ và nhập dữ liệu vào: ${selector}`);
+        while (true) {
+            if (globalState.isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            if (isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            const success = await typeInput(page, selector, text);
+            if (success) {
+                console.log(`[waitAndType] Nhập dữ liệu thành công: ${text} vào ${selector}`);
+                break; // Thoát vòng lặp nếu nhập thành công
+            } else {
+                console.log(`[waitAndType] Nhập thất bại, thử lại sau...`);
+            }
+
+            await Util.sleep(3000);
+        }
+    }
+
+    async function getTabByIndex(index) {
+        const pages = await globalState.browser.pages();
+        if (index < pages.length) {
+            const page = pages[index];
+            await page.bringToFront();
+            return page;
+        } else {
+            throw new Error("Index tab không hợp lệ!");
+        }
+    }
+
+    async function processLogin() {
+        const find = await PageService.findPageByUrl('https://x.com/account/access');
+        if (!find.check) {
+            console.log("Không tìm thấy trang.");
+            return;
+        }
+
+        const page = await PageService.getTargetPage(find.url);
+        await Util.sleep(3000);
+
+        while (true) {
+            console.log("Bắt đầu vòng lặp chính.");
+
+            try {
+                // Lấy tất cả phần tử cùng lúc
+                const elements = await Promise.allSettled([
+                    page.$('input[value="Start"]'),
+                    page.$('input[value="Continue to X"]'),
+                    page.$('input[value="Send email"]'),
+                    page.$('input[name="token"]')
+                ]);
+
+                const startButton = elements[0].value;
+                const continueButton = elements[1].value;
+                const sendEmailButton = elements[2].value;
+                const inputField = elements[3].value;
+
+                // Nhấn các nút nếu có (chạy đồng thời)
+                await Promise.allSettled([
+                    startButton ? startButton.click() : null,
+                    sendEmailButton ? sendEmailButton.click() : null,
+                ]);
+
+                if (sendEmailButton) {
+                    console.log("Nhấn 'Send email'.");
+                }
+
+                if (continueButton) {
+                    await continueButton.click();
+                    console.log("Nhấn 'Continue to X' thành công, thoát vòng lặp.");
+                    break;
+                }
+
+                // Nếu có ô nhập mã xác nhận, lấy mã từ email
+                if (inputField) {
+                    const codeMail = await getVerificationCode();
+                    if (codeMail) {
+                        console.log(`Nhập mã xác nhận: ${codeMail}`);
+                        await page.type('input[name="token"]', codeMail);
+
+
+
+                        const clicked = await waitAndClick(page, 'input[placeholder="Select Domain"]');
+                        const verifyButton = await page.$('input[type="submit"][value="Verify"]');
+                        if (verifyButton) {
+                            await verifyButton.click();
+                            console.log("Nhấn 'Verify'.");
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error("Lỗi trong vòng lặp:", error);
+            }
+
+            console.log("Lặp lại vòng lặp...");
+            await Util.sleep(3000);
+        }
+    }
+
+    async function getVerificationCode() {
+        console.log("Đang tìm mã xác nhận trong mail...");
+
+        while (true) {
+            const pageMail = await getTabByIndex(1);
+            await Util.sleep(5000);
+
+            const emailFound = await ElementService.HandlefindAndElementText(pageMail, 'verify@x.com');
+            if (emailFound) {
+                await ElementService.HandlefindAndClickElement(pageMail, '/html/body/div[1]/div/div[2]/div/main/div[1]/div/div');
+
+                return await pageMail.evaluate(() => {
+                    const iframe = document.querySelector('iframe');
+                    if (!iframe) return null;
+
+                    const iframeDocument = iframe.contentWindow.document;
+                    const fullText = iframeDocument.body.textContent || iframeDocument.body.innerText;
+                    const numbers = fullText.match(/\d+/g);
+
+                    return numbers ? numbers.reduce((max, current) => current.length > max.length ? current : max, '') : null;
+                });
+            }
+
+            console.log("Không tìm thấy email, thử lại sau 5 giây.");
+            await Util.sleep(5000);
+        }
+    }
+
+    async function closePageWhenUrlMatches(targetUrl) {
+        globalState.browser.on('targetcreated', async (target) => {
+            try {
+                const page = await target.page();
+                if (!page) return; // Nếu không có page, thoát khỏi hàm
+
+                await page.waitForNavigation({ waitUntil: 'domcontentloaded' }).catch(() => { });
+                const currentUrl = page.url();
+                // console.log(`Tab mới mở với URL: ${currentUrl}`);
+
+                if (currentUrl.includes(targetUrl)) {
+                    // console.log('URL trùng khớp, đóng tab...');
+                    await page.close();
+                }
+            } catch (error) {
+                console.error('Lỗi khi xử lý targetcreated:', error);
+            }
+        });
+
+        // Kiểm tra lại tất cả các tab đã mở (nếu cần)
+        try {
+            const pages = await globalState.browser.pages();
+            for (const page of pages) {
+                const currentUrl = await page.url();
+                if (currentUrl.includes(targetUrl)) {
+                    console.log('URL trùng khớp, đóng tab ngay...');
+                    await page.close();
+                }
+            }
+        } catch (error) {
+            console.error('Lỗi khi kiểm tra các tab đã mở:', error);
+        }
+    }
+
+    async function focusPageWhenUrlMatches(targetUrl) {
+        globalState.browser.on('targetcreated', async (target) => {
+            try {
+                const page = await target.page();
+                if (!page) return; // Nếu không có page, thoát khỏi hàm
+
+                await page.waitForNavigation({ waitUntil: 'domcontentloaded' }).catch(() => { });
+                const currentUrl = page.url();
+
+                if (currentUrl.includes(targetUrl)) {
+                    console.log(`Tab mới mở với URL: ${currentUrl}, chuyển focus...`);
+                    await page.bringToFront(); // Đưa tab này lên trước
+                }
+            } catch (error) {
+                console.error('Lỗi khi xử lý targetcreated:', error);
+            }
+        });
+
+        // Kiểm tra lại tất cả các tab đã mở (nếu cần)
+        try {
+            const pages = await globalState.browser.pages();
+            for (const page of pages) {
+                const currentUrl = await page.url();
+                if (currentUrl.includes(targetUrl)) {
+                    console.log(`Đã tìm thấy trang có URL: ${currentUrl}, chuyển focus...`);
+                    await page.bringToFront(); // Đưa tab này lên trước
+                }
+            }
+        } catch (error) {
+            console.error('Lỗi khi kiểm tra các tab đã mở:', error);
+        }
+    }
+
+    async function switchToPageByIndex(index) {
+        if (!globalState.browser) {
+            console.log("Browser chưa khởi tạo!");
+            return null;
+        }
+
+        const pages = await globalState.browser.pages(); // Lấy danh sách tất cả tab
+
+        if (index >= pages.length) {
+            console.log(`Không có đủ tab! Hiện tại chỉ có ${pages.length} tab.`);
+            return null;
+        }
+
+        const page = pages[index]; // Lấy tab theo index
+        await page.bringToFront(); // Chuyển tab đó lên trước
+        console.log(`Đã chuyển đến tab thứ ${index}`);
+
+        return page;
+    }
+
+    async function ClickElementA(page, xpath) {
+        await waitAndClick1(page, xpath);
+    }
+    async function performTwitterAuthActions() {
+        while (true) {
+            await Util.sleep(5000);
+            if (isPageClosed) break
+            if (globalState.isPageClosed) break
+
+            const [pageTarget1, pageTarget2] = await Promise.all([
+                PageService.findPageByUrl('https://twitter.com/i/oauth2/authorize'),
+                PageService.findPageByUrl('https://twitter.com/i/flow/login?redirect_after_login='),
+            ]);
+
+            if (pageTarget1.check) {
+                const page = await PageService.getTargetPage(pageTarget1.url);
+                if (await clickButton(page, `[data-testid="OAuth_Consent_Button"]`)) break
+            }
+
+            if (pageTarget2.check) {
+                const page = await PageService.getTargetPage(pageTarget2.url);
+                await waitAndType(page,
+                    "input[name='text'][type='text'][autocomplete='username']",
+                    globalState.workerData.twitter.user
+                );
+
+                await ElementService.HandlefindAndClickElement(
+                    page,
+                    "//button[@role='button' and .//span/span[text()='Next']]"
+                );
+                await ElementService.HandlefindAndTypeElement(
+                    page,
+                    "//input[@type='password' and @name='password' and @autocomplete='current-password']",
+                    globalState.workerData.twitter.pass
+                );
+                await ElementService.HandlefindAndClickElement(
+                    page,
+                    "//button[@role='button' and .//span/span[text()='Log in']]"
+                );
+
+                const auth2fa = globalState.workerData.twitter.auth2fa;
+                console.log('auth2fa', auth2fa);
+
+                await Util.sleep(5000);
+
+                const inputSelector = '[data-testid="ocfEnterTextTextInput"]';
+                const inputElement = await ElementService.ElementWaitForSelector(page, inputSelector, 10);
+
+                if (inputElement.found) {
+                    await Util.waitFor1sAnd30s();
+                    const auth = await axiosService.get2faToken(auth2fa);
+                    await inputElement.element.type(auth);
+                }
+
+                await ElementService.HandlefindAndClickElement(
+                    page,
+                    "//button[@role='button' and .//span/span[text()='Next']]",
+                );
+
+                if (await waitAndClick(page, `[data-testid="OAuth_Consent_Button"]`)) break
+            }
+
+        }
+    }
+    const extensionsPaths = extensions.join(',');
     globalState.workerData = workerData
     const proxy = workerData.proxy;
-    const newProxyUrl = await proxyChain.anonymizeProxy(`http://${proxy}`);
+    console.log('proxy', proxy)
+    const newProxyUrl = await proxyChain.anonymizeProxy(proxy);
     const browser = await puppeteer.launch({
+        //devtools: true,
         headless: false,
+        ignoreDefaultArgs: ["--disable-extensions", "--enable-automation"],
         args: [
             '--no-sandbox',
+            '--allow-file-access-from-files',
             '--disable-setuid-sandbox',
             //`--proxy-server=${newProxyUrl}`,
-            '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
-            //'--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
+            '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
+            //`--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra`,
             '--profile-directory=Profile 1',
             //'--start-maximized'
         ],
         defaultViewport: null,
+    });
+    browser.on('disconnected', () => {
+        globalState.isPageClosed = true;
     });
 
     //"E:\puppeteer-auto-meta-proxy\extensions\"
     //await PhantomWallet.Create()
 
     globalState.browser = browser
-    let stop = true
+
     try {
-        // await SuiWallet.Inport(true)
-        // const SUi = await PageService.openNewPage('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia/index.html#/accounts/manage')
-        // await ElementService.HandlefindAndClickElement(SUi, '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div[2]/div/div')
-
-        // await SUi.waitForSelector('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-
-        // // Tìm phần tử với selector đã cho
-        // const element = await SUi.$('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-        // let address = null
-        // if (element) {
-        //     const href = await SUi.evaluate(el => el.getAttribute('href'), element);
-        //     const urlWithoutHttps = href.replace('https://', '');
-        //     const baseUrl = urlWithoutHttps.split('?')[0];
-        //     address = baseUrl.split('/')[2];
-        //     console.log('address', address)
-        // } else {
-        //     console.log('Không tìm thấy phần tử <a> với selector đã cung cấp.');
-        // }
-        // await SUi.close()
-        // await hihop(address)
+        //await Discord.LoginToken(workerData.token)
+        //await ChainOpenMission()
+        //   
+        await PhantomWallet.ImportPrivateKey()
 
 
+        //console.log(`${workerData.mnemonic}:` )
+        // const coinbase = await PageService.openNewPage('chrome-extension://ejafhipbgcijgogekcengmlikoopgpip/index.html')
+        // await waitAndClick(coinbase, '[data-testid="btn-import-existing-wallet"]')
+        // await waitAndClick(coinbase, '[data-testid="btn-import-recovery-phrase"]')
+        // await ElementService.HandlefindAndClickElement(coinbase, '//*[@id="modalsContainer"]/div/div/div[2]/div/div/div/div[2]/button') 
+        // await Util.sleep(3000)
+        // await waitAndType(coinbase, '[data-testid="secret-input"]', `${workerData.mnemonic}`);
+        // await waitAndClick(coinbase, '[data-testid="btn-import-wallet"]')
+        // await waitAndType(coinbase, '[data-testid="setPassword"]', 'Hunghung123');
+        // await typeInput(coinbase, '[data-testid="setPasswordVerify"]', 'Hunghung123');
+        // await waitAndClick(coinbase, '[data-testid="terms-and-privacy-policy"]')
+        // await waitAndClick(coinbase, '[data-testid="btn-password-continue"]')
+        //console.log('globalState.globalState.isPageClosed', globalState.isPageClosed)
+        //         await PhantomWallet.ImportWallet()
 
-        // await SuiWallet.Create(true)
-        // const SUi = await PageService.openNewPage('chrome-extension://fplapjhmamlfnblgccljmdinfhjlhhia/index.html#/accounts/manage')
-        // await ElementService.HandlefindAndClickElement(SUi, '//*[@id="root"]/div/div/div/div/div/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div[2]/div/div')
-
-        // await SUi.waitForSelector('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-
-        // // Tìm phần tử với selector đã cho
-        // const element = await SUi.$('#root > div > div > div > div > div > div > div.css-175oi2r.grow.relative.overflow-hidden.shadow-content-accentDisabled\\/30.fullscreen\\:rounded-m > div > div:nth-child(2) > div > div > div > div > div.css-175oi2r.r-13awgt0 > div > div > div > div > div > div > div > div > div > div.css-175oi2r.gap-3xs > div > div > div.css-175oi2r.p-3xs.gap-3xs > a');
-
-        // if (element) {
-        //     const href = await SUi.evaluate(el => el.getAttribute('href'), element);
-        //     const urlWithoutHttps = href.replace('https://', '');
-        //     const baseUrl = urlWithoutHttps.split('?')[0];
-        //     const address1 = baseUrl.split('/')[2];
-
-        //     const address = `${globalState.workerData.i}:__ ${address1} __`
-        //     console.log('Địa chỉ cần lấy:', address);
-        //     const fileName = '12key.txt';
-
-        //     // Ghi chuỗi vào tệp
-        //     fs.open(fileName, 'a', (err, fd) => {
-        //         if (err) {
-        //             console.error('Lỗi khi mở file:', err);
-        //             return;
-        //         }
-
-        //         // Đọc nội dung trong file
-        //         fs.readFile(fileName, 'utf8', (err, data) => {
-        //             if (err) {
-        //                 console.error('Lỗi khi đọc file:', err);
-        //                 return;
-        //             }
-
-        //             // Kiểm tra xem currentContent đã có trong file hay chưa
-        //             if (!data.includes(address)) {
-        //                 // Nếu không có trong file, ghi thêm vào file mà không ghi đè
-        //                 fs.appendFile(fileName, address + '\n', 'utf8', (err) => {
-        //                     if (err) {
-        //                         console.error('Lỗi khi ghi nội dung vào file:', err);
-        //                     } else {
-        //                         console.log('Đã thêm vào lịch sử clipboard:', address);
-        //                     }
-        //                 });
-        //             } else {
-        //                 console.log('Nội dung đã có trong lịch sử clipboard:', address);
-        //             }
+        //         const stop = await PageService.openNewPage('https://app.galxe.com/quest/f3JRDwV9qNWXWq7oZpP8SU/GCEx4tpYHb')
+        //         await Util.sleep(3000)
+        //         stop.on('close', async () => {
+        //             globalState.isPageClosed = true;
         //         });
-        //     });
 
-        // } else {
-        //     console.log('Không tìm thấy phần tử <a> với selector đã cung cấp.');
-        // }
-        // await SUi.close()
+        //  await waitAndClick1(stop, `//button[contains(text(), 'Log in')]`)
+        //  await waitAndClick1(stop, `//div/div/div[contains(text(), 'Phantom EVM')]`)
 
-        // await printr()
-        const waitForElement = async (page, selector) => {
-            while (true) {
-                const element = await page.$(selector);
-                if (element) break; // Thoát vòng lặp nếu phần tử tồn tại
-                await new Promise(resolve => setTimeout(resolve, 500)); // Chờ 500ms trước khi kiểm tra lại
-            }
-            console.log('Phần tử đã xuất hiện!');
+        // await runPhantomWallet();
+
+
+        // await runPhantomWallet();
+        // await PageService.openNewPage('https://app.galxe.com/accountSetting/wallet')
+        // await runPhantomWallet();
+        // await ElementService.HandlefindAndClickElement(stop, '/html/body/div[1]/header/div[1]/div[2]/div[4]/button') 
+        // await ElementService.HandlefindAndClickElement(stop, '//*[@id="radix-:r1h:"]/div[2]/div/div/div[3]/div') 
+
+        // await waitAndClick(coinbase, 'input[aria-label="Recovery phrase or private key"]')
+        // await waitAndType(coinbase, 'input[aria-label="Recovery phrase or private key"]', 'syrup dawn join nurse motor shiver insane tuna link tattoo reason brown')
+
+
+        // const page2fa = await PageService.openNewPage('https://example.com')
+        // page2fa.on('close', async () => {
+        //     connect = true;
+        // });
+        // await waitAndType(page2fa, '#listToken', `${workerData.twitter.user}=${workerData.twitter.pass}=${workerData.twitter.auth2fa}`)
+
+        // const bumba = await PageService.openNewPage('https://bumba.sbs/mailbox')
+        // bumba.on('close', async () => {
+        //     globalState.isPageClosed = true;
+        // });
+        // await Util.sleep(2000)
+        // await ElementService.HandlefindAndClickElement(bumba, '/html/body/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[3]')
+        // const clicked = await waitAndClick(bumba, 'input[placeholder="Select Domain"]');
+        // console.log("Click thành công:", clicked);
+        // await ElementService.HandlefindAndClickElementText(bumba, `${workerData.twitter.domain}`)
+        // await Util.sleep(5000);
+        // const typed = await waitAndType(bumba, '#user', workerData.twitter.usermail);
+        // await waitAndClick(bumba, 'input[value="Create"]');
+
+
+
+
+        // const PageStart1 = await PageService.openNewPage('https://example.com')
+        // PageStart1.on('close', async () => {
+        //     start = true;
+        // });
+        //gmail main: https://app.drops.house/invite?code=OQJZJJHCFU&ext_id=vM6ZS3fyt
+        //gmail tranthaibobo1@gmail.com: https://app.drops.house/invite?code=REUDRSQZBF&ext_id=vM6ZS3fyt
+        //gmail hungloverang: https://app.drops.house/invite?code=NXZVNABMLG&ext_id=vM6ZS3fyt
+        //gmail inditran798@gmail.com profile14: https://app.drops.house/invite?code=TIPVISBLEP&ext_id=vM6ZS3fyt
+        //gmail hitj2015@gmail.com profile15: https://app.drops.house/invite?code=YQXTGHMZFG&ext_id=vM6ZS3fyt
+
+        // await PageService.openNewPage('https://app.drops.house/invite?code=OQJZJJHCFU&ext_id=vM6ZS3fyt')
+        // await Util.sleep(20000);
+        //    await PageService.openNewPage('https://app.drops.house/invite?code=OQJZJJHCFU&ext_id=vM6ZS3fyt')
+        //     //await PageService.openNewPage('https://app.drops.house/invite?code=YQXTGHMZFG&ext_id=vM6ZS3fyt')
+        //     while (true) {
+        //         if (start) break
+        //         await Util.sleep(5000)
+        //     }
+        //     const drops = await PageService.getTargetPage('https://app.drops.house/home?ext_id=vM6ZS3fyt')
+        //     await drops.goto('https://app.drops.house/invite?code=OQJZJJHCFU&ext_id=vM6ZS3fyt')
+
+
+        await Util.sleep(25000)
+        const drops = await PageService.openNewPage('https://app.drops.house/invite?code=OQJZJJHCFU&ext_id=vM6ZS3fyt')
+        //await  drops.reload()
+        await waitAndClick(drops, '.MuiButtonBase-root.sc-9174c518-0.dWxtmS.mui-1lwvx7t')
+
+        const costSetup = {
+            login: false
         };
-        const closePageByIndex = async (browser, index) => {
-            const pages = await browser.pages(); // Lấy tất cả các trang đang mở
-            if (index >= 0 && index < pages.length) {
-                await pages[index].close(); // Đóng trang theo chỉ số
-                console.log(`Đã đóng trang ở vị trí index: ${index}`);
-            } else {
-                console.error('Index không hợp lệ!');
-            }
-        };
-        const focusPageByIndex = async (browser, index) => {
-            const pages = await browser.pages(); // Lấy tất cả các trang đang mở
-            if (index >= 0 && index < pages.length) {
-                const targetPage = pages[index];
-                await targetPage.bringToFront(); // Đưa trang ở vị trí index lên đầu
-                console.log(`Đã focus vào trang ở index: ${index}`);
-            } else {
-                console.error('Index không hợp lệ!');
-            }
-        };
+
+        if (costSetup.login) {
+            console.log("Thực hiện đăng nhập...");
+            await waitAndType(drops, 'input[name="email"]', `${workerData.twitter.usermail}@${workerData.twitter.domain}`);
+            await waitAndType(drops, 'input[placeholder="Enter password"]', 'hunghung');
+            await ElementService.HandlefindAndClickElement(drops, '/html/body/div/div[3]/div/div/div/div/div/div/div[2]/button');
+            await ClickElementA(drops, '//a[@href="/create-entry?ext_id=vM6ZS3fyt&stepId=1243"]')
+
+            // await waitAndClick(drops, 'body > main > div > div.MuiBox-root.mui-eid0jk > div > div > div.MuiBox-root.mui-ssji0h > div:nth-child(2) > button')
+            // await waitAndClick(drops, 'body > div > div > button:nth-child(1)')
+            // await waitAndClick(drops, 'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div.MuiBox-root.mui-k1m81y > div:nth-child(2) > div.MuiBox-root.mui-172hjuw > button')
+
+            //  await Util.sleep(5000)
+            // const elementHandle = await drops.$("input[type=file]");
+            // // Gọi function và lấy đường dẫn ảnh ngẫu nhiên
+            // const selectedImage = getRandomImage('E:\\puppeteer-auto-meta-proxy\\img');
+            // console.log("✅ Đường dẫn ảnh được chọn:", selectedImage);
+            // await elementHandle.uploadFile(selectedImage);
+            // await Util.sleep(5000)
+            // await waitAndClick1(drops, `//button/span[contains(text(), 'Confirm image')]`)
+            // await Util.sleep(10000)
+
+            // await waitAndClick(drops, 'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div.MuiBox-root.mui-1l3f6cq > button')
+            // await waitAndClick(drops, 'body > main > div > div.MuiBox-root.mui-eid0jk > div > div > div.MuiBox-root.mui-ssji0h > div:nth-child(2) > button')
+            // await waitAndClick(drops, 'body > div > div > button:nth-child(1)')
+            // await clickButton(drops, 'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div.MuiBox-root.mui-k1m81y > div:nth-child(1) > div.MuiBox-root.mui-13vm9ex > button.MuiButtonBase-root.sc-9174c518-0.jwpHSr.mui-1yzuwfs')
+            // console.log(email)
+            // await ElementService.HandleWaitForSelectorTypeElement(drops, 'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div.MuiBox-root.mui-1wkw8lz > div > div > input', email, 10)
+            // await clickButton(drops, 'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div.MuiBox-root.mui-1wkw8lz > button')
+            // await switchToPageByIndex(0)
+
+
+
+
+        
+
+
+
+
+
+
+            // await Util.sleep(15000)
+            // await drops.close()
+            //await drops.click('selector-of-submit-button');
+
+
+            //         await fileInput.uploadFile('E:\\puppeteer-auto-meta-proxy\\scr\\test\\demo.png');
+
+
+            // await ClickElementA(drops, '//a[@href="/create-entry?ext_id=vM6ZS3fyt&stepId=1243"]')
+        } else {
+            console.log("Thực hiện tạo tài khoản...");
+            await waitAndClick(
+                drops,
+                'body > div > div.sc-bf50649f-0.glTYnY > div > div > div > div > div > div > div.MuiFormControl-root.MuiFormControl-fullWidth.mui-18yhbev > div.MuiBox-root.mui-gdd1t7 > button'
+            );
+
+            await waitAndType(drops, 'input[name="email"]', `${workerData.twitter.usermail}@${workerData.twitter.domain}`);
+            await waitAndType(drops, 'input[placeholder="Enter password"]', 'hunghung');
+            await waitAndType(drops, 'input[placeholder="Confirm password"]', 'hunghung');
+            await Util.sleep(500);
+            await ElementService.HandlefindAndClickElement(drops, '/html/body/div/div[3]/div/div/div/div/div/div/div[2]/button');
+
+            await waitAndType(drops, 'input[placeholder="Enter username"]', workerData.twitter.user);
+            await Util.sleep(500);
+            await ElementService.HandlefindAndClickElement(drops, '/html/body/div/div[3]/div/div/div/div/div[2]/button');
+
+            await ClickElementA(drops, '//a[@href="/create-entry?ext_id=vM6ZS3fyt&stepId=1243"]')
+           
+            async function Await() {
+                while (true) {
+                    const page = await PageService.findPageByUrl('chrome-extension://bfnaelmomeimhlpmgjnjophhpkkoljpa/notification.html')
+                    if (page.check) {
+                        console.log("tim thấy")
+                        const pagePartalWallet = await PageService.getTargetPage('chrome-extension://bfnaelmomeimhlpmgjnjophhpkkoljpa/notification.html')
     
-        const meta =  await PhantomWallet.ImportMetaWallet()
+                        if (!pagePartalWallet) return;
 
-        const page = await PageService.openFirstPage('https://app.galxe.com/quest/58AUmcj2oPNjd2U9zxN6sX/GC4xvtp6Nr')
-        
-       
-        
-        //isPageClosed = true
+                        if (await ElementService.HandleWaitForSelectorTypeElement(
+                            pagePartalWallet,
+                            '#unlock-form > div > div:nth-child(3) > div > input',
+                            'hunghung',
+                            1
+                        )) {
+                            await pagePartalWallet.keyboard.press("Enter");
+                        }
+                        await ElementService.HandleWaitForSelectorClickElement(pagePartalWallet,
+                            '#root > div > div.sc-htJRVC.Ifjhy > div > div.sc-jRQBWg.sc-pVTFL.EgSbv.cZzoXH > div > button.sc-fFeiMQ.gbIHNA',
+                            1
+                        )
+                        
+                        return;    
+                    }
+                    if (globalState.isPageClosed) {
+                        console.log("thoat runPhantomWallet");
+                        return;
+                    }
+                    await Util.sleep(2000)
+                }
+            }
+            //await Await()
+            // await Util.sleep(10000)
+            // await Await()
+            //await ClickElementA(drops, '//a[@href="/create-entry?ext_id=vM6ZS3fyt&stepId=1243"]')
+            
+            await waitAndClick(drops, 'body > main > div > div.MuiGrid-root.mui-el7nhs > div.MuiGrid-root.mui-9e5sfg > div > div > div > div > button');
+        }
+        async function mission1(drops, page1, page2) {
+            while (true) {
+                if (globalState.start) break
 
-        
-        while (!isPageClosed) {
-            await Util.sleep(5000)
+                await Util.sleep(3000)
+            }
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1243')
+            // await waitAndClick(drops,
+            //     '#create-entry-page > div > div.sc-803d9c0a-0.kRhkId.MuiBox-root.mui-1pa21yv > div > div > div > div.MuiBox-root.mui-1mv7f1u > div > div.MuiBox-root.mui-7jugx5 > div > div > a > div > article > div.tweet-header_header__CXzdi > div > div > div > a'
+            // )
+            // await ElementService.HandlefindAndClickElementText(drops, 'Open Twitter')
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1243')
+            await waitAndClick(drops,
+                'body > main > div > div.MuiGrid-root.mui-el7nhs > div.MuiGrid-root.mui-9e5sfg > div > div > button.MuiButtonBase-root.sc-9174c518-0.dWxtmS.mui-1yzuwfs'
+            )
+
+
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1052')
+            await Util.sleep(3000)
+            await ElementService.HandlefindAndClickElementText(page1, 'Open Twitter')
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1052')
+            await waitAndClick(page1,
+                'body > main > div > div.MuiGrid-root.mui-el7nhs > div.MuiGrid-root.mui-9e5sfg > div > div > button.MuiButtonBase-root.sc-9174c518-0.dWxtmS.mui-1yzuwfs'
+            )
+
+
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1210')
+            await Util.sleep(3000)
+            //await ElementService.HandlefindAndClickElementText(page2, 'Open Twitter')
+            // await waitAndClick(page2,
+            //     '#create-entry-page > div > div.sc-803d9c0a-0.kRhkId.MuiBox-root.mui-1pa21yv > div > div > div > div.MuiBox-root.mui-1mv7f1u > div > div.MuiBox-root.mui-7jugx5 > a'
+            // )
+            await focusPageWhenUrlMatches('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1210')
+            await waitAndClick(page2,
+                'body > main > div > div.MuiGrid-root.mui-el7nhs > div.MuiGrid-root.mui-9e5sfg > div > div > button.MuiButtonBase-root.sc-9174c518-0.dWxtmS.mui-1yzuwfs'
+            )
+
+
+
+            return
+        }
+
+
+        // console.log("Hoàn thành tác vụ!");
+
+        const page1 =  await PageService.openNewPage('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1052')
+        // // //await waitAndClick1(page1, `//a/span[contains(text(), 'Open Twitter')]`)
+
+        const page2 =  await PageService.openNewPage('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1210')
+        // // //await waitAndClick1(page2, `//a/span[contains(text(), 'Open Twitter')]`)
+        const PageStart = await PageService.openNewPage('https://app.drops.house/create-entry?ext_id=vM6ZS3fyt&stepId=1256')
+   
+        await switchToPageByIndex(1)
+        // await Util.sleep(5000)
+
+        // await waitAndClick(drops, 'body > main > div > div.MuiGrid-root.mui-el7nhs > div.MuiGrid-root.mui-9e5sfg > div > div > div > button')
+
+        // await ElementService.Shadown(drops,
+        //     'document.querySelector("body > w3m-modal").shadowRoot.querySelector("wui-flex > wui-card > w3m-router").shadowRoot.querySelector("div > w3m-connect-view").shadowRoot.querySelector("wui-flex > w3m-wallet-login-list").shadowRoot.querySelector("wui-flex > w3m-connect-announced-widget").shadowRoot.querySelector("wui-flex > wui-list-wallet").shadowRoot.querySelector("button")'
+        // )
+       // await PhantomWallet.Conect()
+        async function runAllActions() {
+            while (true) {
+                if (globalState.isPageClosed) {
+                    console.log(`[waitAndClick] Trang đã đóng, thoát khỏi vòng lặp.`);
+                    return;
+                }
+
+                try {
+                    await Promise.allSettled([
+                        performTwitterAuthActions(),
+                        PhantomWallet.Conect(),
+                        //mission1(drops, page1, page2),
+                       
+                        closePageWhenUrlMatches('https://x.com/intent/retweet?tweet_id=1889742997027541270'),
+                        closePageWhenUrlMatches('https://x.com/intent/like?tweet_id=1882441880669151489'),
+                        closePageWhenUrlMatches('https://x.com/intent/follow?region=follow_link&screen_name=FoxyLinea'),
+                        closePageWhenUrlMatches('https://x.com/intent/retweet?tweet_id=1882441880669151489'),
+                        closePageWhenUrlMatches('https://x.com/intent/follow?region=follow_link&screen_name=LineaBuild'),
+                        closePageWhenUrlMatches('https://www.welikethefox.io/'),
+                        closePageWhenUrlMatches('https://x.com/intent/retweet?tweet_id=1887194893229187488'),
+                        closePageWhenUrlMatches('https://x.com/FoxyLinea/status/1889742997027541270'),
+                        closePageWhenUrlMatches('https://x.com/FoxyLinea/status/1882441880669151489'),
+                        closePageWhenUrlMatches('https://twitter.com/FoxyLinea'),
+                        closePageWhenUrlMatches('https://x.com/FoxyLinea/status/1882441880669151489'),
+                        closePageWhenUrlMatches('https://twitter.com/LineaBuild'),
+                        closePageWhenUrlMatches('https://www.welikethefox.io/'),
+                        closePageWhenUrlMatches('https://x.com/FoxyLinea/status/1887194893229187488'),
+                    ]);
+                } catch (error) {
+                    console.error("Lỗi khi thực hiện hành động:", error);
+                }
+            }
+        }
+        await runAllActions()
+
+        while (true) {
+            if (globalState.isPageClosed) break
+            await Util.sleep(500)
         }
         parentPort.postMessage({ status: 'Success' });
     } catch (error) {
@@ -487,219 +1264,6 @@ async function run() {
         await browser.close()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function clickButtonInNestedShadowDOM(printr) {
-    await Util.sleep(10000);
-    const MAX_RETRIES = 5;
-    const RETRY_DELAY = 5000; // Thời gian chờ giữa các lần thử (ms)
-
-    async function clickButtonWithRetry(printr, selector, retries) {
-        for (let attempt = 1; attempt <= retries; attempt++) {
-            try {
-                const button = await (
-                    await printr.evaluateHandle(selector)
-                ).asElement();
-
-                if (button) {
-                    await button.click();
-                    console.log(`Clicked button successfully on attempt ${attempt}.`);
-                    return true; // Nếu click thành công thì dừng lại
-                } else {
-                    console.log(`Button not found on attempt ${attempt}.`);
-                }
-            } catch (error) {
-                console.error(`Attempt ${attempt}: Error occurred while trying to click the button:`, error);
-            }
-
-            // Chờ trước khi thử lại
-            await Util.sleep(RETRY_DELAY);
-        }
-
-        console.error(`Failed to click the button after ${retries} attempts.`);
-        return false; // Nếu không click được sau nhiều lần thử
-    }
-    const buttonSelector1 = `
-document.querySelector("body > w3m-modal")
-  .shadowRoot.querySelector("wui-flex > wui-card > w3m-router")
-  .shadowRoot.querySelector("div > w3m-connect-view")
-  .shadowRoot.querySelector("wui-flex > wui-flex.connect > wui-flex > w3m-wallet-login-list")
-  .shadowRoot.querySelector("wui-flex > w3m-connector-list")
-  .shadowRoot.querySelector("wui-flex > w3m-connect-multi-chain-widget")
-  .shadowRoot.querySelector("wui-flex > wui-list-wallet")
-  .shadowRoot.querySelector("button")
-`;
-
-    const buttonSelector2 = `
-document.querySelector("body > w3m-modal")
-  .shadowRoot.querySelector("wui-flex > wui-card > w3m-router")
-  .shadowRoot.querySelector("div > w3m-connecting-multi-chain-view")
-  .shadowRoot.querySelector("wui-flex > wui-flex:nth-child(3) > wui-list-wallet:nth-child(2)")
-  .shadowRoot.querySelector("button")
-`;
-
-    // Thử click nút đầu tiên
-    const success1 = await clickButtonWithRetry(printr, buttonSelector1, MAX_RETRIES);
-    if (success1) {
-        await Util.sleep(5000); // Chờ 5 giây trước khi thử click nút thứ hai
-        // Thử click nút thứ hai
-        await clickButtonWithRetry(printr, buttonSelector2, MAX_RETRIES);
-    }
-    // // First button click (Accessing the first nested shadow DOM)
-    // const firstButton = await getButtonFromFirstShadow(printr);
-    // if (firstButton) {
-    //     await firstButton.click();
-    // }
-    // await Util.sleep(5000); 
-    // // Wait for another element or selector to appear if needed
-    // await printr.waitForSelector('body > w3m-modal');
-
-    // // Second button click (Accessing a different nested shadow DOM)
-    // const secondButton = await getButtonFromSecondShadow(printr);
-    // if (secondButton) {
-    //     await secondButton.click();
-    // }
-}
-
-// Helper function to get button from the first shadow DOM structure
-async function getButtonFromFirstShadow(printr) {
-    const modalElement = await printr.waitForSelector('body > w3m-modal');
-    const shadowRoot1 = await modalElement.evaluateHandle(el => el.shadowRoot);
-
-    const card = await shadowRoot1.waitForSelector('wui-flex > wui-card > w3m-router');
-    const shadowRoot2 = await card.evaluateHandle(el => el.shadowRoot);
-
-    const connectView = await shadowRoot2.waitForSelector('div > w3m-connect-view');
-    const shadowRoot3 = await connectView.evaluateHandle(el => el.shadowRoot);
-
-    const flexConnect = await shadowRoot3.waitForSelector('wui-flex > wui-flex.connect > wui-flex > w3m-wallet-login-list');
-    const shadowRoot4 = await flexConnect.evaluateHandle(el => el.shadowRoot);
-
-    const connectorList = await shadowRoot4.waitForSelector('wui-flex > w3m-connector-list');
-    const shadowRoot5 = await connectorList.evaluateHandle(el => el.shadowRoot);
-
-    const multiChainWidget = await shadowRoot5.waitForSelector('wui-flex > w3m-connect-multi-chain-widget');
-    const shadowRoot6 = await multiChainWidget.evaluateHandle(el => el.shadowRoot);
-
-    const walletList = await shadowRoot6.waitForSelector('wui-flex > wui-list-wallet');
-    const shadowRoot7 = await walletList.evaluateHandle(el => el.shadowRoot);
-
-    return shadowRoot7.waitForSelector('button');
-}
-
-// Helper function to get button from the second shadow DOM structure
-// async function getButtonFromSecondShadow(printr) {
-//     const modalElement = await printr.waitForSelector('body > w3m-modal');
-//     const shadowRoot1 = await modalElement.evaluateHandle(el => el.shadowRoot);
-
-//     const card = await shadowRoot1.waitForSelector('wui-flex > wui-card > w3m-router');
-//     const shadowRoot2 = await card.evaluateHandle(el => el.shadowRoot);
-
-//     const connectView = await shadowRoot2.waitForSelector('div > w3m-connecting-multi-chain-view');
-//     const shadowRoot3 = await connectView.evaluateHandle(el => el.shadowRoot);
-
-//     const flexChild = await shadowRoot3.waitForSelector('wui-flex > wui-flex:nth-child(3) > wui-list-wallet:nth-child(2)');
-//     const shadowRoot4 = await flexChild.evaluateHandle(el => el.shadowRoot);
-
-//     return shadowRoot4.waitForSelector('button');
-// }
-async function ConnectPhantomWallet(page) {
-    while (true) {
-        // Run check, connection, and confirmation concurrently
-        const check = await ElementService.HandlefindAndElementText(page, 'Join (SOL / EVM)');
-
-        // Wait for all three operations to complete
-        await Promise.all([
-            PhantomWallet.Conect(),
-            PhantomWallet.Confirm(),
-            Promise.resolve(check)  // Wrap check in a resolved promise
-        ]);
-
-        // If check is false, break the loop
-        if (!check) break;
-
-        // Sleep for 5 seconds
-        await Util.sleep(5000);
-    }
-}
-
-// await Discord.LoginToken('MTMyNjUyOTcyNDgzNDUxNzA1Ng.GwPDnS.WTSIqG3hnyUJSEXPWSKJUpf1mt1KzcwoF2Cjiw')
-
-// const ref = 'https://chainopera.ai/quest'
-// const chainopera = await PageService.openNewPage(`waitForSelector{ref}`)
-// await Util.sleep(5000)
-// await chainopera.reload()
-// await Util.sleep(5000)
-// await chainopera.reload()
-// await ElementService.HandlefindAndClickElement(chainopera, `//*[@id="app"]/div/main/header/div/div[2]/button`)
-// await chainopera.evaluate(() => {
-//     const shadowHost = document.querySelector('body > onboard-v2');
-//     if (shadowHost) {
-//         const shadowRoot = shadowHost.shadowRoot;
-//         const button = shadowRoot.querySelector(
-//             'section > div > div > div > div > div > div > div > div.scroll-container.svelte-1qwmck3 > div > div > div > div:nth-child(2) > button'
-//         );
-//         if (button) {
-//             button.click(); // Click vào nút
-//             console.log('Button clicked!');
-//         } else {
-//             console.error('Button not found!');
-//         }
-//     } else {
-//         console.error('Shadow host not found!');
-//     }
-// });
-
-// await ElementService.HandleWaitForSelectorClickElement(
-//     chainopera,
-//     '#customer-task-list > div:nth-child(3) > div.action > button'
-// )
-
-
-// while (true) {   
-//     await Promise.all([
-//         PhantomWallet.Conect(),
-//         PhantomWallet.Confirm(),
-//         ///Discord.authorizationScroll(),
-
-//     ]);
-//     // await ElementService.HandleWaitForSelectorClickElement(
-//     //     chainopera,
-//     //     '#my_modal_x_callback > div > div > button'
-//     // )
-//     // await Util.sleep(5000)
-
-
-
-//     // if (stop) {
-//     //     await Util.sleep(15000)
-//     //     await ElementService.HandleWaitForSelectorClickElement(
-//     //         chainopera,
-//     //         '#customer-task-list > div:nth-child(3) > div.action > button'
-//     //     )
-//     //     stop = false
-//     // } 
-// }
-
-
-
-
-
-
 
 // 21 https://chainopera.ai/quest/?inviteCode=IRHONYGR
 // 22 https://chainopera.ai/quest/?inviteCode=AYS2JSPE

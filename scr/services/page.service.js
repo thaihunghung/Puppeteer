@@ -48,7 +48,7 @@ class PageService {
             }
             const target = await globalState.browser.waitForTarget(
                 (target) => target.url() === targetUrl,
-                { timeout: 150000 }
+                { timeout: 100000 }
             );
 
             if (!target) {
@@ -322,32 +322,48 @@ class PageService {
     static async openNewPage(url) {
         try {
             const page = await this.createNewTab();
-            await Util.sleep(1000)
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36');
+
+            // 🔥 Xóa Cache & Cookies trước khi load trang
+           // const client = await page.target().createCDPSession();
+            //await client.send('Network.clearBrowserCookies');
+           // await client.send('Network.clearBrowserCache');
+    
+            // this.acceptAlert(page)
+            //await Util.sleep(10000);
             await page.goto(url, {
-                timeout: 150000,
+                timeout: 300000,
                 waitUntil: 'domcontentloaded',
             });
+    
             return page;
         } catch (error) {
             console.error('Error opening page:', error);
             throw error;
         }
     }
-
+    
     static async openFirstPage(url) {
         try {
-            const page = await this.getPage()
-           this.acceptAlert(page)
+            const page = await this.getPage();
+            // 🔥 Xóa Cache & Cookies trước khi load trang
+            //const client = await page.target().createCDPSession();
+            //await client.send('Network.clearBrowserCookies');
+           // await client.send('Network.clearBrowserCache');
+    
+            this.acceptAlert(page);
             await page.goto(url, {
-                timeout: 150000,
+                timeout: 300000,
                 waitUntil: 'domcontentloaded',
             });
+    
             return page;
         } catch (error) {
             console.error('Error opening page:', error);
             throw error;
         }
     }
+    
 
     static async getCookiesByOrder(page, cookieNames = []) {
         try {

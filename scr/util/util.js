@@ -42,7 +42,7 @@ class Util {
         
         const index = indicesToRun.indexOf(i);
         if (index === 0)  return;
-        const sleepTime = index * 3000; 
+        const sleepTime = index * 1500; 
 
         await this.sleep(sleepTime);
     }

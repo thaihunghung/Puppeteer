@@ -1,12 +1,14 @@
 
 const globalState = require("../config/globalState");
-const { fs, proxyChain, puppeteer } = require("../config/module.import");
-
+const { fs, proxyChain,
+     //puppeteer 
+    } = require("../config/module.import");
+    const puppeteer = require("puppeteer");
 class BrowserService {
     static browser = null;
     constructor() {}
 
-    static async launchBrowserWithProfile(mobile = false, devtool = false, headless = false) {
+    static async launchBrowserWithProfile(devtool = false, mobile = false, headless = false) {
         const { profile, proxy } = globalState.workerData;
 
         const userDataDir = `E:\\puppeteer-auto-meta-proxy\\profile\\${profile}`;
@@ -61,24 +63,40 @@ class BrowserService {
             BrowserService.browser = await puppeteer.launch({
                 devtools: devtool,
                 headless: headless,
-                executablePath: "E:\\puppeteer-auto-meta-proxy\\chrome\\win64-116.0.5793.0\\chrome-win64\\chrome.exe",
+                executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
                 userDataDir: userDataDir,
                 ignoreDefaultArgs: ["--disable-extensions", "--enable-automation"],
                 args: [
-                    '--disable-features=IsolateOrigins,site-per-process', 
-        '--disable-popup-blocking', 
                     `--profile-directory=${profileDirectory}`,
                     proxyArg,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
+      '--disable-blink-features=AutomationControlled',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-software-rasterizer',
+            '--disable-background-networking',
+            '--disable-default-apps',
+            '--disable-sync',
+            '--disable-translate',
+            '--disk-cache-size=0', // 🔥 Tắt cache trên ổ cứng
+            '--disable-cache', // 🔥 Tắt hoàn toàn cache
+            '--aggressive-cache-discard', // 🔥 Xóa cache ngay khi có thể
+            '--disable-application-cache', // 🔥 Vô hiệu hóa cache của trình duyệt
+
+
                     //'--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\MetaMask\\nkbihfbeogaeaoehlefnkodbefgpgknn',
                     `--load-extension=${extensionsPaths}`,
-                    '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
+                    
                 ].filter(arg => arg), 
                 defaultViewport: mobile
                 ? { width: 500} // Kích thước mobile (ví dụ: iPhone X)
                 : null,
             });
+            BrowserService.browser.on('disconnected', () => {
+                globalState.isPageClosed = true;
+            });
+            
             console.log("Browser launched successfully");
             return BrowserService.browser;
         } catch (error) {
@@ -100,6 +118,9 @@ class BrowserService {
                     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.91 Safari/537.36',
                 ].filter(arg => arg), 
                 defaultViewport: null,
+            });
+            BrowserService.browser.on('disconnected', () => {
+                globalState.isPageClosed = true;
             });
             console.log("Browser launched successfully");
             return BrowserService.browser;

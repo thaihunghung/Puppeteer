@@ -46,10 +46,19 @@ async function startWorkers() {
     // 5, 11, 39
     //const groups = [indicesGroups.mainGroup, indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15, indicesGroups.group16to20] 
     //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
-
+    
     // chạy portal
-    indicesGroups.otherGroup = [14]
-    const groups = [indicesGroups.group51to55] // 19 lii
+    indicesGroups.otherGroup = [0]
+    //group51to55
+    //profile3 loi
+    const groups = [
+        //indicesGroups.otherGroup,
+        indicesGroups.group1to5, indicesGroups.group6to10,
+        indicesGroups.group11to15, indicesGroups.group16to20,
+        indicesGroups.group21to25, indicesGroups.group26to30, indicesGroups.group31to35,
+        indicesGroups.group36to39, indicesGroups.group41to45, indicesGroups.group46to50,
+        indicesGroups.group51to55, indicesGroups.group56to60, indicesGroups.group61to65,
+    ] // 19 lii
     //const groups = [indicesGroups.otherGroup=[37]] 
     //const groups = [indicesGroups.otherGroup=[30, 31,32,33,34,35]]
     //const groups = [indicesGroups.otherGroup=[0]]
@@ -94,8 +103,9 @@ async function startWorkers() {
         for (let i = 0; i < initialWorkers; i++) {
             workerPromises.push(processNextWorker());
         }
-
-        await Promise.all(workerPromises);
+// 3
+// 23 - 30 - 32 - 49 - 53 -  62
+        await Promise.allSettled(workerPromises);
         if (globalState.closeWorker) {
             const { exec } = require('child_process');
             exec('E:\\puppeteer-auto-meta-proxy\\scr\\util\\close_chrome.bat', (error, stdout, stderr) => {

@@ -9,13 +9,16 @@ const globalState = {
     timeout: 10000,
     Worker: [],
     showXpath: true,
-    showPage: true,
+    showPage: false,
     MetaOpen: true,
     MangoOpen: true,
     ProxyOpen: false,
     jsonPath:'E:/puppeteer-auto-meta-proxy/scr/data.json',
     excelPath:'E:/puppeteer-auto-meta-proxy/scr/wallet.xlsx',
-    closeWorker: false,
+    closeWorker: true,
+    isPageClosed: false,
+    start: false
 };
 
+//Referrals 163 Earned 15900
 module.exports = globalState;
