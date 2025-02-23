@@ -9,7 +9,7 @@ const globalState = {
     timeout: 10000,
     Worker: [],
     showXpath: true,
-    showPage: false,
+    showPage: true,
     MetaOpen: true,
     MangoOpen: true,
     ProxyOpen: false,

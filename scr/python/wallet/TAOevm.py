@@ -8,8 +8,8 @@ Account.enable_unaudited_hdwallet_features()
 
 NUM_WALLETS = 100000  
 
-private_keys_file = 'private_keys1.txt'
-address_file = 'address1.txt'
+private_keys_file = 'private_keys2.txt'
+address_file = 'address2.txt'
 
 if os.path.exists(private_keys_file):
     os.remove(private_keys_file)

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node scr/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scr/test/app.js",
+    "fomat_proxy": "node scr/modules/proxy/proxy.js"
   },
   "author": "Trần Thái Hưng",
   "license": "ISC",

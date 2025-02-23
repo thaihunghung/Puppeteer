@@ -48,12 +48,13 @@ async function startWorkers() {
     //const groups = [indicesGroups.group1to5, indicesGroups.group6to10, indicesGroups.group11to15]
     
     // chạy portal
-    indicesGroups.otherGroup = [0]
+    indicesGroups.otherGroup = [0, 1]
     //group51to55
     //profile3 loi
     const groups = [
         //indicesGroups.otherGroup,
-        indicesGroups.group1to5, indicesGroups.group6to10,
+        indicesGroups.group1to5, 
+        indicesGroups.group6to10,
         indicesGroups.group11to15, indicesGroups.group16to20,
         indicesGroups.group21to25, indicesGroups.group26to30, indicesGroups.group31to35,
         indicesGroups.group36to39, indicesGroups.group41to45, indicesGroups.group46to50,
@@ -80,8 +81,8 @@ async function startWorkers() {
                 return processNextWorker();
             }
 
-            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal, mango, mango_mnemonic } = data_wallet[currentIndex];
-            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal, mango, mango_mnemonic };
+            const { profile, mnemonic, proxy, google, discord, twitter, hotmail, portal, mango, mango_mnemonic, EVM } = data_wallet[currentIndex];
+            const workerData = { i: currentIndex, profile, mnemonic, proxy, google, discord, twitter, indicesToRun, hotmail, portal, mango, mango_mnemonic, EVM };
 
             currentIndex++;
             activeWorkers++;

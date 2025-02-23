@@ -347,6 +347,7 @@ class ElementService {
         }
         return false;
     }
+
     static async HandleFindWithWaitForSelectorElement(page, xpath, timeout = 2) {
         if (globalState.showXpath){
             console.log(xpath);
@@ -357,6 +358,7 @@ class ElementService {
         }
         return false;
     }
+
     static async HandleWaitForSelectorTypeElement(page, xpath, input, timeout = 3) {
         if (globalState.showXpath){
             console.log(xpath);
@@ -385,6 +387,7 @@ class ElementService {
         }
         return false;
     }
+
     static async HandlefindAllElementAndClick(page, text, timeout = 2) {
         const xpath = `//*[text() = "${text}"]`; 
         if (globalState.showXpath){
@@ -474,7 +477,6 @@ class ElementService {
         return elementHandle;
     }
 
-    
     static async HandlefindAndTypeElement(page, xpath, input, timeout = 10) {
         if (globalState.showXpath){
             console.log(xpath); 
@@ -520,7 +522,172 @@ class ElementService {
         } catch (error) {
           console.error("❌ Lỗi trong quá trình thực thi Shadown:", error);
         }
-      }
+    }
+
+    static async clickButton1(page, xpath) {
+        try {
+            // Chờ phần tử xuất hiện bằng XPath
+            const elementHandle = await page.evaluateHandle((xpath) => {
+                return document.evaluate(
+                    xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+                ).singleNodeValue;
+            }, xpath);
+
+            if (!elementHandle) {
+                console.error("Không tìm thấy nút:", xpath);
+                return false;
+            }
+
+            // Click vào nút bằng evaluate
+            const clicked = await page.evaluate((el) => {
+                if (el && el.offsetWidth > 0 && el.offsetHeight > 0 && !el.disabled) {
+                    el.scrollIntoView();
+                    el.click();
+                    return true;
+                }
+                return false;
+            }, elementHandle);
+
+            if (clicked) {
+                console.log("✅ Click thành công:", xpath);
+                return true;
+            } else {
+                console.error("Không thể click vì nút bị ẩn hoặc vô hiệu hóa:", xpath);
+                return false;
+            }
+        } catch (error) {
+            console.error("Lỗi khi click:", error);
+            return false;
+        }
+    }
+
+    static async waitAndClick1(umba, selector) {
+        while (true) {
+            if (globalState.isPageClosed) break
+            const elementHandle = await umba.evaluateHandle((xpath) => {
+                return document.evaluate(
+                    xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+                ).singleNodeValue;
+            }, selector);
+
+            if (elementHandle) {
+                const success = await this.clickButton1(umba, selector);
+                if (success) return true;
+            }
+
+            await Util.sleep(5000)
+        }
+    }
+
+    static async clickButton(page, btnSelector) {
+        try {
+            console.log(`[clickButton] Chờ tìm nút: ${btnSelector}`);
+            await page.waitForSelector(btnSelector, { visible: true, timeout: 10000 });
+
+            const btn = await page.$(btnSelector);
+            if (btn) {
+                console.log(`[clickButton] Tìm thấy nút: ${btnSelector}, kiểm tra trạng thái...`);
+                const clicked = await page.evaluate(selector => {
+                    const btn = document.querySelector(selector);
+                    if (btn && btn.offsetWidth > 0 && btn.offsetHeight > 0 && !btn.disabled) {
+                        console.log(`[clickButton] Nút hợp lệ, thực hiện click: ${selector}`);
+                        btn.scrollIntoView();
+                        const event = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+                        btn.dispatchEvent(event);
+                        return true;  // ✅ Click thành công
+                    }
+                    console.log(`[clickButton] Nút bị ẩn hoặc disabled: ${selector}`);
+                    return false;  // ❌ Nút bị ẩn hoặc disabled
+                }, btnSelector);
+
+                if (!clicked) {
+                    console.error(`[clickButton] Không thể click vì nút bị ẩn hoặc vô hiệu hóa: ${btnSelector}`);
+                    return false;
+                }
+                console.log(`[clickButton] Click thành công: ${btnSelector}`);
+                return true;
+            } else {
+                console.error(`[clickButton] Không tìm thấy nút: ${btnSelector}`);
+                return false;
+            }
+        } catch (error) {
+            console.error(`[clickButton] Lỗi khi click: ${error.message}`);
+            return false;
+        }
+    }
+
+    static async typeInput(page, selector, text) {
+        try {
+            console.log(`[typeInput] Chờ tìm input: ${selector}`);
+            await page.waitForSelector(selector, { visible: true, timeout: 10000 });
+
+            console.log(`[typeInput] Tìm thấy input: ${selector}, chuẩn bị nhập dữ liệu...`);
+            const input = await page.$(selector);
+            if (input) {
+                console.log(`[typeInput] Bắt đầu nhập dữ liệu vào: ${selector}`);
+                await input.click({ clickCount: 3 }); // Chọn toàn bộ văn bản trước khi nhập
+                await page.type(selector, text); // Gõ văn bản
+                console.log(`[typeInput] Nhập thành công: ${text}`);
+                return true; // Nhập thành công
+            } else {
+                console.error(`[typeInput] Không tìm thấy ô input: ${selector}`);
+                return false;
+            }
+        } catch (error) {
+            console.error(`[typeInput] Lỗi khi nhập dữ liệu: ${error.message}`);
+            return false;
+        }
+    }
+
+    static async waitAndClick(umba, selector) {
+        console.log(`[waitAndClick] Bắt đầu chờ và click: ${selector}`);
+        while (true) {
+            if (globalState.isPageClosed) {
+                console.log(`[waitAndClick] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            if (isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            const input = await umba.$(selector);
+            if (input) {
+                console.log(`[waitAndClick] Tìm thấy nút, thử click: ${selector}`);
+                const success = await this.clickButton(umba, selector);
+                if (success) {
+                    console.log(`[waitAndClick] Click thành công: ${selector}`);
+                    break;
+                }
+            } else {
+                //console.log(`[waitAndClick] Chưa tìm thấy nút: ${selector}, thử lại sau...`);
+            }
+
+            await Util.sleep(3000);
+        }
+    }
+
+    static async waitAndType(page, selector, text) {
+        console.log(`[waitAndType] Bắt đầu chờ và nhập dữ liệu vào: ${selector}`);
+        while (true) {
+            if (globalState.isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            if (isPageClosed) {
+                console.log(`[waitAndType] Trang đã đóng, thoát khỏi vòng lặp.`);
+                return;
+            }
+            const success = await this.typeInput(page, selector, text);
+            if (success) {
+                console.log(`[waitAndType] Nhập dữ liệu thành công: ${text} vào ${selector}`);
+                break; // Thoát vòng lặp nếu nhập thành công
+            } else {
+                console.log(`[waitAndType] Nhập thất bại, thử lại sau...`);
+            }
+
+            await Util.sleep(3000);
+        }
+    }
 }
 
 module.exports = ElementService;

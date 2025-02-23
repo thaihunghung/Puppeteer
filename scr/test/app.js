@@ -31,32 +31,37 @@ function getProxiesInRange(filePath, startIndex, endIndex) {
 async function createWorker(workerData) {
     const worker = new Worker(path.resolve(__dirname, 'worker.js'), { workerData });
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         worker.on('message', resolve);
-        worker.on('error', reject);
+        worker.on('error', (err) => {
+            console.error("Worker error:", err);
+            resolve({ status: 'Failure', reason: err.message });
+        });
         worker.on('exit', (code) => {
             if (code !== 0) {
-                reject(new Error(`Worker stopped with exit code ${code}`));
+                console.error(`Worker exited with code ${code}`);
+                resolve({ status: 'Failure', reason: `Exit code ${code}` });
             }
         });
     });
 }
 
+
 async function startWorkers() {
-    const data = fs.readFileSync('E:\\puppeteer-auto-meta-proxy\\scr\\test\\secret-recovery-phrase1.txt', 'utf8');
+    const data = fs.readFileSync('E:\\puppeteer-auto-meta-proxy\\scr\\test\\address.txt', 'utf8');
 
     const dataArray = data.split('\n').map((item) => item.trim()).filter((item) => item);
 
     const datakey12 = fs.readFileSync('private_keys.txt', 'utf8');
     const dataArraykey12 = datakey12.split('\n').map((item) => item.trim()).filter((item) => item);
-    
+
     const dataTwitter = fs.readFileSync('twitter.txt', 'utf8');
 
     const dataTwitterArray = dataTwitter.split('\n').map((item) => item.trim()).filter((item) => item);
 
     // const dataToken = fs.readFileSync('tokendiscord.txt', 'utf8');
     // const dataTokenArray = dataToken.split('\n').map((item) => item.trim()).filter((item) => item);
- 
+
     const tokens = [
         "MTMyNzkwNTM0MTE5OTA5MzgyMQ.GxWlJE.QuP7L4VajSw-a2MVLPNZI3GTiY9-8bH860GmUA",
         "MTMyNDMwNDk3MjM1NDk0NTA3Ng.G75MSp.voMYm3x-9MT3xHnOFB7mRiFyYuR1it1gWQwMhE",
@@ -78,13 +83,13 @@ async function startWorkers() {
     const proxies = await getProxiesInRange(outputFilePath, 0, 49);
     const numRepeats = 5;
     const items = [];
-    
+
     for (let i = 0; i < numRepeats; i++) {
         items.push(...proxies); // Thêm nguyên danh sách proxies vào items mỗi lần lặp
     }
-    
+
     //console.log('items', items);
-    
+
     const token = [];
     tokens.forEach(discord => {
         for (let i = 0; i < 15; i++) {
@@ -94,18 +99,18 @@ async function startWorkers() {
 
     const resultArray = items.slice(0, 250);
     const tokenArray = token.slice(0, 200);
-    
+
 
     if (dataArray.length === 0) {
         console.error('Không có dữ liệu trong file data.txt.');
         return;
     }
 
-    console.log(`Số lượng mục trong data.txt: ${dataArray.length}`);
+    //console.log(`Số lượng mục trong data.txt: ${250}`);
     console.log(`Số lượng mục trong twiteer.txt: ${dataTwitterArray.length}`);
     console.log(`Số lượng mục trong proxies.txt: ${resultArray.length}`);
     console.log('tokenArray', tokenArray.length)
-    const maxThreads = 10;
+
     const results = [];
 
     // const groups = [
@@ -137,18 +142,29 @@ async function startWorkers() {
         indicesGroups.group151to160, indicesGroups.group161to170, indicesGroups.group171to180,
         indicesGroups.group181to190, indicesGroups.group191to200, indicesGroups.group201to210,
         indicesGroups.group211to220, indicesGroups.group221to230, indicesGroups.group231to240,
-        indicesGroups.group241to250
+        indicesGroups.group241to250, indicesGroups.group251to260, indicesGroups.group261to270,
+        indicesGroups.group271to280, indicesGroups.group281to290, indicesGroups.group291to300,
+        indicesGroups.group301to310, indicesGroups.group311to320, indicesGroups.group321to330,
+        indicesGroups.group331to340, indicesGroups.group341to350, indicesGroups.group351to360,
+        indicesGroups.group361to370, indicesGroups.group371to380, indicesGroups.group381to390,
+        indicesGroups.group391to400, indicesGroups.group401to410, indicesGroups.group411to420,
+        indicesGroups.group421to430, indicesGroups.group431to440, indicesGroups.group441to450,
+        indicesGroups.group451to460, indicesGroups.group461to470, indicesGroups.group471to480,
+        indicesGroups.group481to490, indicesGroups.group491to500
     ];
     
-// lôi 20 
-    let currentGroupIndex = 2; //nhom 15 còn 1
+    module.exports = groups;
+    
+
+    const maxThreads = 10;
+    let currentGroupIndex = 25; 
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
         let currentIndex = 0;
         const groupResults = [];
 
         async function processNextWorker() {
-            if (currentIndex >= dataArray.length) return;
+            if (currentIndex >= dataTwitterArray.length) return;
 
             if (indicesToRun.length > 0 && !indicesToRun.includes(currentIndex)) {
                 currentIndex++;
@@ -169,13 +185,14 @@ async function startWorkers() {
             const key12 = dataArraykey12[currentIndex]
             const proxy = resultArray[currentIndex]
             //console.log(`Lỗi trong proxy `, proxy);
-           // const mnemonic = mnemonics[1]
+            // const mnemonic = mnemonics[1]
             const mnemonic = Datatwitter[5] || ''
-            
-            const token = tokenArray[currentIndex]
-            console.log('Processing mnemonic:', mnemonic);
 
-            const workerData = { i: 0 + currentIndex, mnemonic, twitter, proxy, token, key12 };
+            const token = tokenArray[currentIndex]
+            //console.log('Processing mnemonic:', mnemonic);
+            //, token, key12, mnemonic, twitter, 
+            const address = dataArray[500 + currentIndex]
+            const workerData = { i: 0 + currentIndex, proxy, address };
 
             currentIndex++;
             activeWorkers++;
@@ -192,12 +209,35 @@ async function startWorkers() {
             }
         }
 
-        const initialWorkers = Math.min(maxThreads, dataArray.length);
+        const initialWorkers = Math.min(maxThreads, dataTwitterArray.length);
         const workerPromises = [];
         for (let i = 0; i < initialWorkers; i++) {
             workerPromises.push(processNextWorker());
         }
-        await Promise.allSettled(workerPromises);
+        const results = await Promise.allSettled(workerPromises);
+
+        results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+                console.error(`Worker ${index} failed:`, result.reason);
+            } else {
+                console.log(`Worker ${index} succeeded:`, result.value);
+            }
+        });
+
+        if (globalState.closeWorker) {
+            const { exec } = require('child_process');
+            exec('E:\\puppeteer-auto-meta-proxy\\scr\\util\\cleanup_temp_folders.bat', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Lỗi khi chạy cleanup_temp_folders.bat: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Stderr khi chạy cleanup_temp_folders.bat: ${stderr}`);
+                    return;
+                }
+                console.log(`Output từ cleanup_temp_folders.bat:\n${stdout}`);
+            });
+        }
         return groupResults;
     }
 

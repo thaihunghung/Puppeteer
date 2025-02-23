@@ -319,51 +319,64 @@ class PageService {
             return true;
         }
     }
-    static async openNewPage(url) {
-        try {
-            const page = await this.createNewTab();
-            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36');
 
-            // 🔥 Xóa Cache & Cookies trước khi load trang
-           // const client = await page.target().createCDPSession();
-            //await client.send('Network.clearBrowserCookies');
-           // await client.send('Network.clearBrowserCache');
-    
-            // this.acceptAlert(page)
-            //await Util.sleep(10000);
-            await page.goto(url, {
-                timeout: 300000,
-                waitUntil: 'domcontentloaded',
-            });
-    
-            return page;
-        } catch (error) {
-            console.error('Error opening page:', error);
-            throw error;
-        }
-    }
-    
-    static async openFirstPage(url) {
+    static async openNewPage(url, waitUntil = 'domcontentloaded', timeout = 300000) {
         try {
-            const page = await this.getPage();
-            // 🔥 Xóa Cache & Cookies trước khi load trang
-            //const client = await page.target().createCDPSession();
-            //await client.send('Network.clearBrowserCookies');
-           // await client.send('Network.clearBrowserCache');
-    
-            this.acceptAlert(page);
+            const page = await this.createNewTab(); 
+            
+            await page.setCacheEnabled(false);  
+            this.acceptAlert(page);  
+
+            // Mở trang và chờ tải xong
             await page.goto(url, {
-                timeout: 300000,
-                waitUntil: 'domcontentloaded',
+                timeout: timeout,
+                waitUntil: waitUntil,
             });
-    
-            return page;
+
+            console.log(`Trang đã mở thành công: ${url}`);
+            return page;  // Trả về page nếu thành công
         } catch (error) {
-            console.error('Error opening page:', error);
-            throw error;
+            console.error(`Error opening page at ${url}:`, error);
+            return null;  // Trả về null nếu gặp lỗi
         }
     }
+
+    // Hàm mở trang đầu tiên
+    static async openFirstPage(url, waitUntil = 'domcontentloaded', timeout = 300000) {
+        try {
+            const page = await this.getPage();  // Giả sử getPage() trả về một trang hiện có
+            if (!page) {
+                console.error('Không có trang nào để mở!');
+                return null;  // Nếu không có trang, trả về null
+            }
+
+            await page.setCacheEnabled(false);  // Tắt cache
+            this.acceptAlert(page);  // Chấp nhận alert nếu có
+
+            // Mở trang và chờ tải xong
+            await page.goto(url, {
+                timeout: timeout,
+                waitUntil: waitUntil,
+            });
+
+            return page;  // Trả về page nếu thành công
+        } catch (error) {
+            console.error(`Error opening page at ${url}:`, error);
+            return null;  // Trả về null nếu gặp lỗi
+        }    
+    }
     
+    static async reloadPage(page, timeout = 300000, waitUntil = 'load') {
+        try {
+            // Reload trang với các tham số đã chỉ định
+            await page.reload({ timeout, waitUntil });
+            console.log('Trang đã được reload thành công');
+            return page;
+        } catch (error) {
+            console.error('Lỗi khi reload trang:', error);
+            return null;
+        }
+    }
 
     static async getCookiesByOrder(page, cookieNames = []) {
         try {
@@ -410,6 +423,40 @@ class PageService {
         } catch (error) {
             console.error('Lỗi trong quá trình lấy cookies:', error);
             return cookieNames.map(() => null);
+        }
+    }
+
+    static async closePageWhenUrlMatches(targetUrl) {
+        globalState.browser.on('targetcreated', async (target) => {
+            try {
+                const page = await target.page();
+                if (!page) return; // Nếu không có page, thoát khỏi hàm
+
+                await page.waitForNavigation({ waitUntil: 'domcontentloaded' }).catch(() => { });
+                const currentUrl = page.url();
+                // console.log(`Tab mới mở với URL: ${currentUrl}`);
+
+                if (currentUrl.includes(targetUrl)) {
+                    console.log('Xoa thanh cong', currentUrl);
+                    await page.close();
+                }
+            } catch (error) {
+                console.error('Lỗi khi xử lý targetcreated:', error);
+            }
+        });
+
+        // Kiểm tra lại tất cả các tab đã mở (nếu cần)
+        try {
+            const pages = await globalState.browser.pages();
+            for (const page of pages) {
+                const currentUrl = await page.url();
+                if (currentUrl.includes(targetUrl)) {
+                    console.log('URL trùng khớp, đóng tab ngay...');
+                    await page.close();
+                }
+            }
+        } catch (error) {
+            console.error('Lỗi khi kiểm tra các tab đã mở:', error);
         }
     }
 }
