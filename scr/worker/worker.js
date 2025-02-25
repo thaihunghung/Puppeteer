@@ -46,7 +46,11 @@ async function run() {
             mission_url: []
         }
     };
-        await GalaMission.execute(jsonGalxe)
+        //await GalaMission.execute(jsonGalxe)
+        const sandwatch = await PageService.openNewPage('https://www.infinityg.ai/voyage/?inviteCode=04CZJ0', waitUntil.load)
+       
+        await OkxWallet.CreateWallet()
+        //await PageService.reloadPage(sandwatch)
        // await PhantomWallet.UnblockMeta(true)
        //await Discord.LoginToken(workerData.discord.token_discord)
         
@@ -79,7 +83,7 @@ async function run() {
 
 
         
-        //await PhantomWallet.Conect()
+      //  await PhantomWallet.Conect()
 
 
 
@@ -148,7 +152,7 @@ async function run() {
         //https://whitelist.haust.network/
         
         while (true) {
-            if (globalState.isPageClosed) break
+            if (globalState.isPageClosed) return
             await Util.sleep(3000)
         }
         parentPort.postMessage({ status: 'Success' });

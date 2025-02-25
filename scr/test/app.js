@@ -81,7 +81,7 @@ async function startWorkers() {
     ];
 
     const proxies = await getProxiesInRange(outputFilePath, 0, 49);
-    const numRepeats = 5;
+    const numRepeats = 10;
     const items = [];
 
     for (let i = 0; i < numRepeats; i++) {
@@ -97,9 +97,20 @@ async function startWorkers() {
         }
     });
 
-    const resultArray = items.slice(0, 250);
+    const resultArray = items.slice(0, 500);
     const tokenArray = token.slice(0, 200);
-
+    // {
+    //     "jsonrpc": "2.0",
+    //     "id": 21,
+    //     "method": "eth_call",
+    //     "params": [
+    //         {
+    //             "data": "0x82ad56cb000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000db7449600804fc81ae6de6a1626f348e5967d79e000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000024785f8ee3000000000000000000000000ad4771bb492944b7f74db13727b3a41a3c230c5800000000000000000000000000000000000000000000000000000000",
+    //             "to": "0xca11bde05977b3631167028862be2a173976ca11"
+    //         },
+    //         "latest"
+    //     ]
+    // }
 
     if (dataArray.length === 0) {
         console.error('Không có dữ liệu trong file data.txt.');
@@ -157,7 +168,7 @@ async function startWorkers() {
     
 
     const maxThreads = 10;
-    let currentGroupIndex = 25; 
+    let currentGroupIndex = 0; 
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
         let currentIndex = 0;
@@ -183,7 +194,7 @@ async function startWorkers() {
                 domain: bumba[1],
             }
             const key12 = dataArraykey12[currentIndex]
-            const proxy = resultArray[currentIndex]
+            const proxy = proxies[currentIndex]
             //console.log(`Lỗi trong proxy `, proxy);
             // const mnemonic = mnemonics[1]
             const mnemonic = Datatwitter[5] || ''

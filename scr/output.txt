@@ -1,0 +1,17 @@
+
+// Giả sử bạn đã có ElementService và PageService trong dự án
+
+
+(async () => {
+
+    const 2fa_live = await PageService.openNewPage('https://2fa.live/', 'load');
+
+    await ElementService.waitAndClick1(2fa_live, `//*[@id="listToken"]`);
+
+    await ElementService.HandlefindAndTypeElement(2fa_live, `//*[@id="listToken"]`, 'hunghug');
+
+    await ElementService.waitAndClick1(2fa_live, `//*[@id="submit"]`);
+
+    // Đóng các browser (giả sử page object có browser)
+    await Promise.all([2fa_live.browser.close()]);
+})();

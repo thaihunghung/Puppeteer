@@ -1,98 +1,160 @@
-require("dotenv").config();
-const fs = require("fs");
-const { ethers } = require("ethers");
-const axios = require("axios");
 
-const PRIVATE_KEY_FILE = "E:\\puppeteer-auto-meta-proxy\\scr\\python\\wallet\\private_keys2.txt";
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AnonymizeUAPlugin = require("puppeteer-extra-plugin-anonymize-ua");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 
-// Hàm sleep để chờ giữa các request (tránh bị block)
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+puppeteer.use(StealthPlugin());
+puppeteer.use(AnonymizeUAPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
+const fs = require('fs');
+const globalState = require('./config/globalState');
+const { PageService } = require('./config/import.service');
+
+// Class trung gian để quản lý dữ liệu
+class ActionRecorder {
+    constructor() {
+        this.actionId = 0;
+        this.results = [];
+    }
+
+    // Thêm hoặc cập nhật dữ liệu
+    recordAction(data) {
+        const existingIndex = this.results.findIndex(item => item.xpath === data.xpath && item.page === data.page);
+        if (existingIndex !== -1 && data.event === "input") {
+            this.results[existingIndex] = data;
+        } else {
+            this.results.push(data);
+        }
+        this.saveToFile();
+    }
+
+    // Ghi dữ liệu vào file
+    saveToFile() {
+        const output = this.results.map(item => JSON.stringify(item, null, 2)).join(`\n\n`);
+        fs.writeFileSync(`results.txt`, output);
+        console.log(`đã lưu ${this.results.length} sự kiện vào results.txt`);
+    }
+
+    // Lấy tất cả dữ liệu
+    getResults() {
+        return this.results;
+    }
 }
 
-// Đọc file danh sách Private Key
-async function readFileLines(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) reject(err);
-      else resolve(data.replace(/\r/g, "").trim().split("\n"));
+async function startlistening() {
+    const browser = await puppeteer.launch({
+        devtools: true,
+        headless: false,
+        args: ["--start-maximized", "--disable-blink-features=AutomationControlled"]
+
     });
-  });
-}
+    globalState.browser = browser;
 
-// Xử lý đăng nhập không có proxy
-async function runWithoutProxy(i, privateKey) {
-  let walletAddress = "Unknown";
-  let attempts = 0; // Đếm số lần thử lại
-  
-  while (attempts < 15) {  // Giới hạn số lần thử lại (ví dụ: thử tối đa 5 lần)
-    try {
-      const provider = new ethers.JsonRpcProvider("https://odyssey.storyrpc.io");
-      const wallet = new ethers.Wallet(privateKey, provider);
-      walletAddress = wallet.address; // Lưu địa chỉ ví
+   // const firstPage = await PageService.openNewPage('https://2fa.live/');
+    const firstPage = await PageService.openNewPage('https://app.galxe.com/quest/58AUmcj2oPNjd2U9zxN6sX/GC4xvtp6Nr', 'load');
+    await PageService.reloadPage(firstPage)
+    await firstPage.waitForSelector("body", { visible: true, timeout: 10000 }); // Chờ body xuất hiện
 
-      // Gửi request lấy challenge
-      const challengeResponse = await axios.post(
-        "https://cults-apis-1181.ippcoin.com/auth/challenge",
-        { wallet_address: walletAddress },
-        { timeout: 30000 }
-      );
+    // Khởi tạo biến trung gian
+    const recorder = new ActionRecorder();
 
-      const challenge = challengeResponse.data.data.challenge;
-
-      // Ký challenge
-      const signature = await wallet.signMessage(challenge);
-
-      // Gửi yêu cầu đăng nhập
-      await axios.post(
-        "https://cults-apis-1181.ippcoin.com/auth/login",
-        {
-          wallet_address: walletAddress,
-          challenge: challenge,
-          response: signature,
-          referral_code: "d71imaebveko",
-        },
-        { timeout: 30000 }
-      );
-
-      console.log(`✅ Wallet ${i + 1}: Đăng nhập thành công!`);
-      return; // Nếu thành công, thoát khỏi vòng lặp
-
-    } catch (error) {
-      if (error.response?.status === 429) {
-        // console.log(`❌ Wallet ${i + 1}: Lỗi 429 - Quá nhiều yêu cầu. Thử lại sau 60 giây...`);
-        attempts++;
-        await sleep(1000); // Chờ 60 giây rồi thử lại
-      } else {
-        console.error(`❌ Wallet ${i + 1}: Lỗi với việc đăng nhập`);
-        console.error("Chi tiết lỗi:", error.response?.data || error.message);
-        return; // Nếu gặp lỗi khác, thoát khỏi vòng lặp
-      }
+    async function setupPageListeners(page, recorder) {
+        console.log(`🔍 Đang kiểm tra iframe trên: ${page.url()}`);
+    
+        // Lấy danh sách tất cả iframe
+        const frames = page.frames();
+        if (frames.length > 1) {
+            console.log(`🖼️ Trang có ${frames.length - 1} iframe(s):`);
+            frames.forEach((frame, index) => {
+                if (frame !== page.mainFrame()) {
+                    console.log(`  ➜ Iframe #${index}: ${frame.url()}`);
+                }
+            });
+        } else {
+            console.log("✅ Không có iframe trên trang này.");
+        }
+    
+        // Tiếp tục lắng nghe các sự kiện trên page chính
+        const processElement = async (target, eventType) => {
+            const xpath = await page.evaluate((el) => {
+                function getXPath(element) {
+                    if (element.id !== ``) return `//*[@id="${element.id}"]`;
+                    if (element === document.body) return element.tagName.toLowerCase();
+                    let ix = 0;
+                    const siblings = element.parentNode.childNodes;
+                    for (let i = 0; i < siblings.length; i++) {
+                        const sibling = siblings[i];
+                        if (sibling === element)
+                            return `${getXPath(element.parentNode)}/${element.tagName.toLowerCase()}[${ix + 1}]`;
+                        if (sibling.nodeType === 1 && sibling.tagName === element.tagName)
+                            ix++;
+                    }
+                }
+                return getXPath(el);
+            }, target);
+    
+            const selectorcss = await page.evaluate(el => {
+                return `${el.tagName.toLowerCase()}${el.id ? `#${el.id}` : ``}${el.className ? `.${el.className.split(` `).join(`.`)}` : ``}`;
+            }, target);
+    
+            const data = {
+                id: ++recorder.actionId,
+                event: eventType,
+                page: page.url(),
+                xpath,
+                selectorcss
+            };
+    
+            return data;
+        };
+    
+        await page.exposeFunction('onClick', async (targetHandle) => {
+            const data = await processElement(targetHandle, "click");
+            recorder.recordAction(data);
+            console.log(`📌 Click recorded on: ${page.url()}`);
+        });
+    
+        await page.evaluate(() => {
+            document.addEventListener(`click`, (e) => {
+                window.onClick(e.target);
+            }, true);
+        });
+    
+        await page.exposeFunction('onInput', async (targetHandle) => {
+            const data = await processElement(targetHandle, "input");
+            recorder.recordAction(data);
+            console.log(`📌 Input recorded on: ${page.url()}`);
+        });
+    
+        await page.evaluate(() => {
+            let timeoutId = null;
+            document.addEventListener(`input`, (e) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    window.onInput(e.target);
+                }, 500);
+            }, true);
+        });
+    
+        console.log(`🎯 Listeners added for page: ${page.url()}`);
     }
-  }
+    
 
-  console.log(`❌ Wallet ${i + 1}: Đã thử 5 lần nhưng vẫn gặp lỗi 429. Dừng lại.`);
+    // Gắn listener cho cả hai page, truyền recorder làm biến trung gian
+    await setupPageListeners(firstPage, recorder);
+   // await setupPageListeners(secondPage, recorder);
+
+    // Lắng nghe các page mới
+    browser.on('targetcreated', async (target) => {
+        if (target.type() === 'page') {
+            const newPage = await target.page();
+            await setupPageListeners(newPage, recorder);
+            console.log(`đã gắn listener cho page mới: ${newPage.url()}`);
+        }
+    });
+
+    await new Promise(() => {});
 }
 
-
-// Hàm chính
-async function main() {
-  try {
-    const privateKeys = await readFileLines(PRIVATE_KEY_FILE);
-    const batchSize = 2; // Giảm batchSize xuống để tránh bị block
-
-    for (let i = 0; i < privateKeys.length; i += batchSize) {
-      const batch = [];
-
-      for (let j = 0; j < batchSize && i + j < privateKeys.length; j++) {
-        batch.push(runWithoutProxy(i + j, privateKeys[i + j]));
-      }
-
-      await Promise.allSettled(batch); // Chạy đồng thời batchSize request
-    }
-  } catch (error) {
-    console.error("❌ Lỗi:", error.message);
-  }
-}
-
-main();
+startlistening().catch(console.error);

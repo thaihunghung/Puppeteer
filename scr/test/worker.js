@@ -71,37 +71,60 @@ async function run() {
     globalState.browser = browser
 
     try {
-        const cintosgaming = await PageService.openNewPage('https://waitlist-cintosgaming.com/signup', waitUntil.load)
-        cintosgaming.on('close', async () => {
-            globalState.isPageClosed = true;
-        });
-        const email = await Tmail_wibucrypto_pro.GetEmail()
-        console.log("Email:", email);
-        await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#name', email, 10)
-        await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#email', email, 10)
-        await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#ethAddress', workerData.address, 10)
-        await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#userCode', '0x695178ac', 10)
-        await clickButton1(cintosgaming, '//*[@id="root"]/div[2]/div/form/button')
+        // const earnos = await PageService.openNewPage('https://app.earnos.com?ref=hungtraneth', waitUntil.load)
+        // earnos.on('close', async () => {
+        //     globalState.isPageClosed = true;
+        // });
+        // const email = await Tmail_wibucrypto_pro.GetEmail()
+        // console.log("Email:", email);
+        // await waitAndClick1(earnos, 
+        //     '//*[@id="theme-provider"]/div[2]/div[1]/div/div/div/div[3]/div/div[2]/div/button[1]'
+        // )
+        // while (true) {
+        //     const element = await earnos.$('input[name="email"]'); 
+        //     if (element) {
+        //         console.log('Element found!');
+        //         break;
+        //     }
+        //     await Util.sleep(2000)
+        // }
 
-        let attempts = 0;
-        while (true) {
-            const top = await PageService.findPageByUrl('https://waitlist-cintosgaming.com/dashboard');
-            if (top.check) {
-                globalState.isPageClosed = true;
-                await Util.sleep(5000);
-                break;
-            }
+        // await typeInput(earnos, 'input[name="email"]', email)
+        // await waitAndClick1(earnos, 
+        //     '//*[@id="radix-:rk:"]/div/div/div/div/div/div/div/div[2]/div[3]/form/button'
+        // )
+        // const username = email.split("@")[0]; // "example"
+        // console.log(username);
 
-            attempts++;
-            if (attempts >= 20) {
-                console.log('Đã thử 20 lần, dừng vòng lặp.');
-                break;
-            }
 
-            console.log('Chưa thoát được');
-            await Util.sleep(1000);
-        }
-        globalState.isPageClosed = true;
+
+        const saha = await PageService.openNewPage('https://legends.saharalabs.ai/?code=8CJT08', waitUntil.load)
+
+        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#name', email, 10)
+        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#email', email, 10)
+        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#ethAddress', workerData.address, 10)
+        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#userCode', '0x695178ac', 10)
+        // await clickButton1(cintosgaming, '//*[@id="root"]/div[2]/div/form/button')
+
+        // let attempts = 0;
+        // while (true) {
+        //     const top = await PageService.findPageByUrl('https://waitlist-cintosgaming.com/dashboard');
+        //     if (top.check) {
+        //         globalState.isPageClosed = true;
+        //         await Util.sleep(5000);
+        //         break;
+        //     }
+
+        //     attempts++;
+        //     if (attempts >= 20) {
+        //         console.log('Đã thử 20 lần, dừng vòng lặp.');
+        //         break;
+        //     }
+
+        //     console.log('Chưa thoát được');
+        //     await Util.sleep(1000);
+        // }
+        // globalState.isPageClosed = true;
 
         while (true) {
             if (globalState.isPageClosed) break

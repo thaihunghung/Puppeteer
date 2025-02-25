@@ -46,6 +46,7 @@ class BrowserService {
 
         const extensions = [
             'E:\\puppeteer-auto-meta-proxy\\extensions\\phantom',
+            'E:\\puppeteer-auto-meta-proxy\\extensions\\OKX',
         ];
 
         const extensionsPaths = extensions.join(',');

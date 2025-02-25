@@ -1,0 +1,1494 @@
+fetch("https://www.infinityg.ai/voyage/?inviteCode=04CZJ0", {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "cache-control": "max-age=0",
+    "if-modified-since": "Mon, 24 Feb 2025 08:20:17 GMT",
+    "if-none-match": "W/\"67bc2bc1-1906\"",
+    "priority": "u=0, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "upgrade-insecure-requests": "1",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://telegram.org/js/telegram-web-app.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/entry.QcVp_j4D.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/ClWh3WOh.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-404.qhZ1RIG-.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-505.CMQxOQtL.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-arrow-left.DCCphivl.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-arrow-right.B7YBx0-b.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-top.D3lDlzr9.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-step-02.Cs6J8Ldm.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-cat.Dh3lmrOf.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-trust.hcf5MlC-.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-solflare.CIndefgG.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-walletconnect.y8l8VF9C.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-uxuy.CDpk2S-R.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/icon-password.CLNfBn3H.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BlankLayout.SjVf_-7S.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DXgxE_MT.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DlAUqK2U.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/default.vJ9VUYTI.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Header.GA8WaPBp.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/LoginModal.DTHZHc2k.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Footer.dKApoCiJ.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D_Wo1v0b.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/C7bNiCbo.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Dst1sv8R.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DwcmPWl2.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CauefbbQ.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Bqhu2oIA.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/VDS_60Lf.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CqAVJAUm.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BcCBC0Vd.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Dfbcg9_W.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/K1fSzqzY.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DC_z7zvH.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DZ_CbMJG.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D6aF8E6Q.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DQrxUWc5.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CliJ-bDX.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/C2LdB2ET.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CrViE6qq.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/error.Du5vk0bE.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BZFinF3q.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/home.tyRW3f7H.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/psWuc7KG.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/noHeader.CU9z7-2x.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/mh62cL-a.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CxqiDBer.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CY0Ohakj.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D9h0gaGM.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DwE6PloO.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D57fMTPx.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/EOWnxGfz.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DTRjMpFw.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/AWmo8U7U.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Ck1N7IQQ.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BRTlyyWt.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/-nLI7iKF.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BqmGD4vV.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BLkINDeK.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/error-404.DXySnQZL.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Bg6g3sK-.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/g2JwMhmz.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/error-500.CIkJDsQj.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/B6oTWqog.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BcdL3L0q.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/voyage.CC5cdOS5.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/favicon.svg", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CliJ-bDX.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/BcdL3L0q.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DlAUqK2U.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/BcdL3L0q.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/favicon.svg", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/builds/meta/af2fe9e3-292a-4748-9539-5acfeec89577.json", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/LoginModal.DTHZHc2k.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Header.GA8WaPBp.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Footer.dKApoCiJ.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/default.vJ9VUYTI.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D_Wo1v0b.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/ClWh3WOh.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/C7bNiCbo.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CrViE6qq.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Dst1sv8R.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DwcmPWl2.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CauefbbQ.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Bqhu2oIA.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/VDS_60Lf.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CqAVJAUm.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/BcCBC0Vd.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Dfbcg9_W.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/K1fSzqzY.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DC_z7zvH.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DZ_CbMJG.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D6aF8E6Q.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/DQrxUWc5.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/C2LdB2ET.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/D_Wo1v0b.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKPSURBVHgB7ZpRbtpAEIZnF1SpD0F1mzbqG0fwDUpPEI7Qm5ScpLlB6Q2SG3CD8laVpjWChypKspsZg60QDGsnO/YSzyeBFjQa7//Drme9CyAIguCJxdXsC72ACe78z4I6tvw3s/Ti6CRXfg2eUMr2i9qh5/dmwKGiygYukz8DYyDWYN4UZ1Kf8H2w/nQB1l6CT0rmN6Dnr3R3/DqKplAmbZkgFP8VLziCQ0Kp0VH0/swZ5gr4nyT9W3vzEw4RpT6jCRf7Qrrg4M5cD0Gtpgp0a2Kt/bHjYkEMAYw7xfc4bZq7OI3dg9MACyof8yT+6N3JqChu+ff3CC8+WAde7op7KmXzYxyZED/u+y5afxfwZoDValrUDj2/cwiUpRd9OF8ks7wNnuHK780AgkM4d36ZA6DltN6AanMAFiPp/ThkVgVTaapOgoO8GHkhyBCAaviv8X2zuWZwUs0AhhrfNxtrhhLIbRBajhgALUcMgMDh3g3yuhz2zcOn0WgC9I5btBzeehTfARaCNGBLvLVnXA9bgjOgSDxn9RmUAXWLJ9gMWCRXwyqzdxPiCRYDSLiy5jtuKH1LhTloSjzB8w/o6HneRmH7TGhSPMFiQC86HpOQ/IsdJjQtnmCbA1Ihe0wIQTzBWgmSoPVm5Ur4ygTI2nlgQ+IJ9lK4yISNgAbFE7XUAVvDIaNh8URthVDBnNC4eKLW1SAJxh3eKbV7b0/OIQBqXw5z7yBXRZ4IQcsRA6DlyOaoK0CBndvsQKlSp2lVFzAK+2izNvbdFe8+KKk7Eyxaso9xdggxVOyD9o22Y1e8cwikZ22LytjQwT5H0cepK6z0cfkk+dXX0B1qY5zHT5vEaD3HX3XiOiQtCIIgCIJwD82obgLP998rAAAAAElFTkSuQmCC", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,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", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,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", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEVSURBVHgB7dI9bsJAFEXhcZCLdEyZji1kCaw8S8FdpBR5KSKlsJCTExmEkPHfvAfN/aQogLDnHiAlERERERGRGzqzbXqAuedWU2/4/vw48H9T1fvnnJt0Bz9mu2PXvvG4rerXnPPXrfc+jd3I+k+hS+n/htw4BTuN50yej43HaAAXt9Vx//c1NfeIuBzPmZw9dc3kTwhm77u625xvHPFzGhqf80szdd2sAERGrB2P2QGIiCgZj0UB8IwoHY/FAfCI8BiPVQEoifAaj9UBWBPhOR5FAVgS4T0exQGYExExHi4BGIuIGg+3AAxF8HrUeLgG4DqC16LGwz0AlxH9ISHj+3vHOEXwOGp8OLPDlr8kIiIiIjLkF7dzOhisWneXAAAAAElFTkSuQmCC", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAlCAYAAAAqXEs9AAABYmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgIHRpZmY6T3JpZW50YXRpb249IjYiLz4KIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+Cjw/eHBhY2tldCBlbmQ9InIiPz44RGkcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJaSURBVHgBzZi9ctNAEMd315JreYAiBRm5pQnwApHfwA11SMcAM/EbhLyBMwMMXUhNgd8A5QUgNLRWoEgBTFTb8W12LctjeaJYiq2P34ztHfl8/s/e3t7tAtQMhJxcXvbcUXPcRYYdRvBkAgdYXtFsIQMEyBww4lmT7MFWqx/kmD67oN//Xr+U4XtiepADEX0uAo+3H378nGX8SkF//r71DPGJeMSFdUAIgPlolbBUQcOrntMw40NZjh5sEob+xLKP2q1+CFkFDa9euWQaX8UrT6EIxFs22Z3b4gtTxHxbe4nuKQqTYnoOmfGPwsXM0IA3Impx+WhxgMZMWWIUDYnGtcTp4rPYmG3rE6gAZOw8fvTeV3vuIUlkh1ARLGkltqceuss7z598gSx8//UC1oP3NUdNPYRIB1A501MASLc5MxeTb/Lh6TlJdN3oQk0YWeOuhYi7ms/TyBobm4g1RNgheXOhPngk8eNCfXB0lzlQHxxr1Yjy8lCEeiiE+hCSnLi1ESRaAoIJnEFdMHxhyWl2LuZe2pgy85BkIp+MNRlATWha9oDarU+B2D5UjN4e9To7uw/xKVSM1m7Tz/jBxf83wzKvr0k1EGw/+NBWc35jJIP7UBVSQMbmXJDeaRnwGEpG/3Oxmk1UHaZhveMoDZSDLJX+Z/LRElUXirQ8TtOAoUlH0zgUhK5CWilNt/0gEmU/KyKmdE6TIkZZ2Y7REklrtk20Y1B2clwQpg/LSCSMDjB3hYK+bJfTjTWslpkFvbT0cFdiwUWQK3CypReKN3357mdzJC29rXwtvRtmMvQBnGa04wAAAABJRU5ErkJggg==", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABsAAAAFCCAYAAABPZhgjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAA4YSURBVHgB7d0xSixrGEXR6ocTkBs4BnFojlfMjQWH4AvF5HQiWO5eK6v0pJvvr8u/h4fPAwAAAAAAACIub+/PAhgAAAAAAAAZ/x0AAAAAAAAQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQIoABAAAAAACQcnecxOvLx7fvx6f7gy/22eyz2Wezz2afzT6bfTb7bPbZ7LPZZ7PPZp/NPpt9Nvts9tnss9lns89mn80+21n3cQEGAAAAAABAigAGAAAAAABAigAGAAAAAABAyq/9A+zam5C3/qamfTb7bPbZ7LPZZ7PPZp/NPpt9Nvts9tnss9lns89mn80+m302+2z22eyz2Wezz/ZX9nEBBgAAAAAAQIoABgAAAAAAQIoABgAAAAAAQMrl7f358ziBW38z8xr7bPbZ7LPZZ7PPZp/NPpt9Nvts9tnss9lns89mn80+m302+2z22eyz2Wezz2af7az7uAADAAAAAAAgRQADAAAAAAAgRQADAAAAAAAg5TT/AAMAAAAAAICf4AIMAAAAAACAFAEMAAAAAACAFAEMAAAAAACAFAEMAAAAAACAFAEMAAAAAACAFAEMAAAAAACAFAEM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", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://fonts.gstatic.com/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecg.woff2", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://fonts.googleapis.com/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://fonts.googleapis.com/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://fonts.googleapis.com/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://cms.infinityg.ai/api/page-setting?pLevel", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer c4a1c2f8074695f5d82bab330e86a7b6e8c19c1a06af6e94fd158a16a2f90eaf8c7f678f6b2a1d0d235a7b2467a575d0ae1f0817c9870cdab08bab5534b36fe3ef0257842e643dc34b4dbe0788a0967be7139ab3eb200a771a4f68360ccd96bcab386b6f67771bb5797d713a16126e3fa8e1d5209d54b03840f6012941874b36",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://cms.infinityg.ai/api/page-setting?pLevel", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer c4a1c2f8074695f5d82bab330e86a7b6e8c19c1a06af6e94fd158a16a2f90eaf8c7f678f6b2a1d0d235a7b2467a575d0ae1f0817c9870cdab08bab5534b36fe3ef0257842e643dc34b4dbe0788a0967be7139ab3eb200a771a4f68360ccd96bcab386b6f67771bb5797d713a16126e3fa8e1d5209d54b03840f6012941874b36",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://api.infinityg.ai/api/v1/task/list", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJXQUxMRVQiLCJ1c2VySWQiOiIxODk0MDA3OTI0NjY2MjczNzkyIiwiaWF0IjoxNzQwNDAxNjUyfQ.vLY5eR9sqfPbKXpvqt-73XLifnVTEonaZLmnVodZ2CY",
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "POST"
+}); ;
+fetch("https://api.infinityg.ai/api/v1/user/info/query", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJXQUxMRVQiLCJ1c2VySWQiOiIxODk0MDA3OTI0NjY2MjczNzkyIiwiaWF0IjoxNzQwNDAxNjUyfQ.vLY5eR9sqfPbKXpvqt-73XLifnVTEonaZLmnVodZ2CY",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "POST"
+}); ;
+fetch("https://api.infinityg.ai/api/v1/task/list", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJXQUxMRVQiLCJ1c2VySWQiOiIxODk0MDA3OTI0NjY2MjczNzkyIiwiaWF0IjoxNzQwNDAxNjUyfQ.vLY5eR9sqfPbKXpvqt-73XLifnVTEonaZLmnVodZ2CY",
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "POST"
+}); ;
+fetch("https://api.infinityg.ai/api/v1/task/invitationLink/", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi;q=0.8",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJXQUxMRVQiLCJ1c2VySWQiOiIxODk0MDA3OTI0NjY2MjczNzkyIiwiaWF0IjoxNzQwNDAxNjUyfQ.vLY5eR9sqfPbKXpvqt-73XLifnVTEonaZLmnVodZ2CY",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "POST"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQvSURBVHgB7Vm9ctNAEN6zk4mV4BlBfqwZCkRHh/MEkI4Ot1SYkiqhpCIpqSBPgCmpiJ8Ap6MjPAEqkkGZ/IyAJE5I7ONb28k49km6u9hJgb8ZzZykO2n3dm/v2z2iEUb4vyFowJi9e7dIjUaxIaWbEcLlZ00pIyFlkBkfD3a2tjZogLiyAr7vu7/r9TI+9BS3RVxuypAIV42EqOZzubUgCCK6AqwVaAl+dLQohFiidKHjEJCUtfFMZiUMw4AskCUL3CkUFv+ena1B+Ce4zZE9XFii2CQqObduifrh4VcyhJEFPM/zT6X8gOZjGg5q40K8MLGGtgId4b+g6dNwEUCJBV0ltBS4RuHPoa1EJq3DDQjPaP2TA0Vax1QFOj7vkzmChhD3+eI2mcP/U69/TuuUqABHG7JcsIhQHyO4AF/cJjs8hgxLSR1iFWDXwQJJHHwdgAxvklwpdhFPz819wDSWSR8RZnr1jKgSpSy+Gc9bllK+IU1IIVb2w3BZ9U6pgAtkJya+kb7vs78vRAbxe7pQkKSPKO8491W0Q+lC2VyuRCYLFzNkIvzM3Jz27HfgHoBvqV6MqR6COT7XnR6YcGM3DCvn91h07/CsTAn8yGTqu8YwWXzf+3wspnOR9D+8ft6e9rwyyNmwFr5Spj4Xmp2d1aHEF8DCvfBLLExbVqoDt5Vr9KBPgaYQPhkAFrjXNXaN2nx/OECi1Puoz4UQsnwjiiplCXH6FUcIXsiu582PtdeAoqt8SO2N0cpSKgv3KcBpIDqSAThCcFR5xTedaLQc2xkbZJbfI1CQKTopajdSuZAOoO4Sb3y8e6f1ZQX3wrCM5ioNAH0WaCXgZAHs2iB+JWxQNSzs7zE/q5xT5MbJyTI2S7aCvjtBNsU3LyOLqNKUNpG6BRamBBcsqV6eEi3CSvOsRAQg7FZNXElms0Hvs34XajQGWvbogXvWpZwwpNlYn339+xTY2dlhBYYWCqX9vhGpakrKRcz0gAYPFnx1r4t24D+PtEcLoZRJSSVQ5qgKw0QmifKqwLQDFtCmLIAyKUqi0z/IIELsbW8Ps8IRgE7Pq+i0srB1DEzl8w4ZWMGZmiIUptaT+vAmNjk5uQgLV3DrkS5AUX5ubn5SvoobY2OFy/8UK7sdlzLNwHqQmCzF7sQcp7EbrNANAzO8mpQspfrtTKHwRdpVJlrFKW7Y1pVgxRqsuJDYh1LQIl/XX9hiaOXZWpHjBpTQLhJoh75rVMKowqFNp/mD/GHBpytDAvu8aXnG6IDj+OAgOjo8/IjDiF9Q5AHZn8z0gin8693t7Zf8D5OBVic0fJIykc9XwQ5vU1sJW0W4mve24TjP9re2amSBKx/yuahbZo+PS/jQ8w63ST3kg9AbyDmqTcepRDd1yBcHF2UZJEU+Fwe6j1k5UTpFrhG16foII4wwIPwDdFLQJyhx35UAAAAASUVORK5CYII=", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAP+SURBVHgB7VldUhNBEO6ezVplKZqVKtQnwwmEEwgnMDcwngA8gckJ1BOIJxBOQDwBeALyJqCw4aekqOxO250fDOzs7syQwAN8ValsJrOz/c1093zTC3CPe9xtIEwYp/H+ggZYII1VBboqbRpUF5XuKMDO42huGyaIaxOgOK4e66ShkN7ycAvcUi2+A7tMqc0EN2aCcB2jqAvXgDcBMfwUkhUgWC03OvfhHb6/Haiw9TCKOuABLwLsJitE2PQ13GBEJyX95ensi8/gCCcCZ3FcS6j3lS+XYDpoVzB877Ia1gTE+JR6mwRQgylCViPAcNmWhBWBmzJ+BBcSpQRu2vgRhEQPw8WoJEspKIH4vI/xYkCC6bx8+tnGEfLMCvW+l/UrJCDZBjwDloi+RdHLjnzkGvywdHSwu1rUIZeAuM4gx98uFKqPMe85ef/nxsDpwf5XQmiANXiH5VxeUXrtIc96Uc+Tg70mIH4EWxC1ZmafN41PNTUK45B6W7a+Pwi4dDkqMXwcJ4f7BPboJhjOmwLa6EJB2qu7BK5GaDkZH/+2n/0BqqE+b5j+qJgaUcE7sATP/vZMNLcG/437xLHTKJQZ5DL5w1tQsViEjNSo5PRfANuBSf8YXR//2W9ww7QC32hTxoVEz/OXg0jDC79UqCci7nJQHdp2CRkCOlU1cAAqfDW67ila569r6ftCpNlVyLiQwqRG5Rv0Bdid65y1PkiGkECO41+LFa0axs6oXkN/Y/SU4YYVzhAgQNfBOUMkklU+yI9hNmrmdWaCtUCrJiJaJ4oi2+ynumhgpFXZ+Pq7dwmE4JPZ5xzs8AUmgMwKIFCXPA5qsmsnlNRPDvfabNxP48PUg7WRRE5U2GSxJqtgveJiW2bMqw2auILgf1JmY7DOT6qb/mVlu8KrtCgkJGaOD/Y2XFxJq0rnalvGhVQAEy17XEE11ecX5FxlNpdpOtm2KxjWbaaWCrVSY2M7JYyuqaaUF8RTWIWBWn0yJjtYkb6xv99sk1kLkd5g7bEELiiQvCb0ZQeQvWRBMB6KcuU0Z4gdcMgQM8/mplbhKDofG12o35HIKU/bSOQz3sSkH6fbLadzNkI773CfO2s+q3AJYy7lfAK7bGDhYSl3JxbGGnULbhsc+EWHpVK/5aPfJnhUJkbFKbm+Rl2pzbG1XPKcYoj4Cim4pcJW+TnbKnPcNAmXIoF16rspEq4VDms5LQPKwHzZhumh7Vqe8dKdR/HuakBqZXKrgV2ktPV42i84xjE6WSnWM/5EBvooUX8/R9G8l4D0JjBCHO9UA3hUR5Jaku1LPtrWiBsaTtd8Db8YDSaMwWtWxYUBqik9fM3KElpOUxxw25N+zXqPe9x1/AMvPOnGqSkghAAAAABJRU5ErkJggg==", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step1-2.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/strapi/step4_1_360cb7aee5.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step1-4.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/strapi/4_4_7788e20dba.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVdSURBVHgB7ZtNbBtVEIDnbRsRx3ZkmihrkUpsbhSJ1j1Qol5wb1UvLYhKIH6a5oBAIKVISKiVoEkvtFxwDoUbrW89VEpyQW1VWiNxqOAQIyTKcSMRZEtt2DpOahpnHzO7trGddbK295n96Sclb7Pv2dmZnXm/MwwEE4vHlT6AJOf8AAdQGP5gGcMqpampinUap5KxX7muZ/skKZvL5VQQCAMBDMfjSeD8OApzArYK2i4qfleGSVL6QS6XAYdxTAGKosQK6+tT+PbOgPmGRaACYzNoURmnLKNrBfRI8GY0fPCruxmb7VYRu6AL9sjy1JNyeR6FP4p/9kPvoP81rqOLDUSjjx4Xi1nokI4sII4d2wbnV/AyCe5A7WPsSCfW0LYF0FtHzV/DyxfAPcTwmSZCkcg/j9fW7rXzwbYUgMJ/jSYzDb01d7v047MdDYXDgEr40e6HbCtgaGTkCvr6B+By8BmTA+GwgkpYsNXeTqNhWV7EMT0BHgIFyz7I5w/u1E7aqQG9ea8JT9Az07Pv1G5bFxgeGTkP5vjuTRhLhCOR2Pra2s1WTVoqgHp7/IKL4H3GcXR41Gp0sOwDKuP8IvRuZicaDecJB63mCZZ9AAp/F/wjPBGrTNy2sMUFhuLxCSwmwH8oVq7Q4AIV06e3r4A/0aKh0Jiqqlr1RoMLPOF8CgQLPzg4CGc++hCupb8D9f5vxs/3c9fhjRPHoQfECqVSw6hWs4BedHx7R0cNwfeOPmdZ/+fyX/DmqUksl0EgDVZQs4ANc2UntOOrCk8CkqD7XzkMyr6X4P2Pp4x7VEdtyEoE0mAF/7kA5+dBIGTiVeGPvX4S7v38CxQKq0bdrR/uwLHXTtaUMPnu2yASZrq6gaEAYw9PsO9PvveOUV64+FVN8HoKq6vw6bnPjevxQy+DYGIVmU0F4A7sKRDMi/vM7YNbt++0bPP7/T+MsgcKQIPntGFbcQFcQoILICvoIcawI1HvD/4d97dDoTMLaUPXPbfUdQo6sNmNBw4J9AdwCurtvzj3GQxGo5b1NPGxQ3M7miOkLn8D1+dsbfTYQuc8wYZkeQ7MExxH+On2zZYTnW6hPmL/ocPgIAsSc9j/RQlPtLKqTkHZn5e4v5a9bUGy0zCoQHBRdtwU9TtPFQABhxSgQnBRaRjUIKCQ7DQMqhBQUPYlcoElCCh4kJqVJPwFAYVLUlbCvcAMBJRNXc9KmnlcpELwUEn26jzAuTWmV2AsQ4VkXrN5cAiR21pOnhfgEJim0lBAJQLTkfnAhS8vCTnYIMWmLn8LDqFWo05rJ0O4TTzNBZ8NuAbGTj/M5a7SZW0tUC6VUhCMWaG2WTfy1RSgIdgXzIL/SWt1gRINq8EAWIG6yViq/kZDgEQJoWhLCjgEP8LYJ383hdxbxggNy/Jd7p44YKdQH+bzY803LTdEythLgr9cQUPTP2JVYRkmVyoWNT+5AspxdiWfv2FV1zJOkIKJBiKRZ/FyHDwMZ2wGTb9lvOO2kaKohBsD4fAYRVyCF2EsvZLLbRvpaitYeo8sL7KgBksTK/RFnKfBK+CbtyM8YTtfAN1hPhyNksUkwd3Mos/bzmtoK2NkvVjMULQlMztGt2WNUCbZWRR+up0PdZQ0RZEVu1wUUYprmEwZ4LTWQdJUV3mDRlyxuYRW4P+B3voM+nsKOqSrvEHK13smGl2QTEVSGFiv3IJWrpc2Q6G3VpaXM9AFjqXOGm5BHaRYizCW7OX+/pRWF/DcDY4poB4KQuQUcs/5q9CtMhij5OkF2rd0dfJ0KwzL0PVEJRjrgJE+z1gMhVIaGqKgjHOtclS3RAc2dGahCU6f/xdaDAOwELS6mAAAAABJRU5ErkJggg==", {
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step2-1.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step2-2.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step3-1.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step3-2.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/voyage/icon/step3-3.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/images/user/ai-icon.svg", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://catoss.s3.ap-southeast-1.amazonaws.com/telegram/tasks/wenjuan1.png", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://fonts.googleapis.com/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/Cuo0_wyc.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D3OJ-Buu.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/index.eXsjIL-p.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CWQDYYm9.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/index.TbyZoGrN.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/D6Oc_hGK.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/CN_fr3X4.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+  },
+  "referrer": "",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/base.g_5ERD9L.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/rankpage.1j-B5mVm.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/home.tyRW3f7H.css", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/voyage/?inviteCode=04CZJ0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://www.infinityg.ai/_nuxt/psWuc7KG.js", {
+  "headers": {
+    "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://www.infinityg.ai/_nuxt/ClWh3WOh.js",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
