@@ -48,7 +48,7 @@ async function createWorker(workerData) {
 
 
 async function startWorkers() {
-    const data = fs.readFileSync('E:\\puppeteer-auto-meta-proxy\\scr\\test\\address.txt', 'utf8');
+    const data = fs.readFileSync('E:\\puppeteer-auto-meta-proxy\\scr\\python\\wallet\\Private_Key_Sol10.txt', 'utf8');
 
     const dataArray = data.split('\n').map((item) => item.trim()).filter((item) => item);
 
@@ -167,7 +167,7 @@ async function startWorkers() {
     module.exports = groups;
     
 
-    const maxThreads = 10;
+    const maxThreads = 1;
     let currentGroupIndex = 0; 
     async function processGroup(indicesToRun) {
         let activeWorkers = 0;
@@ -175,7 +175,7 @@ async function startWorkers() {
         const groupResults = [];
 
         async function processNextWorker() {
-            if (currentIndex >= dataTwitterArray.length) return;
+            if (currentIndex >= dataArray.length) return;
 
             if (indicesToRun.length > 0 && !indicesToRun.includes(currentIndex)) {
                 currentIndex++;
@@ -197,13 +197,13 @@ async function startWorkers() {
             const proxy = proxies[currentIndex]
             //console.log(`Lỗi trong proxy `, proxy);
             // const mnemonic = mnemonics[1]
-            const mnemonic = Datatwitter[5] || ''
-
+            const sol_private_key = dataArray[currentIndex]
+            console.log('Processing sol_private_key:', sol_private_key);
             const token = tokenArray[currentIndex]
-            //console.log('Processing mnemonic:', mnemonic);
+            //
             //, token, key12, mnemonic, twitter, 
-            const address = dataArray[500 + currentIndex]
-            const workerData = { i: 0 + currentIndex, proxy, address };
+
+            const workerData = { i: 0 + currentIndex, proxy, sol_private_key, twitter };
 
             currentIndex++;
             activeWorkers++;
@@ -220,7 +220,7 @@ async function startWorkers() {
             }
         }
 
-        const initialWorkers = Math.min(maxThreads, dataTwitterArray.length);
+        const initialWorkers = Math.min(maxThreads, dataArray.length);
         const workerPromises = [];
         for (let i = 0; i < initialWorkers; i++) {
             workerPromises.push(processNextWorker());

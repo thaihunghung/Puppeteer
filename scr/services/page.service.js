@@ -323,8 +323,21 @@ class PageService {
     static async openNewPage(url, waitUntil = 'domcontentloaded', timeout = 300000) {
         try {
             const page = await this.createNewTab(); 
-            
-            await page.setCacheEnabled(false);  
+            const requests = [];
+    page.on('response', async (response) => {
+        try {
+            const url = response.url();
+            const requestType = response.request().resourceType();
+            if (['document', 'xhr', 'fetch'].includes(requestType)) {
+                const responseBody = await response.text(); // Lấy nội dung request
+                requests.push({ url, requestType, responseBody });
+            }
+        } catch (error) {
+            console.error('Error capturing request:', error);
+        }
+    });
+    
+            //await page.setCacheEnabled(false);  
             this.acceptAlert(page);  
 
             // Mở trang và chờ tải xong
@@ -332,7 +345,7 @@ class PageService {
                 timeout: timeout,
                 waitUntil: waitUntil,
             });
-
+            console.log(requests);
             console.log(`Trang đã mở thành công: ${url}`);
             return page;  // Trả về page nếu thành công
         } catch (error) {

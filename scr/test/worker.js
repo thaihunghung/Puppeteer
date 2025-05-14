@@ -31,6 +31,7 @@ const PhantomWallet = require('../modules/wallet/phantom/phantom');
 const { fail } = require('assert');
 const { create } = require('domain');
 const Tmail_wibucrypto_pro = require('../modules/email/tmail.wibucrypto.pro');
+const { promises } = require('dns');
 require('dotenv').config();
 async function run() {
     let isPageClosed = false;
@@ -45,9 +46,9 @@ async function run() {
     }
     const extensionsPaths = extensions.join(',');
     globalState.workerData = workerData
-    const proxy = workerData.proxy;
-    console.log('proxy', proxy)
-    const newProxyUrl = await proxyChain.anonymizeProxy(proxy);
+   // const proxy = workerData.proxy;
+   // console.log('proxy', proxy)
+    //const newProxyUrl = await proxyChain.anonymizeProxy(proxy);
     const browser = await puppeteer.launch({
         //devtools: true,
         headless: false,
@@ -56,8 +57,8 @@ async function run() {
             '--no-sandbox',
             '--allow-file-access-from-files',
             '--disable-setuid-sandbox',
-            `--proxy-server=${newProxyUrl}`,
-            //'--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
+           // `--proxy-server=${newProxyUrl}`,
+           // '--disable-extensions-except=E:\\puppeteer-auto-meta-proxy\\extensions\\Phantom',
             //`--load-extension=E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra`,
             '--profile-directory=Profile 1',
             //'--start-maximized'
@@ -71,60 +72,46 @@ async function run() {
     globalState.browser = browser
 
     try {
-        // const earnos = await PageService.openNewPage('https://app.earnos.com?ref=hungtraneth', waitUntil.load)
-        // earnos.on('close', async () => {
+        // const axieinfinity = await PageService.openNewPage('https://axieinfinity.com/pre-register/?ref=aoyzz8ux', waitUntil.load)
+        // axieinfinity.on('close', async () => {
         //     globalState.isPageClosed = true;
         // });
-        // const email = await Tmail_wibucrypto_pro.GetEmail()
+        //const email = 
+        await Tmail_wibucrypto_pro.CreateEmail()
         // console.log("Email:", email);
-        // await waitAndClick1(earnos, 
-        //     '//*[@id="theme-provider"]/div[2]/div[1]/div/div/div/div[3]/div/div[2]/div/button[1]'
-        // )
-        // while (true) {
-        //     const element = await earnos.$('input[name="email"]'); 
-        //     if (element) {
-        //         console.log('Element found!');
+        // await ElementService.HandlefindAndTypeElement(axieinfinity, 'input[type="email"]', email)
+        // await ElementService.HandlefindAndClickElement(axieinfinity, 'button[type="submit"]')
+
+        // // cách 1
+        // await axieinfinity.evaluate(() => {
+        //     const image = document.querySelector('img.axie-captcha-image');
+        //     if (image) {
+        //       image.setAttribute('style', 'transform: rotate(0deg);');
+        //     }
+        // });
+        // // cách 2
+        // let isHorizontal = false;
+
+        // while (!isHorizontal) {
+        //     const style = await axieinfinity.evaluate(() => {
+        //         const image = document.querySelector('img.axie-captcha-image');
+        //         return image ? image.getAttribute('style') : null;
+        //     });
+
+        //     if (style && style.includes('transform: rotate(0deg)')) {
+        //         isHorizontal = true;
         //         break;
         //     }
-        //     await Util.sleep(2000)
+
+        //     const rotateButton = await axieinfinity.$('button.axie-captcha-rotate-right-button');
+        //     if (rotateButton) {
+        //         await rotateButton.click();
+        //         await Util.sleep(1000);
+
+        //         console.log('Không tìm thấy nút quay!');
+        //         break;
+        //     }
         // }
-
-        // await typeInput(earnos, 'input[name="email"]', email)
-        // await waitAndClick1(earnos, 
-        //     '//*[@id="radix-:rk:"]/div/div/div/div/div/div/div/div[2]/div[3]/form/button'
-        // )
-        // const username = email.split("@")[0]; // "example"
-        // console.log(username);
-
-
-
-        const saha = await PageService.openNewPage('https://legends.saharalabs.ai/?code=8CJT08', waitUntil.load)
-
-        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#name', email, 10)
-        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#email', email, 10)
-        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#ethAddress', workerData.address, 10)
-        // await ElementService.HandleWaitForSelectorTypeElement(cintosgaming, '#userCode', '0x695178ac', 10)
-        // await clickButton1(cintosgaming, '//*[@id="root"]/div[2]/div/form/button')
-
-        // let attempts = 0;
-        // while (true) {
-        //     const top = await PageService.findPageByUrl('https://waitlist-cintosgaming.com/dashboard');
-        //     if (top.check) {
-        //         globalState.isPageClosed = true;
-        //         await Util.sleep(5000);
-        //         break;
-        //     }
-
-        //     attempts++;
-        //     if (attempts >= 20) {
-        //         console.log('Đã thử 20 lần, dừng vòng lặp.');
-        //         break;
-        //     }
-
-        //     console.log('Chưa thoát được');
-        //     await Util.sleep(1000);
-        // }
-        // globalState.isPageClosed = true;
 
         while (true) {
             if (globalState.isPageClosed) break
@@ -844,7 +831,7 @@ async function getVerificationCode() {
         const pageMail = await getTabByIndex(1);
         await Util.sleep(5000);
 
-        const emailFound = await ElementService.HandlefindAndElementText(pageMail, 'verify@x.com');
+        const emailFound = await ElementService.HandlefindAndElementText(pageMail, 'noreply@particle.network');
         if (emailFound) {
             await ElementService.HandlefindAndClickElement(pageMail, '/html/body/div[1]/div/div[2]/div/main/div[1]/div/div');
 

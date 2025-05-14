@@ -39,14 +39,15 @@ class BrowserService {
                 break;
             default:
                 const defaultProxyUrl = await proxyChain.anonymizeProxy(proxy);
+                console.log('proxy', proxy);
                 proxyArg = `--proxy-server=${defaultProxyUrl}`;
                 break;
         }
         //'E:\\puppeteer-auto-meta-proxy\\extensions\\yescaptra',
 
         const extensions = [
-            'E:\\puppeteer-auto-meta-proxy\\extensions\\phantom',
-            'E:\\puppeteer-auto-meta-proxy\\extensions\\OKX',
+            //'E:\\puppeteer-auto-meta-proxy\\extensions\\phantom',
+            //'E:\\puppeteer-auto-meta-proxy\\extensions\\OKX',
         ];
 
         const extensionsPaths = extensions.join(',');
@@ -68,22 +69,25 @@ class BrowserService {
                     '--disable-default-apps',
                     '--disable-sync',
                     '--disable-translate',
-                    //'--disable-extensions-except=E:\\',
-                    `--load-extension=${extensionsPaths}`,
+                    //`--disable-extensions-except=${extensionsPaths}`,
+                    //`--load-extension=${extensionsPaths}`,
                 ].filter(arg => arg),
                 defaultViewport: mobile
                     ? { width: 500 } 
                     : null,
             });
+            let firstPageOpened = false;
+
             BrowserService.browser.on('targetcreated', async (target) => {
                 const page = await target.page();
-                if (page) {
-                    // Sử dụng devtoolsProtocol để xóa cache
+                if (page && !firstPageOpened) {
+                    firstPageOpened = true; // Đánh dấu đã mở trang đầu tiên
                     const client = await page.target().createCDPSession();
                     await client.send('Network.clearBrowserCache');
-                    console.log('Cache đã được xóa');
+                    console.log('Cache đã được xóa cho trang đầu tiên');
                 }
             });
+
             BrowserService.browser.on('disconnected', () => {
                 globalState.isPageClosed = true;
             });
