@@ -41,3 +41,8 @@ BrowserService.browser = await puppeteer.launch({
   defaultViewport: null,
 });
 ```
+## Bước 6: Kiểm tra và chạy thử dự án
+```bash
+node app.js
+```
+
