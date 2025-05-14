@@ -1,2 +1,2 @@
-# puppeteer-auto-meta-proxy
-Puppeteer-Auto-Meta-Proxy-Air
+git clone https://github.com/thaihunghung/Puppeteer.git
+cd Puppeteer
